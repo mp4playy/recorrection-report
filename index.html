@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>리커렉션 · 주간 리포트</title>
+<style>
+  :root{
+    --ink:#1c1c1e; --sub:#6b6f76; --line:#e6e8eb; --bg:#f4f6f8;
+    --accent:#2f3e46; --card:#ffffff; --soft:#eef1f3;
+    --up:#1e7e34; --down:#c0392b; --hold:#8a6d1f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; padding:18px 12px 40px;
+  }
+  .wrap{max-width:760px; margin:0 auto;}
+
+  .head{text-align:center; margin-bottom:6px;}
+  .head h1{font-size:19px; letter-spacing:-.02em;}
+  .head .period{font-size:12.5px; color:var(--sub); margin-top:3px;}
+  .head .period b{color:var(--accent);}
+
+  .sec{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 16px 18px; margin-bottom:16px;}
+  .sec-h{font-size:13px; font-weight:700; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:7px; letter-spacing:-.01em;}
+  .sec-h .bar{width:4px; height:15px; background:var(--accent); border-radius:2px;}
+
+  /* KPI table */
+  .kpi-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  table.kpi{width:100%; border-collapse:collapse; font-size:12px; min-width:640px;}
+  table.kpi th, table.kpi td{padding:9px 8px; text-align:center; border-bottom:1px solid var(--line); white-space:nowrap;}
+  table.kpi tbody td{font-variant-numeric:tabular-nums;}
+  table.kpi thead th{background:var(--soft); color:var(--sub); font-weight:600; font-size:11px;}
+  table.kpi th:first-child, table.kpi td:first-child{text-align:left; position:sticky; left:0; background:var(--card); font-weight:700; z-index:1;}
+  table.kpi thead th:first-child{background:var(--soft);}
+  .trend-up{color:var(--up); font-weight:700;}
+  .trend-down{color:var(--down); font-weight:700;}
+  .trend-hold{color:var(--hold); font-weight:700;}
+  .tag{display:inline-block; font-size:10.5px; padding:2px 8px; border-radius:20px; font-weight:600;}
+  .tag.norm{background:#e8f1ff; color:#1c5fb8;}
+  .tag.recover{background:#eafaf0; color:var(--up);}
+  .tag.guide{background:#f3eefc; color:#7c4dbb;}
+
+  .kpi-legend{font-size:11px; color:var(--sub); margin-top:12px; line-height:1.7;}
+  .kpi-legend b{color:var(--ink);}
+
+  /* 전달사항 */
+  .note-card{border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px;}
+  .note-card:last-child{margin-bottom:0;}
+  .note-h{display:flex; align-items:center; gap:8px; margin-bottom:6px;}
+  .note-h .name{font-size:13.5px; font-weight:700;}
+  .note-body{font-size:12.5px; color:var(--sub); line-height:1.65;}
+
+  .datanote{font-size:11px; color:#b45309; background:#fff7ed; border:1px solid #fed7aa; padding:6px 10px; border-radius:8px; margin-top:12px; line-height:1.6;}
+
+  .foot{text-align:center; font-size:11px; color:#aeb3b9; margin-top:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <h1>리커렉션 주간 리포트</h1>
+    <div class="period"><b>8/1</b> ~ <b>8/7</b> · 1주차</div>
+  </div>
+
+  <!-- 1. KPI 대시보드 -->
+  <div class="sec">
+    <div class="sec-h"><span class="bar"></span>현재 계정별 인사이트 진단 · 최근 7일</div>
+    <div class="kpi-scroll">
+      <table class="kpi">
+        <thead>
+          <tr>
+            <th>계정</th><th>상태</th><th>추이</th><th>국내<br>팔로워</th><th>순<br>팔로워</th>
+            <th>방문</th><th>시청자</th><th>저장</th><th>문의</th><th>클릭</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>오피셜</td>
+            <td><span class="tag norm">정상화 필요</span></td>
+            <td class="trend-hold">—</td>
+            <td>11.2%</td>
+            <td class="trend-down">-258</td>
+            <td>50</td>
+            <td>—</td>
+            <td>3,503</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>CEO</td>
+            <td><span class="tag norm">정상화 필요</span></td>
+            <td class="trend-hold">—</td>
+            <td>38.2%</td>
+            <td class="trend-down">-93</td>
+            <td>810</td>
+            <td>—</td>
+            <td>3,504</td>
+            <td>0</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>아카데미</td>
+            <td><span class="tag recover">양호·유지</span></td>
+            <td class="trend-hold">—</td>
+            <td>76.8%</td>
+            <td class="trend-up">+16</td>
+            <td>35</td>
+            <td>—</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="kpi-legend">
+      · <b>추이</b> ▲상승 / ▼하락 / —유지 (2주차부터 전주 대비 표시) &nbsp;·&nbsp; <b>순 팔로워 감소</b>는 과거 해외 유입이 정리되는 <b>정상화 과정</b>으로, 국내 시청자·저장·문의(질 지표)를 함께 봅니다.<br>
+      · 기준선(1주차): 오피셜 국내 11.2% / CEO 38.2% / 아카데미 76.8% — 매주 이 대비 변화를 기록합니다.
+    </div>
+    <div class="datanote">
+      ⚠ 시청자: 이번 주 인사이트 캡처에 해당 지표가 없어 값 없음. 문의: DM "읽지 않음" 기준 0건(이미 답장한 문의는 미포함이라 참고용 수치).
+    </div>
+  </div>
+
+  <!-- 2. 기타 전달사항 -->
+  <div class="sec">
+    <div class="sec-h"><span class="bar"></span>기타 전달사항</div>
+    <div class="note-card">
+      <div class="note-h"><span class="name">오피셜</span><span class="tag norm">정상화 필요</span></div>
+      <div class="note-body">조회 6.8만 대비 국내 팔로워 비율 11.2%로 낮고, 순팔로워 -258로 감소. 링크 클릭 0회로 전환이 거의 없음. 상위 유입국이 해외에 집중되어 있어(국내 11.2%) 국내 시청자 회복이 우선 과제.</div>
+    </div>
+    <div class="note-card">
+      <div class="note-h"><span class="name">CEO</span><span class="tag norm">정상화 필요</span></div>
+      <div class="note-body">순팔로워 -93으로 소폭 감소했지만 국내 비율 38.2%로 3계정 중 상대적으로 안정적. 방문 810·클릭 5회로 콘텐츠 반응은 양호하나 조회 대비 전환은 여전히 낮음.</div>
+    </div>
+    <div class="note-card">
+      <div class="note-h"><span class="name">아카데미</span><span class="tag recover">양호·유지</span></div>
+      <div class="note-body">국내 팔로워 76.8%로 3계정 중 가장 건강한 구성 유지. 순팔로워 +16으로 증가세지만 조회수(730)·방문(35) 규모가 작아 노출 확대가 다음 과제.</div>
+    </div>
+  </div>
+
+  <div class="foot">리커렉션 주간 리포트 · 인사이트 KPI DB 기준 · 매주 일요일 갱신</div>
+</div>
+</body>
+</html>
