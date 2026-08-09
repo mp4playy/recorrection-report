@@ -7,21 +7,21 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="리커렉션 · 주간 업무일정">
-<meta property="og:description" content="1주차 8/10(월) ~ 8/16(일) · 매주 갱신됩니다">
+<meta property="og:description" content="1주차 · 8/10(월) ~ 8/16(일) · 매주 갱신됩니다">
 <meta property="og:site_name" content="Re:Correction">
 <meta property="og:locale" content="ko_KR">
-<meta name="description" content="1주차 8/10(월) ~ 8/16(일) · 매주 갱신됩니다">
+<meta name="description" content="1주차 · 8/10(월) ~ 8/16(일) · 매주 갱신됩니다">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="리커렉션 · 주간 업무일정">
-<meta name="twitter:description" content="1주차 8/10(월) ~ 8/16(일) · 매주 갱신됩니다">
+<meta name="twitter:description" content="1주차 · 8/10(월) ~ 8/16(일) · 매주 갱신됩니다">
 
 <style>
   :root{
     --ivory:#F5F2EC; --cocoa:#7A4A3A; --cacao:#4B2E27;
     --wgray:#817C77; --black:#171719;
     --card:#FFFFFF; --line:#E2DBD0; --soft:#EFEAE1;
-    --serif: Georgia,'Times New Roman','Nanum Myeongjo',serif;
-    --sans: -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Pretendard','Malgun Gothic',sans-serif;
+    --sans: 'Roboto','Noto Sans KR','Source Han Sans KR','Noto Sans CJK KR','Pretendard','Apple SD Gothic Neo','NanumBarunGothic','Malgun Gothic',-apple-system,BlinkMacSystemFont,sans-serif;
+    --display: var(--sans);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -37,9 +37,8 @@
     color:var(--cocoa); font-weight:700; margin-bottom:10px;
   }
   .head h1{
-    font-family:var(--serif); font-weight:400;
-    font-size:clamp(24px,5vw,32px); color:var(--cacao);
-    letter-spacing:.01em; margin-bottom:8px;
+    font-family:var(--display); font-weight:600; letter-spacing:-.015em;
+    font-size:clamp(23px,5vw,30px); color:var(--cacao); margin-bottom:8px;
   }
   .period{
     display:inline-block; font-size:13px; color:var(--cacao);
@@ -59,7 +58,7 @@
     margin-bottom:11px; padding-bottom:8px;
     border-bottom:1px solid var(--line);
   }
-  .sec-h .day{font-family:var(--serif); font-size:17px; color:var(--cacao);}
+  .sec-h .day{font-family:var(--display); font-weight:600; letter-spacing:-.01em; font-size:16px; color:var(--cacao);}
   .sec-h .dow{
     font-size:11px; color:#fff; background:var(--cocoa);
     padding:2px 9px; border-radius:20px; font-weight:700;
@@ -73,10 +72,21 @@
     display:grid; grid-template-columns:1fr auto; gap:10px; align-items:start;
   }
   .item .t{font-size:13.5px; font-weight:600; color:var(--black); line-height:1.5;}
-  .item .d{font-size:12px; color:var(--wgray); margin-top:3px; line-height:1.55;}
-  .st{font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap;}
+  .item .t .tm{
+    display:inline-block; font-variant-numeric:tabular-nums;
+    font-size:11.5px; font-weight:700; color:var(--cocoa);
+    background:var(--soft); border-radius:4px;
+    padding:1px 6px; margin-right:7px; vertical-align:1px;
+  }
+  .item .d{font-size:12px; color:var(--wgray); margin-top:4px; line-height:1.55;}
+  .st{
+    font-size:10.5px; font-weight:700; padding:3px 10px;
+    border-radius:20px; white-space:nowrap;
+  }
   .st-plan{background:var(--soft); color:var(--cacao);}
   .st-run{background:#F0E2D8; color:var(--cocoa);}
+  .st-hold{background:#EAE7E3; color:#7B756E;}
+  .st-done{background:#E4EDE4; color:#3D6B45;}
 
   .tag-acct{
     display:inline-block; font-size:10px; font-weight:700;
@@ -88,55 +98,73 @@
     background:var(--card); border:1px solid var(--line);
     border-radius:13px; padding:18px 20px; margin-top:8px;
   }
-  .sched h3{font-family:var(--serif); font-weight:400; font-size:17px; color:var(--cacao); margin-bottom:4px;}
+  .sched h3{
+    font-family:var(--display); font-weight:600; letter-spacing:-.01em;
+    font-size:16px; color:var(--cacao); margin-bottom:4px;
+  }
   .sched .note{font-size:12px; color:var(--wgray); margin-bottom:14px;}
   table{width:100%; border-collapse:collapse; font-size:13px;}
   th,td{padding:8px 6px; text-align:left; border-bottom:1px solid var(--line);}
-  th{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--wgray); font-weight:700;}
+  th{
+    font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--wgray); font-weight:700;
+  }
   td.time{font-variant-numeric:tabular-nums; font-weight:700; color:var(--cacao);}
   tr:last-child td{border-bottom:none;}
 
-  .foot{margin-top:28px; text-align:center; font-size:11.5px; color:var(--wgray); line-height:1.8;}
+  .foot{
+    margin-top:28px; text-align:center;
+    font-size:11px; color:var(--wgray); line-height:1.9;
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="head">
-    <div class="eyebrow">Re:Correction &middot; Weekly Schedule</div>
+    <div class="eyebrow">Re:Correction · Weekly Schedule</div>
     <h1>주간 업무일정</h1>
     <div class="period">1주차 · 8/10(월) ~ 8/16(일)</div>
   </div>
 
   <div class="banner">
-    <b>1주차는 구축 기간입니다.</b> 콘텐츠 업로드는 2주차부터 시작합니다.<br>
-    기준·가이드·레이아웃을 먼저 세운 뒤 콘텐츠를 올려야, 이후 작업이 쌓이고 재현됩니다.
+    <b>1주차는 구축 기간입니다.</b> 콘텐츠 업로드는 2주차부터 시작합니다.<br>기준·가이드·레이아웃을 먼저 세운 뒤 콘텐츠를 올려야, 이후 작업이 쌓이고 재현됩니다.
   </div>
 
   <div class="sec">
     <div class="sec-h">
       <span class="day">8 / 10</span><span class="dow">월</span>
-      <span class="meta">계약 시작일</span>
+      
     </div>
     <div class="items">
       <div class="item">
-        <div><div class="t">날인 계약서 수령</div>
-        <div class="d">날인 확인 후 아래 산출물을 발송합니다.</div></div>
+        <div><div class="t"><span class="tm">00:00</span>AI 구독</div>
+        <div class="d">구축</div></div>
         <span class="st st-plan">예정</span>
       </div>
       <div class="item">
-        <div><div class="t">캡션 · 댓글 운영 가이드 발송</div>
-        <div class="d">검색기반(AEO/SEO) 캡션 작성 가이드 + 댓글·답글 운영 가이드 · 단톡 및 메일</div></div>
+        <div><div class="t"><span class="tm">09:30</span>날인 계약서 받기</div>
+        <div class="d">제출</div></div>
         <span class="st st-plan">예정</span>
       </div>
       <div class="item">
-        <div><div class="t">비용정산서 발송</div>
-        <div class="d">생성형 AI(힉스필드) · AI 보이스(일레븐랩스) · 캔바 팀 구독 · 단톡 및 메일</div></div>
+        <div><div class="t"><span class="tm">09:30</span>비용정산서 단톡&amp;메일발송</div>
+        <div class="d">제출</div></div>
         <span class="st st-plan">예정</span>
       </div>
       <div class="item">
-        <div><div class="t">하이라이트 개편</div>
-        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span><span class="tag-acct">아카데미</span>고객 질문 단위로 재구성</div></div>
+        <div><div class="t"><span class="tm">14:00</span>리커렉션 브랜드 가이드 수정 후 발송</div>
+        <div class="d">제출</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t"><span class="tm">14:00</span>캡션/댓글운영 가이드 카톡 단톡&amp;메일 발송</div>
+        <div class="d">구축</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t"><span class="tm">15:00</span>리커렉션/CEO/아카데미 하이라이트 개편</div>
+        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span><span class="tag-acct">아카데미</span>구축</div></div>
         <span class="st st-plan">예정</span>
       </div>
     </div>
@@ -144,33 +172,28 @@
 
   <div class="sec">
     <div class="sec-h">
-      <span class="day">8 / 10 &ndash; 8 / 14</span><span class="dow">월–금</span>
+      <span class="day">8 / 10 – 8 / 16</span><span class="dow">월–일</span>
       <span class="meta">상시 진행</span>
     </div>
     <div class="items">
       <div class="item">
-        <div><div class="t">캔바 브랜드 기본 템플릿 구축</div>
-        <div class="d">확정 팔레트·타이포 기준으로 초반 기본 템플릿 디자인 작업</div></div>
-        <span class="st st-run">상시</span>
-      </div>
-      <div class="item">
-        <div><div class="t">브랜드 가이드 수정 후 발송</div>
-        <div class="d">브랜드 코어 정리분 반영</div></div>
+        <div><div class="t">CEO 자료수집</div>
+        <div class="d"><span class="tag-acct">CEO</span>기타업무 · 구축</div></div>
         <span class="st st-plan">예정</span>
       </div>
       <div class="item">
-        <div><div class="t">계정 콘텐츠 기획</div>
-        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span>2주차 업로드분 기획</div></div>
+        <div><div class="t">리커렉션/CEO 계정 콘텐츠 스토리 기획/제작</div>
+        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span>AI영상작업 · 기획</div></div>
         <span class="st st-plan">예정</span>
       </div>
       <div class="item">
-        <div><div class="t">피드 레이아웃 설계</div>
-        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span>9칸 단위 그리드 구성</div></div>
+        <div><div class="t">리커렉션/CEO 피드 레이아웃 설계</div>
+        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span>구축 · 기획</div></div>
         <span class="st st-plan">예정</span>
       </div>
       <div class="item">
-        <div><div class="t">CEO 자료 수집</div>
-        <div class="d">서사 아카이빙용 기초 자료</div></div>
+        <div><div class="t">캔바 브랜드 초반 기본 템플릿디자인 구축작업(상시)</div>
+        <div class="d">구축</div></div>
         <span class="st st-plan">예정</span>
       </div>
     </div>
@@ -179,16 +202,17 @@
   <div class="sec">
     <div class="sec-h">
       <span class="day">8 / 12</span><span class="dow">수</span>
+      
     </div>
     <div class="items">
       <div class="item">
-        <div><div class="t">이론 영상 텍스트화 · 요약 정리</div>
-        <div class="d">내부 자료 정리 (대외 비공개)</div></div>
+        <div><div class="t"><span class="tm">14:00</span>CEO 음성 AI에 학습</div>
+        <div class="d"><span class="tag-acct">CEO</span></div></div>
         <span class="st st-plan">예정</span>
       </div>
       <div class="item">
-        <div><div class="t">CEO 음성 AI 학습</div>
-        <div class="d">콘텐츠 제작용 · 사용 범위 사전 협의 후 진행</div></div>
+        <div><div class="t"><span class="tm">14:00</span>컬러체인지 이론영상 음성추출 텍스트화 &amp; 요약본 정리</div>
+        <div class="d">구축</div></div>
         <span class="st st-plan">예정</span>
       </div>
     </div>
@@ -196,13 +220,13 @@
 
   <div class="sec">
     <div class="sec-h">
-      <span class="day">8 / 15</span><span class="dow">토</span>
-      <span class="meta">주간 마감</span>
+      <span class="day">8 / 16</span><span class="dow">일</span>
+      
     </div>
     <div class="items">
       <div class="item">
-        <div><div class="t">각 계정 인사이트 KPI 업데이트</div>
-        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span><span class="tag-acct">아카데미</span>주간 지표 기록</div></div>
+        <div><div class="t"><span class="tm">21:00</span>각 계정 인사이트 KPI 업데이트</div>
+        <div class="d">KPI 관리</div></div>
         <span class="st st-plan">예정</span>
       </div>
     </div>
@@ -210,8 +234,8 @@
 
   <div class="sec">
     <div class="sec-h">
-      <span class="day">2주차 —</span>
-      <span class="meta">콘텐츠 업로드 시작</span>
+      <span class="day">업로드</span>
+      <span class="meta">계정별 고정 시간</span>
     </div>
     <div class="sched">
       <h3>업로드 시간표 · 1차</h3>
@@ -230,7 +254,7 @@
 
   <div class="foot">
     리커렉션 브랜드 디렉팅 · 주간 업무일정<br>
-    매주 갱신됩니다
+    매주 일요일 밤 갱신 · 최종 2026.08.09
   </div>
 
 </div>
