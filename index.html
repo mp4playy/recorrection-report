@@ -3,155 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>리커렉션 · 주간 리포트</title>
+<title>리커렉션 · 주간 업무일정</title>
 <style>
   :root{
-    --ink:#1c1c1e; --sub:#6b6f76; --line:#e6e8eb; --bg:#f4f6f8;
-    --accent:#2f3e46; --card:#ffffff; --soft:#eef1f3;
-    --up:#1e7e34; --down:#c0392b; --hold:#8a6d1f;
+    --ivory:#F5F2EC; --cocoa:#7A4A3A; --cacao:#4B2E27;
+    --wgray:#817C77; --black:#171719;
+    --card:#FFFFFF; --line:#E2DBD0; --soft:#EFEAE1;
+    --serif: Georgia,'Times New Roman','Nanum Myeongjo',serif;
+    --sans: -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Pretendard','Malgun Gothic',sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
-    background:var(--bg); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; padding:18px 12px 40px;
+    background:var(--ivory); color:var(--black);
+    font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; padding:28px 16px 56px;
   }
-  .wrap{max-width:760px; margin:0 auto;}
+  .wrap{max-width:720px; margin:0 auto;}
 
-  .head{text-align:center; margin-bottom:6px;}
-  .head h1{font-size:19px; letter-spacing:-.02em;}
-  .head .period{font-size:12.5px; color:var(--sub); margin-top:3px;}
-  .head .period b{color:var(--accent);}
+  .head{text-align:center; margin-bottom:30px;}
+  .eyebrow{
+    font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--cocoa); font-weight:700; margin-bottom:10px;
+  }
+  .head h1{
+    font-family:var(--serif); font-weight:400;
+    font-size:clamp(24px,5vw,32px); color:var(--cacao);
+    letter-spacing:.01em; margin-bottom:8px;
+  }
+  .period{
+    display:inline-block; font-size:13px; color:var(--cacao);
+    background:var(--soft); border-radius:20px; padding:4px 16px; font-weight:600;
+  }
 
-  .sec{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 16px 18px; margin-bottom:16px;}
-  .sec-h{font-size:13px; font-weight:700; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:7px; letter-spacing:-.01em;}
-  .sec-h .bar{width:4px; height:15px; background:var(--accent); border-radius:2px;}
+  .banner{
+    background:var(--cacao); color:#F0E9E2;
+    border-radius:13px; padding:16px 20px; margin-bottom:22px;
+    font-size:13.5px; line-height:1.7;
+  }
+  .banner b{color:#E8C4B0;}
 
-  /* KPI table */
-  .kpi-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
-  table.kpi{width:100%; border-collapse:collapse; font-size:12px; min-width:780px;}
-  table.kpi th, table.kpi td{padding:9px 8px; text-align:center; border-bottom:1px solid var(--line); white-space:nowrap;}
-  table.kpi tbody td{font-variant-numeric:tabular-nums;}
-  table.kpi thead th{background:var(--soft); color:var(--sub); font-weight:600; font-size:11px;}
-  table.kpi th:first-child, table.kpi td:first-child{text-align:left; position:sticky; left:0; background:var(--card); font-weight:700; z-index:1;}
-  table.kpi thead th:first-child{background:var(--soft);}
-  .trend-up{color:var(--up); font-weight:700;}
-  .trend-down{color:var(--down); font-weight:700;}
-  .trend-hold{color:var(--hold); font-weight:700;}
-  .flag{color:var(--hold); font-weight:700;}
-  .tag{display:inline-block; font-size:10.5px; padding:2px 8px; border-radius:20px; font-weight:600;}
-  .tag.norm{background:#e8f1ff; color:#1c5fb8;}
-  .tag.recover{background:#eafaf0; color:var(--up);}
-  .tag.guide{background:#f3eefc; color:#7c4dbb;}
+  .sec{margin-bottom:22px;}
+  .sec-h{
+    display:flex; align-items:center; gap:9px;
+    margin-bottom:11px; padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  .sec-h .day{font-family:var(--serif); font-size:17px; color:var(--cacao);}
+  .sec-h .dow{
+    font-size:11px; color:#fff; background:var(--cocoa);
+    padding:2px 9px; border-radius:20px; font-weight:700;
+  }
+  .sec-h .meta{margin-left:auto; font-size:11.5px; color:var(--wgray);}
 
-  .kpi-legend{font-size:11px; color:var(--sub); margin-top:12px; line-height:1.7;}
-  .kpi-legend b{color:var(--ink);}
+  .items{display:flex; flex-direction:column; gap:7px;}
+  .item{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px;
+    display:grid; grid-template-columns:1fr auto; gap:10px; align-items:start;
+  }
+  .item .t{font-size:13.5px; font-weight:600; color:var(--black); line-height:1.5;}
+  .item .d{font-size:12px; color:var(--wgray); margin-top:3px; line-height:1.55;}
+  .st{font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap;}
+  .st-plan{background:var(--soft); color:var(--cacao);}
+  .st-run{background:#F0E2D8; color:var(--cocoa);}
 
-  /* 전달사항 */
-  .note-card{border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px;}
-  .note-card:last-child{margin-bottom:0;}
-  .note-h{display:flex; align-items:center; gap:8px; margin-bottom:6px;}
-  .note-h .name{font-size:13.5px; font-weight:700;}
-  .note-body{font-size:12.5px; color:var(--sub); line-height:1.65;}
+  .tag-acct{
+    display:inline-block; font-size:10px; font-weight:700;
+    padding:1px 7px; border-radius:4px; margin-right:5px;
+    background:var(--soft); color:var(--cocoa); vertical-align:1px;
+  }
 
-  .datanote{font-size:11px; color:#b45309; background:#fff7ed; border:1px solid #fed7aa; padding:8px 10px; border-radius:8px; margin-top:12px; line-height:1.65;}
+  .sched{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:13px; padding:18px 20px; margin-top:8px;
+  }
+  .sched h3{font-family:var(--serif); font-weight:400; font-size:17px; color:var(--cacao); margin-bottom:4px;}
+  .sched .note{font-size:12px; color:var(--wgray); margin-bottom:14px;}
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th,td{padding:8px 6px; text-align:left; border-bottom:1px solid var(--line);}
+  th{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--wgray); font-weight:700;}
+  td.time{font-variant-numeric:tabular-nums; font-weight:700; color:var(--cacao);}
+  tr:last-child td{border-bottom:none;}
 
-  .foot{text-align:center; font-size:11px; color:#aeb3b9; margin-top:8px;}
+  .foot{margin-top:28px; text-align:center; font-size:11.5px; color:var(--wgray); line-height:1.8;}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="head">
-    <h1>리커렉션 주간 리포트</h1>
-    <div class="period"><b>8/1</b> ~ <b>8/7</b> · 1주차 (기준선)</div>
+    <div class="eyebrow">Re:Correction &middot; Weekly Schedule</div>
+    <h1>주간 업무일정</h1>
+    <div class="period">1주차 · 8/10(월) ~ 8/16(일)</div>
   </div>
 
-  <!-- 1. KPI 대시보드 -->
+  <div class="banner">
+    <b>1주차는 구축 기간입니다.</b> 콘텐츠 업로드는 2주차부터 시작합니다.<br>
+    기준·가이드·레이아웃을 먼저 세운 뒤 콘텐츠를 올려야, 이후 작업이 쌓이고 재현됩니다.
+  </div>
+
   <div class="sec">
-    <div class="sec-h"><span class="bar"></span>현재 계정별 인사이트 진단 · 최근 7일</div>
-    <div class="kpi-scroll">
-      <table class="kpi">
-        <thead>
-          <tr>
-            <th>계정</th><th>상태</th><th>추이</th>
-            <th>팔로워<br>수</th><th>순<br>팔로워</th><th>국내<br>팔로워</th>
-            <th>조회수</th><th>시청자</th><th>방문</th><th>저장</th><th>문의</th><th>클릭</th>
-          </tr>
-        </thead>
+    <div class="sec-h">
+      <span class="day">8 / 10</span><span class="dow">월</span>
+      <span class="meta">계약 시작일</span>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div><div class="t">날인 계약서 수령</div>
+        <div class="d">날인 확인 후 아래 산출물을 발송합니다.</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t">캡션 · 댓글 운영 가이드 발송</div>
+        <div class="d">검색기반(AEO/SEO) 캡션 작성 가이드 + 댓글·답글 운영 가이드 · 단톡 및 메일</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t">비용정산서 발송</div>
+        <div class="d">생성형 AI(힉스필드) · AI 보이스(일레븐랩스) · 캔바 팀 구독 · 단톡 및 메일</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t">하이라이트 개편</div>
+        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span><span class="tag-acct">아카데미</span>고객 질문 단위로 재구성</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">
+      <span class="day">8 / 10 &ndash; 8 / 14</span><span class="dow">월–금</span>
+      <span class="meta">상시 진행</span>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div><div class="t">캔바 브랜드 기본 템플릿 구축</div>
+        <div class="d">확정 팔레트·타이포 기준으로 초반 기본 템플릿 디자인 작업</div></div>
+        <span class="st st-run">상시</span>
+      </div>
+      <div class="item">
+        <div><div class="t">브랜드 가이드 수정 후 발송</div>
+        <div class="d">브랜드 코어 정리분 반영</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t">계정 콘텐츠 기획</div>
+        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span>2주차 업로드분 기획</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t">피드 레이아웃 설계</div>
+        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span>9칸 단위 그리드 구성</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t">CEO 자료 수집</div>
+        <div class="d">서사 아카이빙용 기초 자료</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">
+      <span class="day">8 / 12</span><span class="dow">수</span>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div><div class="t">이론 영상 텍스트화 · 요약 정리</div>
+        <div class="d">내부 자료 정리 (대외 비공개)</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+      <div class="item">
+        <div><div class="t">CEO 음성 AI 학습</div>
+        <div class="d">콘텐츠 제작용 · 사용 범위 사전 협의 후 진행</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">
+      <span class="day">8 / 15</span><span class="dow">토</span>
+      <span class="meta">주간 마감</span>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div><div class="t">각 계정 인사이트 KPI 업데이트</div>
+        <div class="d"><span class="tag-acct">오피셜</span><span class="tag-acct">CEO</span><span class="tag-acct">아카데미</span>주간 지표 기록</div></div>
+        <span class="st st-plan">예정</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">
+      <span class="day">2주차 —</span>
+      <span class="meta">콘텐츠 업로드 시작</span>
+    </div>
+    <div class="sched">
+      <h3>업로드 시간표 · 1차</h3>
+      <div class="note">시간대를 교차 운영하며 최적 시간을 찾습니다. 반응을 보고 조정합니다.</div>
+      <table>
+        <thead><tr><th>계정</th><th>요일</th><th>시간</th></tr></thead>
         <tbody>
-          <tr>
-            <td>오피셜</td>
-            <td><span class="tag norm">정상화 필요</span></td>
-            <td class="trend-hold">—</td>
-            <td>17,589</td>
-            <td class="trend-down">-258</td>
-            <td>11.2%</td>
-            <td>67,988</td>
-            <td class="flag">37 *</td>
-            <td>50</td>
-            <td>3,503</td>
-            <td>0</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td>CEO</td>
-            <td><span class="tag norm">정상화 필요</span></td>
-            <td class="trend-hold">—</td>
-            <td>37,928</td>
-            <td class="trend-down">-93</td>
-            <td>38.2%</td>
-            <td>71,217</td>
-            <td>14,663</td>
-            <td>810</td>
-            <td>3,504</td>
-            <td>0</td>
-            <td>5</td>
-          </tr>
-          <tr>
-            <td>아카데미</td>
-            <td><span class="tag recover">양호·유지</span></td>
-            <td class="trend-hold">—</td>
-            <td>7,912</td>
-            <td class="trend-up">+16</td>
-            <td>76.8%</td>
-            <td>730</td>
-            <td>280</td>
-            <td>35</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-          </tr>
+          <tr><td>오피셜</td><td>화</td><td class="time">17:30</td></tr>
+          <tr><td>오피셜</td><td>목</td><td class="time">14:00</td></tr>
+          <tr><td>CEO</td><td>월</td><td class="time">19:50</td></tr>
+          <tr><td>CEO</td><td>금</td><td class="time">10:30</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="kpi-legend">
-      · <b>추이</b> ▲상승 / ▼하락 / —유지 (2주차부터 전주 대비 표시) &nbsp;·&nbsp; <b>순 팔로워 감소</b>는 과거 비정상 유입이 정리되는 <b>정상화 과정</b>으로, 국내 팔로워 비율·저장·문의(질 지표)를 함께 봅니다.<br>
-      · <b>기준선(1주차)</b>: 오피셜 국내 11.2% / CEO 38.2% / 아카데미 76.8% — 매주 이 대비 변화를 기록합니다.
-    </div>
-    <div class="datanote">
-      <b>*</b> <b>시청자</b>는 Meta가 기존 "도달" 명칭을 변경하며 산정 기준을 조정 중인 지표로, 현재 값은 추산치입니다. 특히 오피셜 계정은 비정상 유입이 정리되는 과정에서 조회수 대비 시청자가 매우 낮게 집계되고 있어, 정상화가 진행되면 재산정될 수 있습니다. 당분간은 <b>절대값보다 추세</b>로 보시기를 권합니다.<br>
-      <b>문의</b>는 DM "읽지 않음" 기준 0건(이미 답장한 문의는 미포함이라 참고용 수치).
-    </div>
   </div>
 
-  <!-- 2. 기타 전달사항 -->
-  <div class="sec">
-    <div class="sec-h"><span class="bar"></span>기타 전달사항</div>
-    <div class="note-card">
-      <div class="note-h"><span class="name">오피셜</span><span class="tag norm">정상화 필요</span></div>
-      <div class="note-body">팔로워 17,589명 중 국내 비율이 11.2%로 3계정 중 가장 낮고, 순팔로워 -258로 감소 중입니다. 조회수 6.8만 대비 방문 50·클릭 0으로 실제 전환은 거의 없습니다. 유입이 해외에 집중된 구조라, <b>국내 실사용자 회복</b>이 이번 3개월의 우선 과제입니다.</div>
-    </div>
-    <div class="note-card">
-      <div class="note-h"><span class="name">CEO</span><span class="tag norm">정상화 필요</span></div>
-      <div class="note-body">팔로워 37,928명, 순팔로워 -93으로 소폭 감소했으나 국내 비율 38.2%로 3계정 중 상대적으로 안정적입니다. 방문 810·클릭 5로 콘텐츠 반응 자체는 살아 있어, 정상화 이후 회복 속도가 가장 빠를 계정으로 봅니다.</div>
-    </div>
-    <div class="note-card">
-      <div class="note-h"><span class="name">아카데미</span><span class="tag recover">양호·유지</span></div>
-      <div class="note-body">팔로워 7,912명에 국내 비율 76.8%로 3계정 중 가장 건강한 구성입니다. 순팔로워 +16으로 유일하게 증가세이나, 조회수 730·방문 35로 절대 규모가 작습니다. <b>노출 확대</b>가 다음 과제입니다.</div>
-    </div>
+  <div class="foot">
+    리커렉션 브랜드 디렉팅 · 주간 업무일정<br>
+    매주 갱신됩니다
   </div>
 
-  <div class="foot">리커렉션 주간 리포트 · 인사이트 KPI DB 기준 · 매주 일요일 갱신</div>
 </div>
 </body>
 </html>
