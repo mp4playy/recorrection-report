@@ -1,0 +1,422 @@
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>리커렉션 · 운영 실무</title>
+<style>
+  :root{
+    --ivory:#FDFCF4; --cocoa:#A5654A; --cacao:#4B2E27;
+    --wgray:#747376; --black:#2A2C2F; --solar:#FF5623;
+    --card:#FFFFFF; --line:#E2DBD0; --soft:#EFEAE1;
+    --bad:#B3261E; --bad-bg:#FBEDEC; --bad-line:#F0CFCC;
+    --ok:#2E6B4F; --ok-bg:#EBF4EF; --ok-line:#CBE2D5;
+    --warn:#8A5A00; --warn-bg:#FFF6E6; --warn-line:#F5DFAF;
+    --sans: 'Roboto','Noto Sans KR','Source Han Sans KR','Noto Sans CJK KR','Pretendard','Apple SD Gothic Neo','NanumBarunGothic','Malgun Gothic',-apple-system,BlinkMacSystemFont,sans-serif;
+    --display: var(--sans);
+    --mono: 'Roboto Mono','Noto Sans Mono CJK KR','NanumGothicCoding',monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--ivory); color:var(--black);
+    font-family:var(--sans); line-height:1.68;
+    -webkit-font-smoothing:antialiased; padding:32px 16px 64px;
+  }
+  .wrap{max-width:780px; margin:0 auto;}
+
+  /* 헤더 */
+  .head{text-align:center; margin-bottom:26px;}
+  .eyebrow{
+    font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--cocoa); font-weight:700; margin-bottom:10px;
+  }
+  .head h1{
+    font-family:var(--display); font-weight:600; letter-spacing:-.015em;
+    font-size:clamp(26px,5vw,34.5px); color:var(--cacao); margin-bottom:9px;
+  }
+  .head .sub{font-size:14.5px; color:var(--wgray);}
+  .conf{
+    display:inline-block; margin-top:13px;
+    font-size:12px; font-weight:700; color:var(--warn);
+    background:var(--warn-bg); border:1px solid var(--warn-line);
+    padding:5px 14px; border-radius:20px;
+  }
+
+  /* 핵심 규칙 배너 */
+  .core{
+    background:var(--cacao); color:#F2EBE4;
+    border-radius:15px; padding:24px 26px; margin-bottom:26px;
+  }
+  .core .label{
+    font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:#D9B49F; font-weight:700; margin-bottom:11px;
+  }
+  .core .q{
+    font-family:var(--display); font-weight:600; letter-spacing:-.015em;
+    font-size:clamp(19.5px,3.6vw,25px);
+    line-height:1.5; color:#FFF; margin-bottom:13px;
+  }
+  .core p{font-size:14.5px; opacity:.9; line-height:1.7;}
+  .core b{color:#E8C4B0;}
+
+  /* 섹션 */
+  section{margin-bottom:30px;}
+  h2{
+    font-family:var(--display); font-weight:600; letter-spacing:-.012em; font-size:21.5px;
+    color:var(--cacao); margin-bottom:5px;
+    display:flex; align-items:baseline; gap:10px;
+  }
+  h2 .num{
+    font-size:12px; font-weight:700; letter-spacing:.1em;
+    color:#fff; background:var(--cocoa);
+    padding:3px 9px; border-radius:5px; font-family:var(--sans);
+  }
+  .lead{font-size:14px; color:var(--wgray); margin-bottom:15px;}
+
+  h3{
+    font-size:15px; font-weight:700; color:var(--cacao);
+    margin:20px 0 9px;
+  }
+
+  /* 카드 */
+  .card{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:12px; padding:16px 18px; margin-bottom:11px;
+  }
+  .card.bad{background:var(--bad-bg); border-color:var(--bad-line);}
+  .card.ok{background:var(--ok-bg); border-color:var(--ok-line);}
+  .card.warn{background:var(--warn-bg); border-color:var(--warn-line);}
+  .card h4{font-size:14.5px; font-weight:700; margin-bottom:6px;}
+  .card.bad h4{color:var(--bad);}
+  .card.ok h4{color:var(--ok);}
+  .card.warn h4{color:var(--warn);}
+  .card p{font-size:14px; color:var(--wgray); line-height:1.7;}
+  .card p + p{margin-top:7px;}
+  .card b{color:var(--black);}
+
+  /* 표 */
+  .tw{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom:12px;}
+  table{
+    width:100%; border-collapse:collapse; font-size:14px;
+    background:var(--card); border:1px solid var(--line);
+    border-radius:10px; overflow:hidden; min-width:520px;
+  }
+  th{
+    background:var(--soft); color:var(--cacao);
+    font-size:14.5px; letter-spacing:.01em; font-weight:700; padding:10px 13px; text-align:left;
+  }
+  td{padding:11px 13px; border-top:1px solid var(--line); vertical-align:top; line-height:1.6;}
+  td.x{color:var(--bad); font-weight:600;}
+  td.o{color:var(--ok); font-weight:600;}
+  td.why{color:var(--wgray); font-size:13px;}
+  tr:nth-child(even) td{background:#FDFCFA;}
+
+  /* 리스트 */
+  ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+  li{
+    font-size:14.5px; line-height:1.7; padding-left:20px;
+    position:relative; color:var(--black);
+  }
+  li::before{
+    content:'·'; position:absolute; left:6px;
+    color:var(--cocoa); font-weight:700;
+  }
+  li.no::before{content:'✕'; color:var(--bad); font-size:1em; font-weight:700; top:0;}
+  li.yes::before{content:'✓'; color:var(--ok); font-size:1em; font-weight:700; top:0;}
+  li b{color:var(--cacao);}
+
+  /* 계정 배지 */
+
+  /* 기호 통일 — 이모지 대신 텍스트 글리프, 크기·굵기·색 동일 */
+  .sy{
+    display:inline-block; font-family:var(--sans);
+    font-size:1em; font-weight:700; line-height:1;
+    width:1.15em; text-align:center; vertical-align:-.03em;
+  }
+  .sy-x{color:var(--bad);}
+  .sy-o{color:var(--ok);}
+  .sy-w{color:var(--warn);}
+  .acct{
+    display:inline-block; font-size:11.5px; font-weight:700;
+    padding:2px 9px; border-radius:5px; margin-right:5px;
+    background:var(--soft); color:var(--cocoa);
+  }
+
+  /* 예시 블록 */
+  .ex{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:12px; overflow:hidden; margin-bottom:11px;
+  }
+  .ex-h{
+    background:var(--soft); color:var(--cacao);
+    font-size:13px; font-weight:700; padding:9px 15px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:8px;
+  }
+  .ex-b{
+    padding:15px 17px; font-family:var(--mono); font-size:13px; line-height:1.85;
+    white-space:pre-wrap; color:var(--black);
+  }
+  .ex-n{
+    background:#FBF8F4; border-top:1px solid var(--line);
+    padding:11px 17px; font-size:13px; color:var(--wgray); line-height:1.7;
+  }
+  .ex-n b{color:var(--cacao);}
+  .an{
+    display:block; font-size:12px; color:var(--cocoa);
+    background:#F7EFE9; border-left:2px solid var(--cocoa);
+    padding:3px 9px; margin:4px 0 4px 0; border-radius:0 4px 4px 0;
+    white-space:normal; line-height:1.55;
+  }
+  .tier{
+    display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.05em;
+    padding:2px 7px; border-radius:4px; margin-right:6px; vertical-align:1px;
+  }
+  .tier.a{background:var(--cacao); color:#fff;}
+  .tier.b{background:#EDE6DA; color:var(--cocoa); border:1px solid #DDD2C2;}
+  .pick{
+    width:100%; border-collapse:collapse; font-size:14px;
+    background:var(--card); border:1px solid var(--line);
+    border-radius:10px; overflow:hidden; min-width:520px;
+  }
+  .pick td.slot{background:#FCFAF7; text-align:center; color:#C9C1B7; font-size:17.5px; width:64px;}
+  .geo,.aeo,.seo{
+    font-size:10.5px; font-weight:700; letter-spacing:.06em;
+    padding:2px 7px; border-radius:4px; color:#fff;
+  }
+  .geo{background:#6B5B95;}
+  .aeo{background:#2E6B4F;}
+  .seo{background:#1C5FB8;}
+
+  /* 하단 */
+  .ask{
+    background:var(--cocoa); color:#FDF7F3;
+    border-radius:14px; padding:22px 24px; margin-top:30px;
+  }
+  .ask h3{color:#FFF; font-family:var(--display); font-weight:600; letter-spacing:-.012em; font-size:19.5px; margin:0 0 10px;}
+  .ask p{font-size:14.5px; line-height:1.75; opacity:.94;}
+  .ask b{color:#FFE6D5;}
+
+  .foot{
+    margin-top:26px; text-align:center;
+    font-size:12.5px; color:var(--wgray); line-height:1.9;
+  }
+</style>
+<div class="wrap">
+
+  <div class="head">
+    <div class="eyebrow">Re:Correction · Operations</div>
+    <h1>운영 실무</h1>
+    <div class="sub">업로드 후 30분 · 계정 프로필</div>
+    <div class="conf">🔒 내부 전용 · 외부 공유 금지</div>
+  </div>
+
+  <div class="core">
+    <div class="label">이 문서를 쓰는 법</div>
+    <div class="q">브랜드 가이드는 “무엇이 맞는가”를 정합니다.<br>이 문서는 “지금 뭘 눌러야 하는가”를 정합니다.</div>
+    <p>세 장 모두 <b>손에 들고 따라 하는 순서</b>입니다. 판단이 필요한 부분은 브랜드 가이드로 넘깁니다.</p>
+  </div>
+
+  <!-- 01 -->
+  <section>
+    <h2><span class="num">01</span> 업로드 후 30분</h2>
+    <div class="lead">올리고 나서가 진짜입니다. 이 30분이 그 게시물의 도달을 대부분 정합니다.</div>
+
+    <div class="card">
+      <h4>왜 30분인가</h4>
+      <p>인스타는 올린 직후의 반응 속도로 <b>이 게시물을 더 보여줄지</b>를 판단합니다.
+      같은 콘텐츠라도 처음 30분에 저장·댓글·체류가 붙으면 그 뒤로 계속 퍼지고, 조용하면 거기서 멈춥니다.</p>
+      <p><b>그래서 올릴 시간을 정해두고, 그 시간에 30분을 비워둡니다.</b> 바쁠 때 급하게 올리는 것이 가장 손해입니다.</p>
+    </div>
+
+    <h3>0 – 5분 · 올리자마자</h3>
+    <div class="tw">
+      <table>
+        <tr><th>할 일</th><th>확인할 것</th></tr>
+        <tr><td><b>고정 댓글 달기</b></td><td>계정별 정해진 문장 그대로. 아래 표 참조</td></tr>
+        <tr><td><b>첫 줄 미리보기 확인</b></td><td>피드에서 잘리는 지점이 어색하지 않은지. 어색하면 <b>지금 고칩니다</b></td></tr>
+        <tr><td>오타 확인</td><td>이 시점이 고칠 수 있는 마지막 타이밍입니다</td></tr>
+        <tr><td>위치 태그</td><td>일산 · 정발산 — 지역 검색에 걸립니다</td></tr>
+      </table>
+    </div>
+
+    <div class="card bad">
+      <h4><span class="sy sy-x">✕</span> 5분 넘어가면 캡션을 고치지 않습니다</h4>
+      <p>초기에 게시물을 수정하면 <b>노출이 다시 계산되면서 손해를 볼 수 있습니다.</b>
+      오타 하나 때문에 도달을 날리는 것보다, 그냥 두는 편이 낫습니다.</p>
+      <p><b>삭제하고 다시 올리는 것은 더 나쁩니다.</b> 그때까지 쌓인 반응이 전부 사라집니다.</p>
+    </div>
+
+    <h3>고정 댓글 — 계정별로 다릅니다</h3>
+    <div class="tw">
+      <table>
+        <tr><th>계정</th><th>고정 댓글</th></tr>
+        <tr>
+          <td><span class="acct">오피셜</span></td>
+          <td>덮는 곳도, 지우는 곳도 아닙니다.<br>남아 있는 상태를 기준으로 방향을 다시 세웁니다.<br><br>상담 · 프로필 링크</td>
+        </tr>
+        <tr>
+          <td><span class="acct">CEO</span></td>
+          <td>리커렉션 본점 대표<br>누보레브아카데미 공동대표<br>K-파라메디컬커렉션교육협회 이사장</td>
+        </tr>
+        <tr>
+          <td><span class="acct">아카데미</span></td>
+          <td>누보레브아카데미에서 리커렉션 과정을 운영합니다.<br>일산 · 파주운정<br><br>수강 문의 · 프로필 링크</td>
+        </tr>
+      </table>
+    </div>
+    <div class="card">
+      <p><b>매번 같은 문장을 씁니다.</b> 바꾸지 않습니다. 반복되어야 브랜드 문장이 되고, 검색에도 같은 문장이 쌓여야 잡힙니다.</p>
+    </div>
+
+    <h3>5 – 15분 · 검색을 심습니다</h3>
+    <div class="tw">
+      <table>
+        <tr><th>할 일</th><th>내용</th></tr>
+        <tr><td><b>키워드 댓글 1개</b></td><td>손님이 실제로 검색하는 말로 한 줄. 해시태그 나열이 아니라 <b>문장</b>으로</td></tr>
+        <tr><td>스토리에 공유</td><td>“새 글” 한 줄. 설명 붙이지 않습니다</td></tr>
+        <tr><td>협회 해시태그</td><td>#K파라메디컬커렉션교육협회 — 본문 아닌 <b>태그로만</b></td></tr>
+      </table>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h">키워드 댓글 예시</div>
+      <div class="ex-b">눈썹 잔흔이 파랗게 남았을 때, 왜 그렇게 보이는지부터 봅니다.
+일산 반영구 수정 · 눈썹 잔흔 · 아이라인 번짐</div>
+      <div class="ex-n"><b>본문에는 못 넣는 검색어를 여기에 둡니다.</b> 캡션은 사람이 읽는 자리고, 이 댓글은 검색이 읽는 자리입니다.</div>
+    </div>
+
+    <h3>15 – 30분 · 사람에게 답합니다</h3>
+    <ul>
+      <li class="yes">댓글에는 <b>30분 안에</b> 답합니다. 늦은 답보다 짧은 답이 낫습니다</li>
+      <li class="yes">DM 문의는 <b>답변 가능한 범위만</b> — 결과를 약속하지 않습니다</li>
+      <li class="yes">“상담 한번 받아보세요” 대신 <b>“직접 봐야 알 수 있는 부분입니다”</b></li>
+      <li class="no">좋아요·댓글 품앗이 — 관련 없는 계정 반응은 오히려 도달을 떨어뜨립니다</li>
+      <li class="no">저장 유도 문구 — “저장하세요” 는 캡션 마지막 여백을 깨뜨립니다</li>
+    </ul>
+
+    <div class="card warn">
+      <h4><span class="sy sy-w">▲</span> 댓글에 절대 쓰지 않는 답</h4>
+      <p><b>“지워드릴 수 있어요”</b> · <b>“한 번에 됩니다”</b> · <b>“무조건 좋아집니다”</b> —
+      댓글은 캡션보다 급하게 쓰게 되어 사고가 여기서 납니다. 캡션에서 지킨 기준을 댓글에서 무너뜨리지 않습니다.</p>
+      <p>답이 애매하면 <b>“보고 말씀드릴 수 있는 부분입니다”</b> 한 줄로 넘깁니다.</p>
+    </div>
+
+    <h3>30분 뒤 — 그날 안에</h3>
+    <ul>
+      <li>도달 대비 <b>저장 수</b>를 봅니다. 저장이 붙었으면 그 주제를 이어갑니다</li>
+      <li>비팔로워 도달 비율을 봅니다. 이게 <b>새 손님이 본 양</b>입니다</li>
+      <li>댓글에 나온 질문은 <b>다음 콘텐츠 소재</b>로 적어둡니다</li>
+    </ul>
+  </section>
+
+  <!-- 02 -->
+  <section>
+    <h2><span class="num">02</span> 계정 프로필</h2>
+    <div class="lead">프로필은 광고가 아니라 <b>검색되는 자리</b>입니다. 이름칸이 특히 그렇습니다.</div>
+
+    <div class="card">
+      <h4>이름칸은 검색됩니다</h4>
+      <p>인스타에서 <b>아이디와 이름칸은 다릅니다.</b> 아이디는 주소고, 이름칸은 프로필에 굵게 뜨는 이름입니다.
+      <b>둘 다 검색에 걸립니다.</b> 그래서 아이디를 못 바꿔도 이름칸으로 채울 수 있습니다.</p>
+      <p><b>아이디는 바꾸지 않습니다.</b> 인스타가 “팔로워가 회원님을 찾지 못할 수도 있습니다”라고 경고합니다.
+      오래된 계정일수록 잃는 것이 큽니다. (브랜드 가이드 03장)</p>
+    </div>
+
+    <h3>세 계정 이름칸 · 소개</h3>
+
+    <div class="ex">
+      <div class="ex-h"><span class="acct">오피셜</span> @recorrection_official</div>
+      <div class="ex-b">이름칸
+리커렉션 · 반영구 수정 복원
+
+소개
+남아 있는 상태를 기준으로 방향을 다시 세웁니다
+덮는 곳도, 지우는 곳도 아닙니다
+일산 정발산 · 예약제
+↓ 상담 문의</div>
+      <div class="ex-n"><b>“반영구 수정”, “복원”이 이름칸에 들어가야 합니다.</b> 손님이 검색하는 말입니다. “리커렉션”만 있으면 이름을 아는 사람만 찾아옵니다.</div>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h"><span class="acct">CEO</span> @nouveaureve_ceo</div>
+      <div class="ex-b">이름칸
+리커렉션 · 누보레브 대표 김현숙
+
+소개
+반영구 수정·복원 기준을 만듭니다
+리커렉션 본점 대표
+누보레브아카데미 공동대표
+K-파라메디컬커렉션교육협회 이사장
+↓ 상담 · 수강 문의</div>
+      <div class="ex-n"><b>직함 순서에 이유가 있습니다.</b> 시술하는 사람인가 → 가르치는 사람인가 → 기준을 만드는 사람인가. 손님이 궁금해하는 순서입니다.<br>
+      아이디는 누보레브, 이름칸은 리커렉션 — <b>두 이름으로 찾는 사람을 모두 가져갑니다.</b></div>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h"><span class="acct">아카데미</span> @recorrection_academy</div>
+      <div class="ex-b">이름칸
+누보레브아카데미 · 반영구 학원
+
+소개
+리커렉션 과정을 운영하는 반영구화장 학원
+일산 · 파주운정
+수정·복원 전문 과정
+↓ 커리큘럼 · 수강 문의</div>
+      <div class="ex-n">아이디는 recorrection인데 상호는 누보레브입니다. <b>이름칸에 상호를 넣어 어긋남을 메웁니다.</b> “일산 반영구 학원”으로 검색해 들어온 사람이 당황하지 않습니다.</div>
+    </div>
+
+    <h3>링크 — 지금이 문제입니다</h3>
+    <div class="card bad">
+      <h4><span class="sy sy-x">✕</span> 상담 채널이 하나면 두 가지가 섞입니다</h4>
+      <p>고객 문의와 수강 문의가 같은 창구로 들어오면, <b>어느 계정에서 온 사람인지 알 수 없습니다.</b>
+      계정별 성과를 볼 수 없고, 응대 톤도 매번 달라집니다.</p>
+    </div>
+    <div class="card ok">
+      <h4><span class="sy sy-o">✓</span> 계정마다 다른 링크를 겁니다</h4>
+      <p>같은 카톡 채널을 쓰더라도 <b>계정별로 다른 주소</b>를 만들어 걸면, 어디서 온 문의인지 구분됩니다.</p>
+      <p><b>가장 간단한 방법</b> — 계정마다 링크 페이지를 하나씩 만들고, 그 안에 채널을 넣습니다.
+      링크 페이지는 클릭 수도 같이 보여줍니다.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <tr><th>계정</th><th>링크가 향할 곳</th></tr>
+        <tr><td><span class="acct">오피셜</span></td><td>상담 예약 · 오시는 길 · 자주 묻는 질문</td></tr>
+        <tr><td><span class="acct">CEO</span></td><td>상담 · 수강 <b>둘 다</b> (선택하게)</td></tr>
+        <tr><td><span class="acct">아카데미</span></td><td>커리큘럼 · 수강 문의 · 지점 안내</td></tr>
+      </table>
+    </div>
+
+    <h3>하이라이트 — 질문 단위로 묶습니다</h3>
+    <div class="card">
+      <p><b>주제가 아니라 질문으로 묶습니다.</b> “시술 사례”가 아니라 <b>“이거 살릴 수 있나요”</b>입니다.
+      손님은 카테고리를 찾는 게 아니라 자기 질문에 대한 답을 찾습니다.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <tr><th>계정</th><th>하이라이트</th></tr>
+        <tr><td><span class="acct">오피셜</span></td><td>이거 살릴 수 있나요 · 어떻게 보나요 · 얼마나 걸리나요 · 오시는 길</td></tr>
+        <tr><td><span class="acct">CEO</span></td><td>어떤 사람인가 · 왜 이 일을 하나 · 현장 · 기준</td></tr>
+        <tr><td><span class="acct">아카데미</span></td><td>커리큘럼 · 수강 후기 · 수업 현장 · 수강 안내</td></tr>
+      </table>
+    </div>
+    <ul>
+      <li class="yes">커버는 <b>웜 화이트 바탕 + 블랙 글자</b>. 여섯 개가 한 줄로 보이므로 통일이 전부입니다</li>
+      <li class="no">하이라이트 커버에 오렌지 — 여섯 개가 나란히 서면 시끄러워집니다</li>
+      <li class="no">이모지 커버</li>
+    </ul>
+
+    <div class="card warn">
+      <h4><span class="sy sy-w">▲</span> 이름칸은 14일에 두 번까지만</h4>
+      <p>프로 계정은 이름칸 변경에 제한이 있습니다. <b>한 번 정하고 두는 것</b>을 전제로 씁니다.</p>
+    </div>
+  </section>
+
+  <div class="ask">
+    <h3>이 문서에 없는 것은 브랜드 가이드에 있습니다</h3>
+    <p>무엇을 쓸지 · 어떤 말을 피할지 · 왜 그렇게 하는지는 <b>브랜드 가이드</b>를 봅니다.
+    이 문서는 <b>지금 뭘 눌러야 하는지</b>만 다룹니다.</p>
+  </div>
+
+  <div class="foot">
+    리커렉션 · 운영 실무 · 2026.08.10<br>
+    내부 전용
+  </div>
+
+</div>

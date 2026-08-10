@@ -1,0 +1,1771 @@
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>리커렉션 브랜드 가이드 Rev 5.0</title>
+<style>
+  :root{
+    --ivory:#FDFCF4;
+    --black:#2A2C2F;
+    --wgray:#747376;
+    --cocoa:#A5654A;
+    --cacao:#4B2E27;
+    --solar:#FF5623;
+
+    --paper:#FFFFFF;
+    --hair:#E0DFDB;
+    --hair-soft:#ECEBE7;
+    --ink-2:#4A4A4D;
+    --on-dark:#E6DCD2;
+    --on-dark-2:#BCA694;
+
+    --sans:'Roboto','Noto Sans KR','Source Han Sans KR','Noto Sans CJK KR','Pretendard','Apple SD Gothic Neo','NanumBarunGothic','Malgun Gothic',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'Roboto Mono','Noto Sans Mono CJK KR','NanumGothicCoding',ui-monospace,monospace;
+
+    --s1:4px;  --s2:8px;  --s3:12px; --s4:16px;
+    --s5:24px; --s6:32px; --s7:48px; --s8:64px;
+    --s9:96px; --s10:160px;
+
+    --rail:224px;
+    --measure:60ch;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    background:var(--ivory);
+    color:var(--black);
+    font-family:var(--sans);
+    font-size:var(--fs-body,15px);
+    font-weight:400;
+    line-height:var(--lh-body,1.85);
+    letter-spacing:-.005em;
+  }
+
+  /* ═══════ 골격 ═══════ */
+  .shell{display:grid; grid-template-columns:var(--rail) minmax(0,1fr); align-items:start;}
+  .stage{min-width:0;}
+  .inner{max-width:840px; padding:0 var(--s7);}
+  .measure{max-width:var(--measure);}
+
+  /* ═══════ 좌측 목차 ═══════ */
+  .rail{
+    position:sticky; top:0; height:100vh;
+    padding:var(--s7) var(--s5) var(--s6) var(--s6);
+    display:flex; flex-direction:column; gap:var(--s6);
+    overflow-y:auto;
+    border-right:1px solid var(--hair-soft);
+    background:var(--ivory);
+  }
+  .rail-brand{
+    font-family:var(--mono); font-size:10px;
+    letter-spacing:.24em; text-transform:uppercase;
+    color:var(--wgray); font-weight:400; line-height:2;
+  }
+  .rail-brand b{display:block; color:var(--black); font-weight:700; letter-spacing:.16em;}
+  .rail nav{display:flex; flex-direction:column;}
+  .rail a{
+    display:grid; grid-template-columns:20px 1fr; gap:var(--s3);
+    align-items:baseline; padding:7px 0;
+    font-size:13px; font-weight:400; line-height:1.5;
+    color:var(--wgray); text-decoration:none;
+    transition:color .2s ease;
+  }
+  .rail a .n{
+    font-family:var(--mono); font-size:9.5px; font-weight:400;
+    letter-spacing:.06em; color:var(--hair);
+    font-variant-numeric:tabular-nums;
+    transition:color .2s ease;
+  }
+  .rail a:hover{color:var(--black);}
+  .rail a:hover .n{color:var(--black);}
+  .rail a:focus-visible{outline:1px solid var(--black); outline-offset:4px;}
+  .rail a[aria-current="true"]{color:var(--black); font-weight:600;}
+  .rail a[aria-current="true"] .n{color:var(--black);}
+  .rail-foot{
+    margin-top:auto; padding-top:var(--s4);
+    border-top:1px solid var(--hair-soft);
+    font-family:var(--mono); font-size:9.5px;
+    letter-spacing:.14em; color:var(--wgray); line-height:2.2;
+    text-transform:uppercase;
+  }
+
+  .rail-part{
+    display:block; font-family:var(--mono); font-size:8.5px;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--wgray);
+    margin:var(--s5) 0 var(--s2); padding-left:2px;
+  }
+  .rail-part:first-child{margin-top:0;}
+
+  /* ═══════ 전면 문장 — 화면 하나에 문장 하나 ═══════ */
+  .field{
+    background:var(--black);
+    color:#fff;
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:var(--s9) var(--s7);
+  }
+  .field .mark{
+    font-family:var(--mono); font-size:10px;
+    letter-spacing:.26em; text-transform:uppercase;
+    color:var(--solar); font-weight:400;
+    margin-bottom:var(--s8);
+  }
+  .field .big{
+    font-size:clamp(34px,6.4vw,72px);
+    font-weight:var(--w-big,300);
+    letter-spacing:var(--ls-big,-.038em);
+    line-height:1.24;
+    color:#fff;
+    text-wrap:balance;
+    max-width:16ch;
+  }
+  .field .under{
+    margin-top:var(--s9);
+    max-width:44ch;
+    font-size:15px; font-weight:300; line-height:1.9;
+    color:#B8B7BB;
+    letter-spacing:-.01em;
+  }
+  .field .under b{color:#fff; font-weight:500;}
+
+  /* 표지 아래 정보 줄 */
+  .field .meta{
+    margin-top:var(--s9); padding-top:var(--s5);
+    border-top:1px solid rgba(255,255,255,.16);
+    display:flex; flex-wrap:wrap; gap:var(--s5);
+    font-family:var(--mono); font-size:10px;
+    letter-spacing:.16em; text-transform:uppercase;
+    color:#8E8D91;
+  }
+
+  /* ═══════ 피드 격자 ═══════ */
+  .fg{display:grid; grid-template-columns:repeat(3,1fr); gap:3px;
+      max-width:396px; margin:var(--s6) 0 var(--s5); background:var(--hair);}
+  .fg .c{aspect-ratio:1; padding:11px 10px; display:flex; flex-direction:column; overflow:hidden;}
+  .fg .c .k{font-family:var(--mono); font-size:7px; letter-spacing:.16em; opacity:.78;}
+  .fg .c .l{margin-top:auto; font-size:11.5px; font-weight:300; letter-spacing:-.03em; line-height:1.32;}
+  .fg .c .s{margin-top:auto; font-size:8.5px; line-height:1.7; font-weight:300;}
+  .fg .fw{background:var(--ivory); color:var(--black);}
+  .fg .fw .k{color:var(--wgray);}
+  .fg .fb{background:var(--black); color:#fff;}
+  .fg .fb .k{color:var(--solar);}
+  .fg .fo{background:var(--solar); color:#1A1013;}
+  .fg .fo .k{color:#1A1013; opacity:.62;}
+  .fg .fp{background:linear-gradient(150deg,#C9C7C3,#8E8C89 55%,#4E4C4A); color:#fff;}
+  .fg .fp2{background:linear-gradient(150deg,#C0967E,#8A6350 60%,#5A3D31); color:#fff;}
+  .fg .fp .k, .fg .fp2 .k{color:rgba(255,255,255,.72);}
+  .fg .fgrad{
+    background:
+      radial-gradient(105% 70% at 74% 112%, rgba(255,86,35,1) 0%, rgba(255,86,35,0) 58%),
+      radial-gradient(115% 85% at 55% 104%, rgba(180,110,80,.9) 0%, rgba(180,110,80,0) 66%),
+      radial-gradient(130% 100% at 35% 96%, rgba(190,165,146,.45) 0%, rgba(190,165,146,0) 70%),
+      linear-gradient(180deg, #1C1D21 0%, #34353A 46%, #55545A 100%);
+    color:#fff;}
+  .fg .fgrad::after{content:''; position:absolute; inset:0; z-index:1; opacity:.15;
+    mix-blend-mode:overlay; pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");}
+  .fg .c > span{position:relative; z-index:2;}
+  .fg .fgrad .k{color:rgba(255,255,255,.8);}
+  .fg .fline{background:var(--black); color:#fff;}
+  .fg .fline::after{content:''; position:absolute; left:10px; right:10px; top:30%; height:2px; background:var(--solar);}
+  .fg .fspot::after{content:''; position:absolute; left:56%; top:24%; width:22%; aspect-ratio:1; border-radius:50%; background:var(--solar);}
+  .fg .c{position:relative;}
+  .fg em{color:var(--solar); font-style:normal;}
+  .fg .dotm{position:absolute; left:10px; bottom:10px; width:6px; height:6px; background:var(--solar);}
+  @media print{ .fg{break-inside:avoid;} }
+
+  /* ═══════ 오렌지 쓰는 다섯 가지 ═══════ */
+  .ways{display:grid; grid-template-columns:repeat(5,1fr); gap:var(--s2);
+        margin:var(--s6) 0 var(--s5);}
+  .ways .w{}
+  .ways .box{aspect-ratio:1; position:relative; overflow:hidden;
+             display:flex; flex-direction:column; justify-content:flex-end;
+             padding:12px 11px;}
+  .ways .cap{font-family:var(--mono); font-size:8.5px; letter-spacing:.14em;
+             color:var(--wgray); margin-top:var(--s2); line-height:1.7;}
+  .ways .cap b{color:var(--black); font-weight:500; letter-spacing:.1em;}
+  .ways .t{font-size:12px; font-weight:300; letter-spacing:-.03em; line-height:1.32;}
+
+  .wy1{background:var(--solar); color:#1A1013;}
+  .wy2{background:var(--black); color:#fff;}
+  .wy2 em{color:var(--solar); font-style:normal;}
+  .wy3{
+    background:
+      radial-gradient(105% 70% at 74% 112%, rgba(255,86,35,1) 0%, rgba(255,86,35,0) 58%),
+      radial-gradient(115% 85% at 55% 104%, rgba(180,110,80,.9) 0%, rgba(180,110,80,0) 66%),
+      radial-gradient(130% 100% at 35% 96%, rgba(190,165,146,.45) 0%, rgba(190,165,146,0) 70%),
+      linear-gradient(180deg, #1C1D21 0%, #34353A 46%, #55545A 100%);
+    color:#fff;}
+  .wy3::after{content:''; position:absolute; inset:0; z-index:1; opacity:.15;
+    mix-blend-mode:overlay; pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");}
+  .ways .box > *{position:relative; z-index:2;}
+  .wy4{background:var(--black); color:#fff;}
+  .wy4::before{content:''; position:absolute; left:11px; right:11px; top:34%;
+               height:2px; background:var(--solar);}
+  .wy5{background:linear-gradient(155deg,#CFCDC9,#8D8B88 58%,#4A4846); color:#fff;}
+  .wy5::before{content:''; position:absolute; left:50%; top:26%;
+               width:26%; aspect-ratio:1; border-radius:50%;
+               background:var(--solar); transform:translateX(-50%);}
+  @media print{ .ways{break-inside:avoid;} }
+
+  /* ═══════ 비트 ═══════ */
+  .beat{display:flex; gap:5px; align-items:flex-end; margin:var(--s5) 0 var(--s3);}
+  .beat i{display:block; width:15px; height:15px; border:1px solid var(--hair); flex:none;}
+  .beat i.on{background:var(--solar); border-color:var(--solar); height:26px;}
+  .beat i.mid{background:var(--hair-soft); border-color:var(--hair);}
+  .beat-cap{font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--wgray);}
+  @media print{ .beat{break-inside:avoid;} }
+
+  /* ═══════ 위계 트리 ═══════ */
+  .tree{border-top:1px solid var(--black); margin:var(--s6) 0 var(--s6); max-width:var(--measure);}
+  .tree .t0{font-family:var(--mono); font-size:13px; letter-spacing:.18em;
+            color:var(--black); padding:var(--s4) 0 var(--s1);}
+  .tree .t0s{font-size:13px; color:var(--wgray); padding-bottom:var(--s4);
+             border-bottom:1px solid var(--hair);}
+  .tree .t1{display:grid; grid-template-columns:minmax(190px,.46fr) 1fr; gap:var(--s5);
+            padding:var(--s4) 0 var(--s4) var(--s5);
+            border-bottom:1px solid var(--hair-soft); align-items:baseline;}
+  .tree .t1 b{color:var(--black); font-weight:600; font-size:14.5px;}
+  .tree .t1 span{color:var(--ink-2); font-size:14px;}
+  @media print{ .tree .t1{break-inside:avoid;} }
+
+  /* ═══════ 섹션 ═══════ */
+  .sec{padding:var(--s10) 0 0; scroll-margin-top:0;}
+  .sec-head{margin-bottom:var(--s8);}
+  .sec-head .num{
+    font-family:var(--mono); font-size:10px; font-weight:400;
+    letter-spacing:.26em; color:var(--wgray);
+    display:block; margin-bottom:var(--s4);
+  }
+  .sec-head h2{
+    font-size:clamp(28px,3.8vw,40px);
+    font-weight:var(--w-h2,300); letter-spacing:var(--ls-big,-.04em); line-height:1.18;
+    color:var(--black); text-wrap:balance;
+  }
+  .sec-head .sub{
+    margin-top:var(--s4);
+    font-size:15px; font-weight:300; color:var(--ink-2); line-height:1.85;
+    max-width:var(--measure);
+  }
+
+  h3{
+    font-size:20px; font-weight:var(--w-h3,500); letter-spacing:-.028em;
+    color:var(--black); line-height:1.4;
+    margin:var(--s9) 0 var(--s5);
+    padding-top:var(--s5);
+    border-top:1px solid var(--hair-soft);
+  }
+  h4{
+    font-size:15.5px; font-weight:600; letter-spacing:-.015em;
+    color:var(--black); margin:var(--s7) 0 var(--s3);
+  }
+
+  p{max-width:var(--measure); margin-bottom:var(--s4); color:var(--ink-2);}
+  p.lead{color:var(--black); font-size:16.5px; font-weight:300; letter-spacing:-.018em; line-height:1.8;}
+  p strong{font-weight:600; color:var(--black);}
+  .note{font-size:13.5px; color:var(--wgray); line-height:1.8; max-width:var(--measure); margin-bottom:var(--s5);}
+  .note b{color:var(--black); font-weight:600;}
+
+  .lab{
+    font-family:var(--mono); font-size:10px;
+    letter-spacing:.22em; text-transform:uppercase;
+    font-weight:400; color:var(--wgray);
+    display:block; margin-bottom:var(--s3);
+  }
+
+  /* ═══════ 정의 행 ═══════ */
+  .rows{border-top:1px solid var(--hair); margin-bottom:var(--s6);}
+  .row{
+    display:grid; grid-template-columns:minmax(112px,.3fr) 1fr;
+    gap:var(--s5); padding:var(--s4) 0;
+    border-bottom:1px solid var(--hair-soft);
+    align-items:baseline;
+  }
+  .row dt{font-weight:600; color:var(--black); font-size:14px; letter-spacing:-.012em;}
+  .row dd{color:var(--ink-2); font-size:14px;}
+  .row dd b{color:var(--black); font-weight:600;}
+  .row-3{grid-template-columns:minmax(124px,.28fr) minmax(0,.34fr) 1fr;}
+  .row-4{grid-template-columns:minmax(88px,.2fr) minmax(0,.24fr) minmax(0,.3fr) 1fr;}
+  .row .q{color:var(--wgray);}
+
+  /* ═══════ 대조 ═══════ */
+  .pair{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--hair); margin-bottom:var(--s6);}
+  .pair > div{padding:var(--s4) var(--s5) var(--s4) 0; border-bottom:1px solid var(--hair-soft); font-size:14px;}
+  .pair > div:nth-child(even){padding-left:var(--s5); padding-right:0; border-left:1px solid var(--hair-soft);}
+  .pair .h{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--wgray);
+    padding-bottom:var(--s3);
+  }
+  .pair .a{color:var(--wgray);}
+  .pair .b{color:var(--black); font-weight:500;}
+
+  /* ═══════ 규칙 ═══════ */
+  .rules{list-style:none; border-top:1px solid var(--hair); margin-bottom:var(--s6);}
+  .rules li{
+    position:relative;
+    padding:var(--s3) 0 var(--s3) 30px;
+    border-bottom:1px solid var(--hair-soft);
+    font-size:14px; line-height:1.75;
+    color:var(--ink-2);
+  }
+  .rules li::before{
+    position:absolute; left:0; top:var(--s3);
+    font-family:var(--mono); font-size:11px; line-height:1.75;
+  }
+  .rules li.no::before{content:'—'; color:var(--wgray);}
+  .rules li.yes::before{content:'+'; color:var(--black);}
+  .rules li b{color:var(--black); font-weight:600;}
+
+  /* ═══════ 네 축 ═══════ */
+  .axes{display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr)); border-top:1px solid var(--hair); margin-bottom:var(--s6);}
+  .axes > div{padding:var(--s5) var(--s4) var(--s6) 0; border-bottom:1px solid var(--hair-soft);}
+  .axes > div + div{padding-left:var(--s4); border-left:1px solid var(--hair-soft);}
+  .axes .i{font-family:var(--mono); font-size:9.5px; letter-spacing:.18em; color:var(--hair); display:block; margin-bottom:var(--s3);}
+  .axes .t{font-size:16px; font-weight:500; letter-spacing:-.024em; color:var(--black); display:block; margin-bottom:var(--s2);}
+  .axes .d{font-size:13px; color:var(--wgray); line-height:1.7;}
+
+  /* ═══════ 컬러 ═══════ */
+  .bands{margin:var(--s5) 0 var(--s6);}
+  .band{padding:var(--s5) var(--s5); border-bottom:1px solid rgba(0,0,0,.06);}
+  .band .top{display:flex; flex-wrap:wrap; gap:var(--s4); align-items:baseline;}
+  .band .nm{font-size:16px; font-weight:500; letter-spacing:-.01em;}
+  .band .hx{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; opacity:.7;}
+  .band .rl{margin-left:auto; font-family:var(--mono); font-size:10px; letter-spacing:.14em; opacity:.7; text-transform:uppercase;}
+  .band .use{font-size:13px; margin-top:var(--s2); opacity:.8; max-width:52ch;}
+
+  /* ═══════ 서체 견본 ═══════ */
+  .spec{border-top:1px solid var(--hair); margin-bottom:var(--s6);}
+  .spec .line{display:grid; grid-template-columns:96px 1fr; gap:var(--s5); padding:var(--s5) 0; border-bottom:1px solid var(--hair-soft); align-items:baseline;}
+  .spec .w{font-family:var(--mono); font-size:9.5px; letter-spacing:.16em; color:var(--wgray); text-transform:uppercase;}
+  .spec .sample{font-size:clamp(20px,3vw,28px); letter-spacing:-.032em; line-height:1.3;}
+  .w300{font-weight:300;} .w400{font-weight:400;} .w500{font-weight:500;} .w700{font-weight:700;}
+
+  /* ═══════ 블록 ═══════ */
+  .block{
+    font-family:var(--mono); font-size:12.5px; line-height:2.05;
+    white-space:pre-wrap; color:var(--ink-2);
+    border-left:1px solid var(--hair); padding:var(--s3) 0 var(--s3) var(--s5);
+    margin-bottom:var(--s5); overflow-x:auto;
+  }
+  .block b{color:var(--black); font-weight:500;}
+
+  .todo{border-top:1px solid var(--black); padding-top:var(--s4); margin-bottom:var(--s6); max-width:var(--measure);}
+  .todo p{margin-bottom:0; font-size:14px;}
+
+  .tw{overflow-x:auto; margin-bottom:var(--s6);}
+  .tw .rows, .tw .pair, .tw .axes{min-width:420px;}
+
+  .foot{
+    padding:var(--s9) 0 var(--s10);
+    font-family:var(--mono); font-size:10px;
+    letter-spacing:.16em; color:var(--wgray); line-height:2.4;
+    text-transform:uppercase;
+  }
+
+
+  /* ═══════ 조절판 ═══════ */
+  .ctl-open{
+    position:fixed; right:16px; bottom:16px; z-index:60;
+    font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    background:var(--ivory); color:var(--black);
+    border:1px solid var(--black); padding:10px 16px; cursor:pointer;
+    box-shadow:0 2px 14px rgba(0,0,0,.18);
+  }
+  .ctl-open:hover{background:var(--black); color:#fff; border-color:var(--black);}
+  .ctl-open:focus-visible{outline:2px solid var(--black); outline-offset:2px;}
+  .ctl{
+    position:fixed; right:16px; bottom:16px; z-index:61;
+    width:280px; max-height:88vh; overflow-y:auto;
+    background:var(--paper); border:1px solid var(--black);
+    padding:20px; display:none;
+  }
+  .ctl[data-open="1"]{display:block;}
+  .ctl h5{
+    font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--wgray); font-weight:400; margin-bottom:16px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .ctl h5 button{background:none; border:none; cursor:pointer; font:inherit; color:var(--wgray); padding:0 2px;}
+  .ctl .grp{margin-bottom:20px;}
+  .ctl .gt{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--wgray); display:block; margin-bottom:8px;
+    padding-bottom:6px; border-bottom:1px solid var(--hair-soft);
+  }
+  .ctl label{
+    display:grid; grid-template-columns:1fr auto; gap:8px;
+    align-items:center; padding:5px 0;
+    font-size:12.5px; color:var(--ink-2);
+  }
+  .ctl input[type=color]{
+    width:34px; height:22px; padding:0; border:1px solid var(--hair);
+    background:none; cursor:pointer;
+  }
+  .ctl input[type=range]{width:110px; accent-color:var(--black);}
+  .ctl select{
+    font:inherit; font-size:12px; padding:3px 5px;
+    border:1px solid var(--hair); background:var(--ivory); color:var(--black);
+  }
+  .ctl .val{font-family:var(--mono); font-size:11px; color:var(--wgray); min-width:38px; text-align:right;}
+  .ctl .btns{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px;}
+  .ctl .btns button{
+    font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:9px 6px; cursor:pointer; border:1px solid var(--black);
+    background:var(--ivory); color:var(--black);
+  }
+  .ctl .btns button.pri{background:var(--black); color:var(--ivory);}
+  .ctl .out{
+    margin-top:12px; font-family:var(--mono); font-size:10.5px; line-height:1.7;
+    color:var(--ink-2); white-space:pre-wrap; word-break:break-all;
+    border-top:1px solid var(--hair-soft); padding-top:10px; display:none;
+  }
+  .ctl .out[data-show="1"]{display:block;}
+  @media print{ .ctl, .ctl-open{display:none !important;} }
+
+  /* ═══════ 좁은 화면 ═══════ */
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr;}
+    .rail{position:static; height:auto; border-right:none; border-bottom:1px solid var(--hair-soft); padding:var(--s5); gap:var(--s4);}
+    .rail nav{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0 var(--s4);}
+    .rail-foot{display:none;}
+    .inner{padding:0 var(--s5);}
+    .field{padding:var(--s8) var(--s5); min-height:88vh;}
+    .field .big{max-width:none;}
+    .pair{grid-template-columns:1fr;}
+    .pair > div:nth-child(even){padding-left:0; border-left:none;}
+    .sec{padding-top:var(--s9);}
+  }
+
+  /* ═══════ 인쇄 ═══════ */
+  @page{ size:A4; margin:16mm 15mm 16mm; }
+  @media print{
+    body{font-size:11.5px; line-height:1.75;}
+    .rail{display:none;}
+    .shell{display:block;}
+    .inner{max-width:100%; padding:0;}
+    .field{
+      min-height:228mm; padding:var(--s9) var(--s7);
+      break-inside:avoid; break-after:page;
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .field .big{font-size:34px; max-width:18ch;}
+    .field .under{margin-top:var(--s6); font-size:12px;}
+    .field .meta{margin-top:var(--s6);}
+    .sec{padding-top:var(--s7); break-before:auto;}
+    .sec-head, h3, h4{break-after:avoid;}
+    .sec-head h2{font-size:26px;}
+    h3{margin-top:var(--s7);}
+    .row, .rules li, .pair > div, .spec .line, .axes > div, .block, .todo{break-inside:avoid;}
+    .band{break-inside:avoid; padding:var(--s3) var(--s4);}
+    .tw{overflow:visible;}
+    a{text-decoration:none; color:inherit;}
+    .foot{padding:var(--s6) 0 0; border-top:1px solid var(--hair);}
+  }
+</style>
+
+<div class="shell">
+
+  <div class="rail">
+    <div class="rail-brand">
+      Re:Correction
+      <b>Brand Guide</b>
+      Rev 5.0
+    </div>
+    <nav aria-label="목차">
+      <span class="rail-part">브랜드가 무엇인가</span>
+      <a href="#s01"><span class="n">01</span><span>정의</span></a>
+      <a href="#s02"><span class="n">02</span><span>포지셔닝</span></a>
+      <a href="#s03"><span class="n">03</span><span>위계</span></a>
+      <a href="#s04"><span class="n">04</span><span>타깃</span></a>
+      <a href="#s05"><span class="n">05</span><span>약속</span></a>
+      <span class="rail-part">어떻게 말하는가</span>
+      <a href="#s06"><span class="n">06</span><span>두 개의 기둥</span></a>
+      <a href="#s07"><span class="n">07</span><span>보이스</span></a>
+      <a href="#s08"><span class="n">08</span><span>톤</span></a>
+      <a href="#s14"><span class="n">14</span><span>계정</span></a>
+      <span class="rail-part">어떻게 보이는가</span>
+      <a href="#s09"><span class="n">09</span><span>컬러</span></a>
+      <a href="#s10"><span class="n">10</span><span>타이포그래피</span></a>
+      <a href="#s11"><span class="n">11</span><span>로고</span></a>
+      <a href="#s12"><span class="n">12</span><span>사진과 영상</span></a>
+      <a href="#s13"><span class="n">13</span><span>레이아웃</span></a>
+      <span class="rail-part">실무</span>
+      <a href="#s15"><span class="n">15</span><span>실무 문서</span></a>
+      <a href="#s16"><span class="n">16</span><span>남은 판단</span></a>
+    </nav>
+    <div class="rail-foot">내부 전용<br>2026.08.10</div>
+  </div>
+
+  <div class="stage">
+
+    <!-- 여는 화면 -->
+    <section class="field" aria-label="브랜드 코어">
+      <div class="big">시선이<br>거기서<br>멈추지 않도록.</div>
+    </section>
+
+    <!-- 표지 -->
+    <section class="field" aria-label="표지">
+      <div class="mark">Re:Correction · Brand Guidelines</div>
+      <div class="big" style="font-size:clamp(30px,4.6vw,52px); max-width:none;">리커렉션 브랜드 가이드</div>
+
+      <div class="meta">
+        <span>Rev 5.0</span>
+        <span>2026.08.10</span>
+        <span>리커렉션 본점</span>
+        <span>누보레브아카데미</span>
+        <span>K-파라메디컬커렉션교육협회</span>
+      </div>
+    </section>
+
+    <div class="inner">
+
+    <!-- 01 -->
+    <section class="sec" id="s01">
+      <div class="sec-head">
+        <span class="num">01</span>
+        <h2>정의</h2>
+        <p class="sub">한 문장으로 답하지 못하면, 열 문장으로도 못 합니다.</p>
+      </div>
+
+      <h3>한 문장</h3>
+      <div class="note">
+        <p><b>리커렉션은 남아 있는 반영구 흔적을 기준으로, 방향을 다시 세우는 수정·복원 브랜드입니다.</b></p>
+      </div>
+
+      <p>이 한 문장에 세 가지가 들어 있습니다. <b>남아 있는 것에서 출발한다</b>는 점, <b>지우는 것이 아니라 방향을 바꾼다</b>는 점, 그리고 <b>감이 아니라 기준으로 한다</b>는 점입니다. 셋 중 하나라도 빠지면 다른 브랜드의 설명이 됩니다.</p>
+
+      <h3>세 겹으로 씁니다</h3>
+      <p>같은 정의를 상황에 따라 길이만 바꿔서 씁니다. <b>내용을 바꾸지 않습니다.</b></p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>한 줄</dt><dd>반영구 수정·복원 전문</dd><dd class="q">프로필 · 명함 · 소개 한 줄</dd></div>
+          <div class="row row-3"><dt>표준형</dt><dd>남아 있는 상태를 기준으로 방향을 다시 세우는 곳</dd><dd class="q">고정 댓글 · 소개글</dd></div>
+          <div class="row row-3"><dt>확장형</dt><dd>위 한 문장 + 세 기관 관계 + 기술 명칭</dd><dd class="q">인터뷰 · 제안서 · 언론</dd></div>
+        </dl>
+      </div>
+
+      <p class="note">계정별 정확한 문장은 <b>엔티티 정의문</b>에 있습니다. 이 장은 그 문장들이 <b>왜 그렇게 쓰였는지</b>를 설명합니다.</p>
+
+      <h3>코어 — 정의보다 앞에 있는 것</h3>
+      <p>정의는 <b>무엇을 하는가</b>이고, 코어는 <b>왜 하는가</b>입니다. 판단이 흔들릴 때 돌아오는 자리는 정의가 아니라 코어입니다.</p>
+
+      <div class="note">
+        <p><b>우리가 자세히 보는 건, 당신이 더는 보지 않아도 되게 하기 위해서입니다.</b></p>
+        <p style="margin-top:var(--s2)">짧은 형 — 시선이 거기서 멈추지 않도록.</p>
+      </div>
+
+      <p>리커렉션이 돌려주는 것은 완벽한 눈썹이 아니라 <b>눈썹에서 눈을 뗄 수 있는 상태</b>입니다. 잔흔의 진짜 고통은 색이 아니라 시선이 자꾸 거기서 멈추는 것입니다. 거울을 볼 때마다, 하루에도 몇 번씩.</p>
+
+      <h3>성공의 정의</h3>
+      <div class="note">
+        <p><b>완전히 지워지는 것이 아니라, 신경 쓰이지 않게 되는 것.</b></p>
+      </div>
+      <p>이것은 약속인 동시에 <b>기대 관리 장치</b>입니다. 1회로 완전히 안 되는 것이 실패가 아니게 되고, 제거·완치 같은 금지어를 쓸 이유도 사라집니다. 애초에 그걸 약속하는 브랜드가 아니기 때문입니다.</p>
+
+      <ul class="rules">
+        <li class="yes">남아 있는 상태 · 방향 · 기준 — 이 셋은 어떤 정의문에도 들어갑니다</li>
+        <li class="no">제거 · 지움 · 완치 — 부정확한 서술입니다 (03장 참조)</li>
+        <li class="no">정의를 매번 새로 쓰기 — 세 겹 중 하나를 골라 씁니다</li>
+      </ul>
+    </section>
+
+    <!-- 02 -->
+    <section class="sec" id="s02">
+      <div class="sec-head">
+        <span class="num">02</span>
+        <h2>포지셔닝</h2>
+        <p class="sub">시장에는 두 개의 선택지밖에 없었습니다. 리커렉션은 세 번째입니다.</p>
+      </div>
+
+      <h3>기존 두 선택지는 사실 하나입니다</h3>
+      <p>덮기와 제거는 정반대로 보이지만, <b>둘 다 색소를 대상으로 삼는다</b>는 점에서 같습니다. 하나는 색소 위에 색소를 더하고, 하나는 색소를 빼냅니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-4"><dt></dt><dd class="q">보는 대상</dd><dd class="q">하는 일</dd><dd class="q">법적 범주</dd></div>
+          <div class="row row-4"><dt>덮기</dt><dd>색소</dd><dd>위에 색소를 더한다</dd><dd class="q">문신행위</dd></div>
+          <div class="row row-4"><dt>제거</dt><dd>색소</dd><dd>색소를 빼낸다</dd><dd class="q">문신제거행위</dd></div>
+          <div class="row row-4"><dt><b>리커렉션</b></dt><dd><b>피부 구조</b></dd><dd><b>원인을 읽고 다시 세운다</b></dd><dd class="q">문신행위</dd></div>
+        </dl>
+      </div>
+
+      <p><b>리커렉션은 기존 두 방식의 개선판이 아니라 출발점이 다른 세 번째 접근입니다.</b> 보는 대상 자체가 색소가 아니라 구조입니다.</p>
+
+      <div class="note">
+        <p>문신사법은 <b>문신행위와 문신제거행위를 다른 범주로 구분합니다.</b> 리커렉션의 작업은 법적으로 <b>제거가 아닙니다.</b> 그래서 “제거·지움”은 단순한 금지어가 아니라 <b>사실과 다른 서술</b>입니다.</p>
+      </div>
+
+      <h3>레이저와의 관계</h3>
+      <p><b>대체하지 않습니다. 나란히 서는 선택지입니다.</b> 부정하거나 깎아내리지 않고 의료적 접근으로 인정합니다. 이것이 신뢰를 만들고, 동시에 검색과 AI 답변에서 <b>두 개의 선택지 구도</b>를 만듭니다.</p>
+
+      <p>리커렉션이 선택되는 실제 상황은 셋입니다 — 레이저가 부담스러운 경우, 회복 기간이 일상에 지장이 되는 경우, 그리고 <b>레이저를 했는데 색이 남아 있는 경우</b>입니다.</p>
+
+      <ul class="rules">
+        <li class="no">경쟁 업체나 레이저를 깎아내리는 문장</li>
+        <li class="no">“레이저보다 낫습니다” — 비교 우위 주장</li>
+        <li class="yes">“레이저가 부담스러우실 때 선택지가 됩니다” — 상황을 말합니다</li>
+      </ul>
+
+      <h3>우리가 서 있는 빈틈</h3>
+      <p>기술을 가진 곳은 있습니다. <b>알아듣게 설명하는 곳이 없습니다.</b> 업계 6년차도, 검증하러 간 사람도 첫 설명에서는 알아듣지 못했습니다.</p>
+      <p><b>고객은 이해가 안 된다고 말하지 않습니다. 조용히 나갑니다.</b> 그래서 리커렉션의 자리는 “수정을 잘하는 곳”이 아니라 <b>“왜 이런 문제가 생겼는지 가장 쉽게 설명해주는 곳”</b>입니다.</p>
+
+      <h3>왜 지금인가</h3>
+      <p>문신사법이 2025년 9월 통과되어 <b>2027년 10월 시행</b>됩니다. 산업이 감으로 하던 시장에서 <b>기준으로 관리되는 시장</b>으로 넘어가는 중입니다. 리커렉션이 처음부터 말해 온 것이 그 기준입니다.</p>
+
+      <ul class="rules">
+        <li class="no">“지금 안 하면 큰일 납니다” — 불안 마케팅은 보이스 금지 영역입니다</li>
+        <li class="no">협회 자체 인증과 국가면허를 섞어 쓰기 — 시행 후 부당광고가 됩니다</li>
+        <li class="yes">하위 법령이 미확정이므로 <b>“현재 기준”</b>을 병기합니다</li>
+      </ul>
+    </section>
+
+    <!-- 03 -->
+    <section class="sec" id="s03">
+      <div class="sec-head">
+        <span class="num">03</span>
+        <h2>위계</h2>
+        <p class="sub">이름이 여러 개입니다. 무엇이 위이고 무엇이 아래인지 정해두지 않으면 매번 헷갈립니다.</p>
+      </div>
+
+      <h3>리커렉션이 위입니다</h3>
+      <p><b>리커렉션은 가게 이름이 아니라 방식의 이름입니다.</b> 그래서 위에 있습니다. 나머지 셋은 그 방식을 각각 <b>실행하고 · 가르치고 · 기준으로 만드는</b> 곳입니다.</p>
+
+      <div class="tree">
+        <div class="t0">RE:CORRECTION</div>
+        <div class="t0s">방식의 이름 · 최상위</div>
+        <div class="t1"><b>리커렉션 본점</b><span>실행 — 미용문신 · 반영구화장</span></div>
+        <div class="t1"><b>누보레브아카데미</b><span>교육 — 반영구화장 학원</span></div>
+        <div class="t1"><b>K-파라메디컬커렉션교육협회</b><span>기준과 인증</span></div>
+      </div>
+
+      <p>사업자는 셋으로 나뉘어 있고 <b>김현숙 대표 한 사람이 잇습니다.</b> 본점 대표, 아카데미 공동대표, 협회 이사장입니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>리커렉션 본점</dt><dd>시술 · 미용문신 반영구화장</dd><dd class="q">대표</dd></div>
+          <div class="row row-3"><dt>누보레브아카데미</dt><dd>교육 · 반영구화장 학원</dd><dd class="q">공동대표</dd></div>
+          <div class="row row-3"><dt>K-파라메디컬커렉션교육협회</dt><dd>기준 · 인증</dd><dd class="q">이사장</dd></div>
+        </dl>
+      </div>
+
+      <p><b>경쟁 업체 대부분은 셋 중 하나만 가지고 있습니다.</b> 시술만 하거나, 교육만 하거나. 셋을 다 가진 것이 리커렉션의 구조적 자리입니다.</p>
+
+      <h3>누보레브는 아래에 두되 버리지 않습니다</h3>
+      <p>위계상 아래지만 <b>이름은 유지합니다.</b> 누보레브아카데미는 2017년 이전부터 운영된 이름이고, 리커렉션은 작년에 나온 이름입니다. <b>업력은 누보레브에, 방식의 이름은 리커렉션에</b> 있습니다.</p>
+      <p>그래서 <b>오래된 이름이 새 이름을 보증하는 구도</b>가 됩니다 — “누보레브 그분이 리커렉션을 만들었대.” 반대로 하면 이력 없는 새 이름 하나만 남습니다.</p>
+
+      <div class="note">
+        <p><b>업력을 섞어 쓰지 않습니다.</b> 누보레브아카데미는 2017년~, 리커렉션은 작년~입니다. “리커렉션 9년”은 사실이 아닙니다. 사람으로 이으면 사실이 됩니다 — <b>“오래 가르쳐온 사람이 만든 기준.”</b></p>
+      </div>
+
+      <h3>이름을 붙이는 규칙</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>단독으로 쓸 때</dt><dd>리커렉션</dd><dd class="q">방식·브랜드를 말할 때</dd></div>
+          <div class="row row-3"><dt>장소를 말할 때</dt><dd>리커렉션 본점</dd><dd class="q">시술 받는 곳</dd></div>
+          <div class="row row-3"><dt>교육을 말할 때</dt><dd>누보레브아카데미</dd><dd class="q">필요하면 “리커렉션 과정을 운영하는”을 앞에</dd></div>
+          <div class="row row-3"><dt>기준을 말할 때</dt><dd>K-파라메디컬커렉션교육협회</dd><dd class="q">직함으로만 (아래 참조)</dd></div>
+          <div class="row row-3"><dt>셋을 함께</dt><dd>리커렉션 본점 | 누보레브아카데미 | K-파라메디컬커렉션교육협회</dd><dd class="q">이 순서를 지킵니다</dd></div>
+        </dl>
+      </div>
+
+      <p><b>직함 순서에도 이유가 있습니다.</b> 본점 → 아카데미 → 협회. 손님이 궁금해하는 순서입니다 — 시술하는 사람인가, 가르치는 사람인가, 기준을 만드는 사람인가.</p>
+
+      <h3>계정 아이디는 바꾸지 않습니다</h3>
+      <p>계정 아이디와 상호가 어긋나 있습니다. 아카데미는 <code>@recorrection_academy</code>인데 상호는 누보레브아카데미이고, 대표 계정은 <code>@nouveaureve_ceo</code>입니다.</p>
+      <p><b>그래도 바꾸지 않습니다.</b> 인스타그램이 경고합니다 — <b>“팔로워가 회원님을 찾지 못할 수도 있습니다.”</b> 팔로우가 끊기는 것은 아니지만 <b>이름으로 찾아오는 길</b>이 끊깁니다. 검색으로 오던 사람, 예전 대화창에서 눌러 오던 사람, 남이 태그해둔 게시물 — 오래된 계정일수록 이 경로가 많습니다.</p>
+      <p>대신 <b>이름칸으로 붙입니다.</b> 이름칸도 검색에 잡히므로, 아이디는 누보레브 · 이름칸은 리커렉션으로 두면 <b>두 이름을 모두 가져갑니다.</b></p>
+
+      <h3>협회를 말할 때</h3>
+      <p><b>피드 본문에서는 굳이 꺼내지 않습니다.</b> 손님에게는 필요 없는 정보이고, 먼저 꺼내면 “그게 뭐냐”는 질문만 생깁니다. 법적 형태를 확인하기 전까지는 더욱 그렇습니다.</p>
+      <p>대신 <b>해시태그에는 넣습니다.</b> 사람 눈에는 안 띄고 검색에는 남습니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>캡션 본문</dt><dd>언급하지 않습니다</dd><dd class="q">묻는 사람에게만 답합니다</dd></div>
+          <div class="row row-3"><dt>해시태그</dt><dd>이름 그대로 하나</dd><dd class="q">#K파라메디컬커렉션교육협회</dd></div>
+          <div class="row row-3"><dt>프로필 · 소개</dt><dd>직함으로만</dd><dd class="q">“K-파라메디컬커렉션교육협회 이사장”</dd></div>
+        </dl>
+      </div>
+
+      <ul class="rules">
+        <li class="no">국가공인 · 공식 인증 · 정부 지정 — <b>확인 전까지 쓰지 않습니다</b></li>
+        <li class="no">“협회 인증이니 안전합니다” — 효과 보증으로 읽힙니다</li>
+        <li class="no"><b>“파라메디컬”을 의료 효과와 붙여 쓰지 않습니다</b></li>
+        <li class="no">해시태그에도 <b>#공인 #인증</b> 류는 붙이지 않습니다 — 태그도 광고 문구로 봅니다</li>
+        <li class="yes">“K-파라메디컬커렉션교육협회 이사장” — 직함만</li>
+      </ul>
+
+      <div class="todo">
+        <span class="lab">위치는 따로 뗍니다</span>
+        <p>본점은 경기 고양시 일산동구 정발산로 43-20 센트럴프라자 703호입니다. <b>내년 중 용산 이전 예정</b>이므로 주소는 문장 안이 아니라 따로 뗄 수 있는 자리에 둡니다. 옮길 때 그 자리만 갈면 됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="sec" id="s04">
+      <div class="sec-head">
+        <span class="num">04</span>
+        <h2>타깃</h2>
+        <p class="sub">셋 다 다른 사람입니다. 같은 말로 셋을 부를 수 없습니다.</p>
+      </div>
+
+      <h3>세 사람</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-4"><dt></dt><dd class="q">누구</dd><dd class="q">못 꺼낸 질문</dd><dd class="q">상태</dd></div>
+          <div class="row row-4"><dt>수정 고객</dt><dd>잘못된 결과로 불안한 사람</dd><dd>“이거 다시 살릴 수 있어요?”</dd><dd class="q">자책하고 있습니다</dd></div>
+          <div class="row row-4"><dt>신뢰 고객</dt><dd>사람을 보고 결정하는 사람</dd><dd>“이 사람한테 맡겨도 될까?”</dd><dd class="q">한 번 데인 적이 있습니다</dd></div>
+          <div class="row row-4"><dt>수강생 · 원장</dt><dd>업계 종사자</dd><dd>“나도 할 수 있을까?”</dd><dd class="q">제도 변화가 불안합니다</dd></div>
+        </dl>
+      </div>
+
+      <h3>가장 중요한 사실 — 그들은 자책하고 있습니다</h3>
+      <p>수정·복원을 찾는 사람은 대부분 <b>자기 탓을 하며</b> 옵니다. <i>“내가 잘못 알아봐서”, “내가 싸게 하려다가.”</i></p>
+
+      <div class="note">
+        <p><b>당신의 문제가 아니라, 되돌리는 기준이 없던 시대의 이야기입니다.</b></p>
+      </div>
+
+      <p>브랜드가 문제를 전시하면 자책이 강해지고 <b>고객은 숨습니다.</b> 원인을 시대와 시스템으로 옮기면 <b>고객은 말할 수 있게 됩니다.</b> 말할 수 있게 된 고객이 브랜드를 퍼뜨립니다.</p>
+      <p>도덕적인 선택인 동시에 <b>가장 효율적인 확산 구조</b>입니다.</p>
+
+      <ul class="rules">
+        <li class="no">고객의 과거 선택을 지적하는 문장</li>
+        <li class="no">“이런 시술은 피하세요” — 이미 한 사람이 봅니다</li>
+        <li class="yes">원인을 시대·시스템·기준 부재로 옮깁니다</li>
+      </ul>
+
+      <h3>고객의 말과 우리의 말이 다릅니다</h3>
+      <p>종사자는 <code>LCC</code>를 검색하고, 고객은 <b>“눈썹 잔흔 제거”</b>를 검색합니다. 종사자는 <code>Magic Camo</code>를 검색하고, 고객은 <b>“파란 아이라인 수정”</b>을 검색합니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>일반 고객용</dt><dd>고객의 말로 <b>시작</b>해서 브랜드의 말로 <b>끝냅니다</b></dd><dd class="q">단어를 배워서 나갑니다</dd></div>
+          <div class="row row-3"><dt>종사자용</dt><dd>브랜드의 말로 시작해도 됩니다</dd><dd class="q">이미 아는 언어입니다</dd></div>
+        </dl>
+      </div>
+
+      <p class="note"><b>브랜드 언어는 입구가 아니라 출구에 둡니다.</b> “리커렉션은 구조를 봅니다”로 시작하면 “구조? 무슨 말이지” 하고 나갑니다. 같은 말을 마지막에 두면 <b>단어를 선물받고</b> 나갑니다.</p>
+    </section>
+
+    <!-- 05 -->
+    <section class="sec" id="s05">
+      <div class="sec-head">
+        <span class="num">05</span>
+        <h2>약속</h2>
+        <p class="sub">미션 · 비전 · 가치. 판단이 갈릴 때 여기서 답이 나옵니다.</p>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>미션</dt><dd>잘못된 시술로 남겨진 흔적을, 되돌릴 수 있는 것으로 만든다</dd><dd class="q">지금 하는 일</dd></div>
+          <div class="row row-3"><dt>비전</dt><dd>수정·복원을 감이 아닌 기준으로 만든다</dd><dd class="q">가려는 곳</dd></div>
+          <div class="row row-3"><dt>페르소나</dt><dd>조용하지만 흔들리지 않는 전문가</dd><dd class="q">어떤 사람으로 보이는가</dd></div>
+        </dl>
+      </div>
+
+      <h3>가치 셋</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>원인 우선</dt><dd>덮지 않고 원인을 본다</dd><dd class="q">기술 판단의 기준</dd></div>
+          <div class="row row-3"><dt>정직한 언어</dt><dd>과장하지 않고 단정하지 않는다</dd><dd class="q">모든 문장의 기준</dd></div>
+          <div class="row row-3"><dt>존엄의 회복</dt><dd>고객을 탓하지 않는다</dd><dd class="q">태도의 기준</dd></div>
+        </dl>
+      </div>
+
+      <h3>USP — 세 겹</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>카테고리 재정의</dt><dd>수정·복원을 반영구의 하위 항목이 아닌 <b>별도 전문 영역</b>으로 분리</dd><dd class="q">마취과가 외과의 하위가 아닌 것과 같은 구조</dd></div>
+          <div class="row row-3"><dt>구조에서 출발</dt><dd>보이는 색은 색소의 속성이 아니라 <b>구조의 결과</b></dd><dd class="q">원인이 구조에 있으면 해법도 구조에서</dd></div>
+          <div class="row row-3"><dt>시스템으로 존재</dt><dd>개인의 손기술이 아니라 <b>교재·프로토콜·인증 체계</b></dd><dd class="q">사람은 은퇴하지만 시스템은 승계됩니다</dd></div>
+        </dl>
+      </div>
+
+      <div class="note">
+        <p><b>덮는 기술은 많지만, 되돌리는 기준은 리커렉션이 만듭니다.</b></p>
+      </div>
+
+      <h3>무엇인가 / 무엇이 아닌가</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt class="q">아닙니다</dt><dd class="q">그렇습니다</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>덮고 가리는 커버업</dt><dd>남은 상태를 읽고 방향을 다시 잡는 수정</dd><dd class="q">보는 대상이 다릅니다</dd></div>
+          <div class="row row-3"><dt>강하게 밀어내는 방식</dt><dd>균형을 되찾도록 조율하는 방식</dd><dd class="q">힘이 아니라 방향입니다</dd></div>
+          <div class="row row-3"><dt>감각과 경험에 의존하는 기술</dt><dd>같은 결과가 나오도록 만드는 기준</dd><dd class="q">재현 가능해야 합니다</dd></div>
+          <div class="row row-3"><dt>잘하는 시술자를 만드는 교육</dt><dd>기준이 되는 전문가를 만드는 교육</dd><dd class="q">아카데미의 자리입니다</dd></div>
+        </dl>
+      </div>
+
+      <p><b>시그니처 문형은 「A가 아니라 B」입니다.</b> 감각이 아니라 기준. 커버가 아니라 복원. 덮는 기술이 아니라 되돌리는 기술.</p>
+
+      <ul class="rules">
+        <li class="no">한 편의 글에서 <b>두 번을 넘기지 않습니다</b> — 세 번째부터 말장난으로 읽힙니다</li>
+        <li class="yes">대조 뒤에는 <b>반드시 이유를 설명하는 문장</b>이 따라옵니다</li>
+      </ul>
+    </section>
+
+    <!-- 06 -->
+    <section class="sec" id="s06">
+      <div class="sec-head">
+        <span class="num">06</span>
+        <h2>두 개의 기둥</h2>
+        <p class="sub">판단이 막히면 이 둘로 돌아옵니다. 보이는 것은 위계, 읽히는 것은 번역입니다.</p>
+      </div>
+
+      <h3>첫째 · 가장 중요한 하나가 가장 강하게</h3>
+
+      <div class="note">
+        <p><b>미니멀리즘이 아닙니다. 필요한 것만 남겨 목적과 위계를 분명하게 만드는 일입니다.</b></p>
+        <p style="margin-top:var(--s2)">빈 공간이 많은 화면이 아니라, <b>중요한 것이 가장 강하게 보이는 화면</b>입니다.</p>
+      </div>
+
+      <p>이 차이가 전부입니다. <b>여백은 목적이 아니라 결과입니다.</b> 여백을 늘리려고 덜어내면 밍밍해지고, 하나를 가장 강하게 만들려고 덜어내면 여백이 저절로 생깁니다.</p>
+
+      <p>그래서 <b>한 칸을 색으로 꽉 채우는 것도 이 원칙 안에 있습니다.</b> 그 화면에서 가장 중요한 것이 그 한 마디라면, 그것이 가장 강하게 보이는 것이 맞습니다. 절제는 화면 하나가 아니라 <b>전체에서</b> 지킵니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>검사하는 법</dt><dd><b>이 화면에서 제일 먼저 눈에 들어오는 것이, 제일 중요한 것인가</b></dd><dd class="q">아니면 위계가 무너진 것입니다</dd></div>
+        </dl>
+      </div>
+
+      <ul class="rules">
+        <li class="yes">한 화면에 <b>메시지 하나</b>. 둘이면 화면을 나눕니다</li>
+        <li class="yes">덜어낸 뒤 <b>남은 하나가 더 강해졌는지</b> 확인합니다</li>
+        <li class="no">여백을 만들려고 정보를 빼는 것 — 불친절이 됩니다</li>
+        <li class="no">중요한 것과 덜 중요한 것을 <b>같은 크기</b>로 두는 것</li>
+      </ul>
+
+      <h3>둘째 · 전문어를 손님 말로 바꿉니다</h3>
+
+      <div class="note">
+        <p><b>복잡한 것을 쉽게 말할 수 있다는 것 자체가 전문성입니다.</b></p>
+      </div>
+
+      <p>알아듣지 못하는 말로 권위를 만들지 않습니다. 학술적인 말투는 <b>일부 사람을 밀어냅니다.</b> 정확한 단어를 쓰되, 명확하고 직접적이고 존중하는 말로 씁니다.</p>
+
+      <p>그리고 이것은 이 브랜드에서 <b>친절이 아니라 차별점</b>입니다. 기술을 가진 곳은 있지만 <b>알아듣게 설명하는 곳이 없어서</b> 생긴 자리이기 때문입니다. 애플에게는 선택이지만, 리커렉션에게는 <b>먹고사는 이유</b>입니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>검사하는 법</dt><dd><b>손님이 이 문장을 다른 사람에게 그대로 옮길 수 있는가</b></dd><dd class="q">못 하면 어려운 것입니다</dd></div>
+        </dl>
+      </div>
+
+      <p class="note">저장과 공유가 안 되는 이유도 대개 이것입니다. <b>자기가 이해하지 못한 것을 남에게 보내지 않습니다.</b></p>
+
+      <h3>번역표 — 캡션을 쓸 때 가장 먼저 엽니다</h3>
+      <p>같은 내용을 두 층으로 씁니다. <b>왼쪽은 우리끼리, 오른쪽은 손님에게.</b></p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt class="q">종사자 말</dt><dd class="q">손님 말</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>잔흔의 구조를 분석한다</dt><dd>왜 그 색이 그렇게 남았는지부터 봅니다</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>색의 방향을 정리한다</dt><dd>어느 쪽으로 색이 변했는지 확인합니다</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>깊이와 밀도를 파악한다</dt><dd>얼마나 깊게, 얼마나 촘촘히 남았는지 봅니다</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>구조를 안정화시킨다</dt><dd>흔들린 균형을 다시 맞춥니다</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>복원 방향을 설계한다</dt><dd>되돌릴 방향을 먼저 정합니다</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>감각이 아닌 구조로 접근한다</dt><dd>눈대중이 아니라, 이유를 알고 접근합니다</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>레이어 기반 컬러 체인지</dt><dd>색을 덮지 않고 방향을 바꾸는 방식</dd><dd class="q"></dd></div>
+          <div class="row row-3"><dt>시각 구조 기준으로 재설계한다</dt><dd>눈매가 어떻게 보이는지를 기준으로 정리합니다</dd><dd class="q"></dd></div>
+        </dl>
+      </div>
+
+      <p><b>이 표는 계속 자랍니다.</b> 새 표현이 나올 때마다 한 줄씩 붙입니다. 담당자가 바뀌어도 이 표만 있으면 같은 말이 나옵니다. <b>로고보다 오래가는 자산입니다.</b></p>
+
+      <ul class="rules">
+        <li class="yes">전문어를 썼으면 <b>그 자리에서</b> 풀어줍니다. 뒤로 미루지 않습니다</li>
+        <li class="yes">쉬운 말과 <b>가르치는 말은 다릅니다</b> — “~하시면 됩니다”가 아니라 “~합니다”</li>
+        <li class="no">일반 고객용 글에 <b>영문 기술명을 앞세우지 않습니다</b></li>
+        <li class="no">손님이 못 알아듣는 문장 — <b>아무리 정확해도 틀린 문장입니다</b></li>
+      </ul>
+
+      <div class="note">
+        <p><b>기준이 하나 올라갔습니다.</b> 지금까지는 “정확하면 됐다”였습니다. 이제는 <b>정확한데 안 통하면 실패</b>입니다.</p>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="sec" id="s07">
+      <div class="sec-head">
+        <span class="num">07</span>
+        <h2>보이스</h2>
+        <p class="sub">채널이 바뀌어도, 상황이 바뀌어도 이 다섯은 그대로입니다.</p>
+      </div>
+
+      <h3>하나 · 조용한 확신</h3>
+      <p class="lead">느낌표가 필요하다면 문장이 약한 것입니다.</p>
+      <ul class="rules">
+        <li class="no">느낌표 — 콘텐츠당 0개가 기본, 최대 1개</li>
+        <li class="no">이모지 — 캡션 0개가 기본. 고정 댓글·프로필·카드뉴스·자막은 0개</li>
+        <li class="no">강조 부사 — 정말 진짜 엄청 완전 너무 확실히</li>
+        <li class="yes">문장은 마침표로 끝냅니다. 물결로 흐리지 않습니다</li>
+      </ul>
+      <div class="tw">
+        <div class="pair">
+          <div class="h">쓰지 않는다</div>
+          <div class="h">이렇게 쓴다</div>
+          <div class="a">완전 새로운 눈썹으로 다시 태어나세요!!</div>
+          <div class="b">눈썹을 다시 볼 수 있습니다.</div>
+          <div class="a">마법 같은 복원 효과</div>
+          <div class="b">되돌아온 균형</div>
+          <div class="a">수정의 끝판왕</div>
+          <div class="b">수정의 기준</div>
+        </div>
+      </div>
+
+      <h3>둘 · 원인 우선</h3>
+      <p class="lead">기술은 앞에 서지 않습니다.</p>
+      <ul class="rules">
+        <li class="no">첫 세 줄에 기술명·특허·인증·수상을 넣지 않습니다</li>
+        <li class="no">주어가 “우리 / 리커렉션 / 기술”인 문장을 연속 둘 넘기지 않습니다</li>
+        <li class="yes">첫 문장은 <b>손님이 실제로 쓰는 말</b></li>
+      </ul>
+      <div class="tw">
+        <div class="pair">
+          <div class="h">쓰지 않는다</div>
+          <div class="h">이렇게 쓴다</div>
+          <div class="a">리커렉션은 특허 출원 중인 독자 기법으로 시술합니다</div>
+          <div class="b">파랗게 남은 자리, 왜 그렇게 보이는지부터 봅니다</div>
+          <div class="a">흔적을 지우고, 새로운 눈썹을 만들어줍니다</div>
+          <div class="b">남은 색의 방향을 다시 잡아, 눈썹의 균형을 되돌립니다</div>
+        </div>
+      </div>
+
+      <h3>셋 · 정직한 언어</h3>
+      <p class="lead">안 되는 것은 안 된다고 말합니다.</p>
+      <ul class="rules">
+        <li class="no">최상급 — 세계 최초 국내 유일 끝판왕 최고</li>
+        <li class="no">효과 단정 — 무조건 반드시 100% 기적</li>
+        <li class="no"><b>“특허받은” → “특허 출원 중”</b></li>
+        <li class="no">불안 마케팅 — “지금 안 하면 큰일 난다” 류</li>
+        <li class="yes"><b>“수정이 어려운 경우도 있습니다”</b>를 말할 수 있어야 합니다</li>
+      </ul>
+      <div class="tw">
+        <div class="pair">
+          <div class="h">쓰지 않는다</div>
+          <div class="h">이렇게 쓴다</div>
+          <div class="a">국내 유일 반영구 수정·복원 전문 브랜드</div>
+          <div class="b">반영구 수정·복원을 하나의 기준으로 운영하는 브랜드</div>
+          <div class="a">시술 직후 바로 티 나는 변화</div>
+          <div class="b">시술 직후부터 달라진 균형을 확인할 수 있습니다</div>
+        </div>
+      </div>
+
+      <h3>넷 · 존엄의 회복</h3>
+      <p class="lead">고객도, 이전 시술자도, 그때의 선택도 탓하지 않습니다.</p>
+      <ul class="rules">
+        <li class="no">2인칭 책임 귀속 — “잘못 고르셔서” “그때 알아보셨어야”</li>
+        <li class="no">이전 시술자 비하 — “싸구려” “제대로 못 배운”</li>
+        <li class="no"><b>“망한 시술” → “원하지 않은 결과”</b></li>
+        <li class="yes">문장의 주어를 <b>사람에서 상황·시대·기준으로</b> 옮깁니다</li>
+      </ul>
+
+      <h3>다섯 · 덜어낸 말</h3>
+      <p class="lead">설명을 늘릴수록 신뢰가 아니라 불안이 늡니다.</p>
+      <ul class="rules">
+        <li class="yes">한 콘텐츠에 <b>핵심 메시지 하나.</b> 둘이면 콘텐츠를 나눕니다</li>
+        <li class="yes">한 문장 = 한 가지. <b>40자 내외, 최대 60자</b></li>
+        <li class="yes"><b>마지막 줄은 여백.</b> 안내는 있어도 하나, 조용하게</li>
+        <li class="no">캡션에 키워드를 나열하지 않습니다</li>
+      </ul>
+      <p class="note"><b>덜어냄이 불친절이 되면 안 됩니다.</b> 빼는 것은 자랑·수식어·중복이지 정보가 아닙니다.</p>
+    </section>
+
+    </div><!-- /inner -->
+
+    <!-- 전면 문장 -->
+    <section class="field" aria-label="감정 프레임">
+      <div class="mark">핵심 감정 프레임</div>
+      <div class="big">당신의 문제가<br>아닙니다.</div>
+      <div class="under">되돌리는 기준이 없던 시대의 이야기입니다.</div>
+    </section>
+
+    <div class="inner">
+
+    <!-- 08 -->
+    <section class="sec" id="s08">
+      <div class="sec-head">
+        <span class="num">08</span>
+        <h2>톤</h2>
+        <p class="sub">보이스는 안 변합니다. 톤은 상대에 따라 조절합니다.</p>
+      </div>
+
+      <p>브랜드가 문제를 전시하면 고객은 <b>숨습니다.</b> 원인을 시대로 옮기면 고객은 <b>말할 수 있게 됩니다.</b> 톤을 조절하는 이유가 이것입니다.</p>
+
+      <h3>조절판</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>온도</dt><dd class="q">차분한 관찰</dd><dd class="q">체온이 느껴짐</dd></div>
+          <div class="row row-3"><dt>거리</dt><dd class="q">관찰자</dd><dd class="q">동행자</dd></div>
+          <div class="row row-3"><dt>확신</dt><dd class="q">여지를 둠</dd><dd class="q">단정</dd></div>
+          <div class="row row-3"><dt>밀도</dt><dd class="q">덜어냄</dd><dd class="q">설명</dd></div>
+          <div class="row row-3"><dt>속도</dt><dd class="q">느림</dd><dd class="q">리듬감</dd></div>
+        </dl>
+      </div>
+      <p class="note"><b>확신은 끝까지 올려도 결과를 단정할 수 없습니다.</b> 올릴 수 있는 건 관찰과 태도의 확신뿐입니다. “봅니다”는 되고 “좋아집니다”는 안 됩니다.</p>
+
+      <h3>손님의 상태에 따라</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>충격 · 절박</dt><dd>온도↑ 거리↑ 밀도↓</dd><dd class="q">정보 쏟아붓기 · 상담 유도 금지</dd></div>
+          <div class="row row-3"><dt>불안 · 탐색</dt><dd>기본값. 담담한 안내자</dd><dd class="q">과한 확신 금지</dd></div>
+          <div class="row row-3"><dt>비교 · 검증</dt><dd>밀도↑. 정보를 준다</dd><dd class="q">경쟁사 언급 금지</dd></div>
+          <div class="row row-3"><dt>결정 직전</dt><dd>확신↑ 태도만</dd><dd class="q">압박 · 마감 임박 금지</dd></div>
+          <div class="row row-3"><dt>시술 후</dt><dd>동행자 톤</dd><dd class="q">추가 판매 금지</dd></div>
+          <div class="row row-3"><dt>배우려는 사람</dt><dd>전문어 해금</dd><dd class="q">시술 방법 공개 금지</dd></div>
+        </dl>
+      </div>
+
+      <h3>말 밖의 톤</h3>
+      <ul class="rules">
+        <li class="yes">캡션 마지막 줄은 비웁니다</li>
+        <li class="yes">카드뉴스·릴스 한 화면에 메시지 하나</li>
+        <li class="yes"><b>전후 사진의 색을 보정하지 않습니다. 색이 정보입니다</b></li>
+        <li class="yes">감정 과잉 배경음악 금지. <b>무음도 선택지입니다</b></li>
+        <li class="yes">좌측 정렬 기본</li>
+      </ul>
+    </section>
+
+    <!-- 09 -->
+    <section class="sec" id="s09">
+      <div class="sec-head">
+        <span class="num">09</span>
+        <h2>컬러</h2>
+        <p class="sub">밝은 면에서는 색을 쓰지 않습니다. 색은 검은 면에서만 켭니다.</p>
+      </div>
+
+      <h3>두 개의 면</h3>
+      <p>이 브랜드에는 화면이 두 종류뿐입니다. <b>밝은 면</b>은 읽는 자리고, <b>검은 면</b>은 말하는 자리입니다. 두 면의 규칙이 다릅니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>밝은 면</dt><dd>글자는 <b>블랙</b>, 보조는 그레이</dd><dd class="q">웜 화이트 바탕 · 색 있는 글자를 쓰지 않습니다</dd></div>
+          <div class="row row-3"><dt>검은 면</dt><dd>글자는 <b>화이트</b>, 강조는 <b>오렌지</b></dd><dd class="q">메테오라이트 블랙 바탕 · 색은 여기서만</dd></div>
+        </dl>
+      </div>
+
+      <p>규칙이 둘뿐이라 외울 것이 없습니다. <b>밝은 데서는 색을 참고, 검은 데서 한 번 켠다.</b> 절제가 먼저 있어야 한 점이 빛납니다.</p>
+
+      <div class="bands">
+        <div class="band" style="background:var(--ivory); color:var(--black); border:1px solid var(--hair);">
+          <div class="top"><span class="nm">WARM WHITE</span><span class="hx">#FDFCF4</span><span class="rl">Main · 60%</span></div>
+          <div class="use">여백과 배경. 화면의 절반 이상이 이 색이면 대체로 맞습니다.</div>
+        </div>
+        <div class="band" style="background:var(--black); color:#fff;">
+          <div class="top"><span class="nm">METEORITE BLACK</span><span class="hx">#2A2C2F</span><span class="rl">25%</span></div>
+          <div class="use">밝은 면의 글자, 그리고 전면 문장의 바탕.</div>
+        </div>
+        <div class="band" style="background:var(--wgray); color:#fff;">
+          <div class="top"><span class="nm">WARM GRAY</span><span class="hx">#747376</span><span class="rl">10%</span></div>
+          <div class="use">설명과 보조. 중성 회색입니다 — 회색까지 따뜻하면 화면이 베이지 한 덩어리가 됩니다.</div>
+        </div>
+        <div class="band" style="background:var(--solar); color:#fff;">
+          <div class="top"><span class="nm">SOLAR ORANGE</span><span class="hx">#FF5623</span><span class="rl">Point · 15칸 중 최대 3</span></div>
+          <div class="use">색면 그대로. 짧은 한 마디로 끝날 때만. 조건이 안 맞으면 검은 칸으로 보냅니다.</div>
+        </div>
+        <div class="band" style="background:var(--cocoa); color:#fff;">
+          <div class="top"><span class="nm">COCOA BROWN</span><span class="hx">#A5654A</span><span class="rl">사진 톤 · 15%</span></div>
+          <div class="use">사진의 톤. 따뜻한 빛을 받은 피부와 눈썹이 이 색입니다. 납작한 색면으로는 쓰지 않습니다.</div>
+        </div>
+        <div class="band" style="background:var(--cacao); color:var(--on-dark);">
+          <div class="top"><span class="nm">DEEP CACAO</span><span class="hx">#4B2E27</span><span class="rl">3%</span></div>
+          <div class="use">깊이와 대비.</div>
+        </div>
+      </div>
+
+      <h3>조합</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>웜 화이트</dt><dd>블랙</dd><dd class="q">본문 기본 · 카드뉴스 대부분</dd></div>
+          <div class="row row-3"><dt>웜 화이트</dt><dd>웜 그레이</dd><dd class="q">설명 · 부연</dd></div>
+          <div class="row row-3"><dt>블랙</dt><dd>화이트</dd><dd class="q">전면 문장 · 인용</dd></div>
+          <div class="row row-3"><dt>블랙</dt><dd>솔라 오렌지</dd><dd class="q">검은 면의 강조 한 군데</dd></div>
+          <div class="row row-3"><dt>솔라 오렌지</dt><dd>블랙</dd><dd class="q">오렌지 칸의 한 마디 · 대비 4.41</dd></div>
+          <div class="row row-3"><dt class="q">웜 화이트</dt><dd class="q">솔라 오렌지</dd><dd class="q">대비 3.09 — 흐려서 안 읽힙니다</dd></div>
+          <div class="row row-3"><dt class="q">솔라 오렌지</dt><dd class="q">화이트</dd><dd class="q">대비 3.18 — 같은 이유</dd></div>
+          <div class="row row-3"><dt class="q">코코아 색면</dt><dd class="q">솔라 오렌지 색면</dd><dd class="q">색상각 4도 차 — 색면끼리만 부딪힙니다. 사진 톤이면 괜찮습니다</dd></div>
+          <div class="row row-3"><dt class="q">코코아</dt><dd class="q">웜 그레이</dd><dd class="q">대비 부족 — 쓰지 않습니다</dd></div>
+        </dl>
+      </div>
+
+      <h3>솔라 오렌지 — 절제의 단위는 한 장이 아니라 피드</h3>
+      <p>오렌지를 작게 쓰라는 말은 <b>한 장 안에서 작게</b>가 아닙니다. 인스타그램은 격자로 먼저 보이는 매체입니다. 그래서 기준은 <b>아홉 칸 중 몇 칸</b>이 되어야 합니다. 한 칸을 열면 오렌지가 화면을 꽉 채워도, 물러서서 보면 전체의 다섯 중 하나입니다.</p>
+      <p>대신 그 한 칸에는 <b>한 마디만</b> 넣습니다. 본문도 해시태그도 사진도, 작은 라벨 하나도 얹지 않습니다. <b>바탕이 이미 소리를 내고 있기 때문입니다.</b> 시끄러운 바탕 위에 무언가를 더하면 둘 다 죽습니다. 글자 하나만 남기면 그 글자가 다 가져갑니다.</p>
+      <p>그래서 오렌지 칸은 <b>한 번에 하나씩, 사이를 띄워서</b> 넣습니다. 조용한 칸들이 이어지다가 중간에 하나 — 그 리듬이 이 색을 살립니다.</p>
+
+      <div class="note">
+        <p><b>오렌지 칸은 개수를 채우는 자리가 아닙니다.</b> 넣을 말이 <b>짧은 한 마디로 끝날 때만</b> 씁니다. 설명이 필요하거나, 사진이 있거나, 두 가지를 말해야 하면 그 칸은 오렌지가 아닙니다 — <b>검은 칸으로 갑니다.</b></p>
+        <p>열다섯 칸에 셋은 <b>최대치</b>입니다. 조건에 맞는 말이 하나뿐이면 하나만 넣습니다. 없으면 없는 대로 갑니다.</p>
+      </div>
+
+      <ul class="rules">
+        <li class="yes">할 말이 <b>짧은 한 마디로 끝날 때만</b> 오렌지 칸입니다</li>
+        <li class="yes">열다섯 칸 중 <b>최대 셋</b> — 채워야 하는 수가 아닙니다</li>
+        <li class="yes">오렌지 위 글자는 <b>블랙</b>, 그리고 <b>그것뿐</b>입니다</li>
+        <li class="yes">검은 칸 위에서는 라벨·선·단어 하나로 (대비 4.41)</li>
+        <li class="no">오렌지 위 화이트 글자 — 대비 3.18, 흐려서 안 읽힙니다</li>
+        <li class="no">밝은 칸 위 오렌지 글자 — 대비 3.09, 같은 이유</li>
+        <li class="no">오렌지 칸에 사진을 깔지 않습니다</li>
+      </ul>
+
+      <h3>색이 곧 우리가 하는 일입니다</h3>
+      <p>이 팔레트는 예뻐서 고른 색의 모음이 아닙니다. <b>우리가 매일 보는 색의 순서</b>입니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>메테오라이트 블랙</dt><dd>색소</dd><dd class="q">처음 들어간 것</dd></div>
+          <div class="row row-3"><dt>웜 그레이 · 솔라 오렌지</dt><dd>잔흔</dd><dd class="q">시간이 지나며 드러나는 것</dd></div>
+          <div class="row row-3"><dt>코코아 브라운 · 베이지</dt><dd>복원</dd><dd class="q">방향을 다시 잡은 자리</dd></div>
+          <div class="row row-3"><dt>웜 화이트</dt><dd>클리어</dd><dd class="q">끝난 상태</dd></div>
+        </dl>
+      </div>
+
+      <p>그래서 <b>비중도 설명이 됩니다.</b> 웜 화이트가 60%인 것은 우리가 파는 것이 과정이 아니라 <b>끝난 상태</b>이기 때문입니다. 잔흔에 해당하는 색이 화면에서 적은 것도 같은 이유입니다.</p>
+
+      <p><b>그라데이션의 방향도 여기서 정해집니다.</b> 위쪽은 어둡게 두고 <b>빛이 아래에서 올라오게</b> 합니다. 거꾸로 흐르면 색이 다시 짙어지는 이야기가 되어, 브랜드가 하는 일과 반대가 됩니다.</p>
+
+      <h3>기준은 우아함입니다</h3>
+      <p>이 브랜드가 정한 말은 <b>“나를 되찾는 우아한 경험”</b>입니다. 색을 쓸 때도 같은 말이 기준이 됩니다.</p>
+      <p>오렌지는 그 자체로 촌스럽지도 우아하지도 않습니다. <b>어떻게 쓰느냐가 정합니다.</b></p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>촌스러워질 때</dt><dd>조금씩 여러 군데</dd><dd class="q">여기 조금 저기 조금 — 자신 없어 보입니다. 전단지가 됩니다</dd></div>
+          <div class="row row-3"><dt>우아해질 때</dt><dd><b>한 번만, 크게</b></dd><dd class="q">그리고 그 위에 아무것도 얹지 않습니다</dd></div>
+        </dl>
+      </div>
+
+      <p><b>우아함은 색을 아껴서 나오는 것이 아니라 망설이지 않아서 나옵니다.</b> 쓸 자리를 정했으면 확실히 쓰고, 나머지는 완전히 비웁니다. 어중간하게 쓴 색이 가장 싸 보입니다.</p>
+
+      <h3>오렌지를 주는 다섯 가지 방법</h3>
+      <p>칸을 통째로 칠하는 건 다섯 중 하나일 뿐입니다. 그리고 그건 <b>조건이 맞을 때만</b> 쓰는 방법입니다. 나머지 넷은 언제든 쓸 수 있습니다.</p>
+
+      <div class="ways">
+        <div class="w">
+          <div class="box wy1"><span class="t">기준을<br>다시.</span></div>
+          <div class="cap"><b>01 통 칸</b><br>짧은 한 마디로<br>끝날 때만</div>
+        </div>
+        <div class="w">
+          <div class="box wy2"><span class="t">먼저 볼 것은<br><em>남은 색</em>입니다</span></div>
+          <div class="cap"><b>02 글자</b><br>검은 칸 위<br>단어 하나만</div>
+        </div>
+        <div class="w">
+          <div class="box wy3"><span class="t">시선이<br>멈추지<br>않도록</span></div>
+          <div class="cap"><b>03 그라데이션</b><br>위는 블랙<br>빛이 아래에서</div>
+        </div>
+        <div class="w">
+          <div class="box wy4"><span class="t">당신의<br>문제가<br>아닙니다</span></div>
+          <div class="cap"><b>04 선</b><br>선 하나<br>2px 이내</div>
+        </div>
+        <div class="w">
+          <div class="box wy5"></div>
+          <div class="cap"><b>05 부분 컬러</b><br>흑백 사진에<br>오렌지 한 점</div>
+        </div>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>01 통 칸</dt><dd>칸 전체가 오렌지</dd><dd class="q">할 말이 4~8자로 끝날 때만. 아니면 검은 칸으로</dd></div>
+          <div class="row row-3"><dt>02 글자</dt><dd>검은 칸 위 단어 하나</dd><dd class="q">문장 전체가 아니라 <b>한 단어</b>. 밝은 칸에는 안 씁니다</dd></div>
+          <div class="row row-3"><dt>03 그라데이션</dt><dd>빛이 아래에서 올라오듯</dd><dd class="q">위쪽은 블랙. 오렌지·코코아·베이지를 겹쳐서 섞습니다 — 색을 나란히 찍으면 테가 생깁니다</dd></div>
+          <div class="row row-3"><dt>04 선</dt><dd>선 하나 · 점 하나</dd><dd class="q">가장 조용한 방법. 매 장에 써도 됩니다</dd></div>
+          <div class="row row-3"><dt>05 부분 컬러</dt><dd>흑백 사진 속 한 점</dd><dd class="q">배경은 완전 흑백. 오렌지는 한 곳만</dd></div>
+        </dl>
+      </div>
+
+      <p><b>04 선</b>이 가장 안전하고, <b>01 통 칸</b>이 가장 위험합니다. 위로 갈수록 조건이 까다로워집니다. 고민되면 아래쪽부터 씁니다.</p>
+
+      <h3>열다섯 칸에 이렇게 섞습니다</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>01 통 칸</dt><dd>최대 <b>2</b>칸</dd><dd class="q">가장 센 방법. 붙이지 않고 멀리 떨어뜨려서</dd></div>
+          <div class="row row-3"><dt>02 글자</dt><dd><b>2</b>칸</dd><dd class="q">검은 칸 위 단어 하나</dd></div>
+          <div class="row row-3"><dt>03 그라데이션</dt><dd><b>1</b>칸</dd><dd class="q">한 화면에 하나면 충분합니다</dd></div>
+          <div class="row row-3"><dt>04 선 · 점</dt><dd><b>2</b>칸</dd><dd class="q">가장 조용한 방법. 이게 피드를 묶어줍니다</dd></div>
+          <div class="row row-3"><dt>05 부분 컬러</dt><dd><b>1</b>칸</dd><dd class="q">흑백 사진에 한 점</dd></div>
+          <div class="row row-3"><dt>오렌지 없음</dt><dd><b>7</b>칸</dd><dd class="q">절반 가까이는 오렌지가 아예 없습니다</dd></div>
+        </dl>
+      </div>
+
+      <h3>비트</h3>
+      <p>비율만 맞추면 숫자는 맞는데 눈으로는 뭉쳐 보일 수 있습니다. <b>센 칸이 언제 오는지</b>가 더 중요합니다.</p>
+
+      <div class="beat">
+        <i class="on"></i><i></i><i class="mid"></i><i></i><i class="mid"></i>
+        <i class="on"></i><i></i><i class="mid"></i><i></i>
+        <i class="on"></i><i class="mid"></i><i></i><i></i><i class="mid"></i>
+        <i class="on"></i>
+      </div>
+      <p class="beat-cap">■ 센 칸 &nbsp;·&nbsp; ▨ 조용한 포인트 &nbsp;·&nbsp; □ 오렌지 없음</p>
+
+      <p><b>센 칸은 네다섯 칸에 한 번.</b> 그 사이는 비워두거나 조용한 포인트로 채웁니다. 이 간격이 일정하면 피드가 정돈돼 보이고, 두 개가 붙으면 그 부분만 튀어 보입니다.</p>
+
+      <ul class="rules">
+        <li class="yes">센 칸(01·03·05)은 <b>네다섯 칸에 하나</b></li>
+        <li class="yes">한 줄(세 칸)에 <b>센 방법은 하나까지</b></li>
+        <li class="yes">02와 04는 조용하니 줄마다 들어가도 됩니다</li>
+        <li class="yes">세 줄을 보면 <b>다섯 방법이 골고루</b> 나옵니다</li>
+        <li class="no">한 줄에 센 방법 둘 — 그 줄만 튀어 보입니다</li>
+        <li class="no">비율 맞추려고 억지로 넣기 — 없으면 없는 대로 갑니다</li>
+      </ul>
+
+      <h3>코코아 브라운은 사진에서 삽니다</h3>
+      <p>오렌지와 코코아는 색상각이 4도밖에 차이 나지 않습니다. 그래서 <b>둘 다 납작한 색면일 때</b>는 같이 둘 수 없습니다 — 코코아가 바랜 오렌지처럼 보입니다.</p>
+      <p>그런데 부딪히는 건 그 경우뿐입니다. <b>오렌지는 색면으로, 코코아는 사진 톤으로</b> 나누면 둘은 오히려 같은 가족이 됩니다. 따뜻한 빛을 받은 피부와 눈썹은 자연스럽게 브라운이고, 그 옆의 납작한 오렌지는 같은 온도로 읽힙니다.</p>
+
+      <div class="todo">
+        <span class="lab">지금 피드와 다릅니다</span>
+        <p>현재 계정에 파랑·주황·올리브 뱃지와 검정 배경이 쓰이고 있습니다. 과거 게시물을 다 고칠 필요는 없습니다. 새로 올리는 것부터 적용하면 아홉 칸씩 내려가면서 정리됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec" id="s10">
+      <div class="sec-head">
+        <span class="num">10</span>
+        <h2>타이포그래피</h2>
+        <p class="sub">세리프는 쓰지 않습니다. 산세리프 한 계열로 가고, 크기와 무게로 위계를 만듭니다.</p>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>영문</dt><dd><b>Roboto</b></dd></div>
+          <div class="row"><dt>한글</dt><dd><b>Noto Sans KR</b> <span class="q">= Source Han Sans KR · 같은 글자체입니다</span></dd></div>
+          <div class="row"><dt>대체</dt><dd class="q">Pretendard → 나눔바른고딕 → 시스템 산세</dd></div>
+        </dl>
+      </div>
+
+      <h3>무게</h3>
+      <div class="spec">
+        <div class="line"><span class="w">300 Light</span><span class="sample w300">시선이 거기서 멈추지 않도록</span></div>
+        <div class="line"><span class="w">400 Regular</span><span class="sample w400">시선이 거기서 멈추지 않도록</span></div>
+        <div class="line"><span class="w">500 Medium</span><span class="sample w500">시선이 거기서 멈추지 않도록</span></div>
+        <div class="line"><span class="w">700 Bold</span><span class="sample w700">시선이 거기서 멈추지 않도록</span></div>
+      </div>
+      <p class="note"><b>큰 글씨일수록 가볍게 씁니다.</b> 제목을 굵게 하면 힘이 아니라 무거움이 됩니다. 위계는 굵기가 아니라 <b>크기와 여백</b>이 만듭니다.</p>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>큰 문장</dt><dd>300 · 34–72px · 자간 −0.038em</dd></div>
+          <div class="row"><dt>제목</dt><dd>300 · 28–40px · 자간 −0.04em</dd></div>
+          <div class="row"><dt>소제목</dt><dd>500 · 20px · 자간 −0.028em</dd></div>
+          <div class="row"><dt>본문</dt><dd>400 · 15px · 줄간격 1.85</dd></div>
+          <div class="row"><dt>라벨</dt><dd>고정폭 · 10px · 자간 +0.22em · 대문자</dd></div>
+        </dl>
+      </div>
+
+      <p class="note"><b>Roboto를 맨 앞에, 한글 서체를 뒤에</b> 둡니다. 브라우저가 글자마다 목록을 앞에서부터 훑기 때문에, 영문은 Roboto가 한글은 Noto Sans KR이 자동으로 잡힙니다.</p>
+
+      <h3>매체별 크기</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>A4 문서</dt><dd>본문 14.5px</dd><dd class="q">제목 26–40px</dd></div>
+          <div class="row row-3"><dt>카드뉴스</dt><dd><b>본문 38–42px</b></dd><dd class="q">제목 72–84px</dd></div>
+          <div class="row row-3"><dt>영상 자막</dt><dd>한 줄 20자 이내</dd><dd class="q">화면 하단 12–18%</dd></div>
+        </dl>
+      </div>
+      <p class="note">카드뉴스는 <b>폰으로 확인</b>합니다. 노트북에서 과해 보이는 크기가 폰에서는 최소선입니다.</p>
+    </section>
+
+    <!-- 11 -->
+    <section class="sec" id="s11">
+      <div class="sec-head">
+        <span class="num">11</span>
+        <h2>로고</h2>
+        <p class="sub">로고 파일 하나만 주면 사람마다 다르게 씁니다. 쓰는 법을 함께 정합니다.</p>
+      </div>
+
+      <div class="todo">
+        <span class="lab">원본 파일 대기 중</span>
+        <p>벡터 원본(AI 또는 SVG)이 필요합니다. 리커렉션 / 누보레브아카데미 각각. 아래는 파일을 받으면 이대로 채우는 틀입니다.</p>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>최소 여백</dt><dd>로고 글자 높이만큼을 사방에</dd></div>
+          <div class="row"><dt>최소 크기</dt><dd>인쇄 가로 20mm · 화면 가로 90px</dd></div>
+          <div class="row"><dt>배경별</dt><dd>밝은 배경 기본 / 어두운 배경 흰색 / 사진 위 흰색</dd></div>
+          <div class="row"><dt>두 로고를 같이</dt><dd>시술이면 리커렉션이 앞, 교육이면 아카데미가 앞. 사이는 로고 높이만큼</dd></div>
+        </dl>
+      </div>
+
+      <ul class="rules">
+        <li class="no">비율 바꾸기 — 늘이거나 납작하게</li>
+        <li class="no">색 바꾸기 — 지정된 세 버전 외</li>
+        <li class="no">기울이기 · 그림자 · 테두리</li>
+        <li class="no"><b>복잡한 사진 위에 그냥 얹기</b></li>
+        <li class="no">로고 옆에 글자를 붙여 새 로고처럼 만들기</li>
+      </ul>
+    </section>
+
+    </div><!-- /inner -->
+
+    <!-- 전면 문장 -->
+    <section class="field" aria-label="사진">
+      <div class="mark">사진과 영상</div>
+      <div class="big">글은 고치면 됩니다.<br>사진은 아닙니다.</div>
+    </section>
+
+    <div class="inner">
+
+    <!-- 12 -->
+    <section class="sec" id="s12">
+      <div class="sec-head">
+        <span class="num">12</span>
+        <h2>사진과 영상</h2>
+        <p class="sub">위험은 세 갈래입니다. 광고법, 개인정보, 기술 노출. 전후 사진 한 장에 셋이 동시에 걸릴 수 있습니다.</p>
+      </div>
+
+      <p>올린 뒤에는 회수가 안 됩니다. 캡처되고, 저장되고, 퍼집니다. 그래서 <b>찍기 전에</b> 정합니다.</p>
+
+      <h3>전후 사진 다섯 원칙</h3>
+
+      <h4>하나 · 보정하지 않습니다</h4>
+      <p><strong>색이 정보입니다.</strong> 밝기·채도·색온도를 만지면 사실과 다른 광고가 됩니다.</p>
+      <ul class="rules">
+        <li class="yes">허용 — 회전·수평 맞추기, 자르기</li>
+        <li class="no">금지 — 채도 · 색온도 · 부분 보정 · 피부 리터칭 · 필터 · 뷰티 모드</li>
+        <li class="yes">노출은 ±0.3 이내만. <b>원본을 반드시 함께 보관</b>합니다</li>
+      </ul>
+
+      <h4>둘 · 전과 후를 같은 조건으로</h4>
+      <p>조건이 다르면 비교가 성립하지 않습니다. 그 자체로 과장 광고가 됩니다.</p>
+      <p class="note">같게 맞출 것 — <b>조명 · 각도 · 거리 · 표정 · 배경 · 카메라 설정</b>. <b>바닥에 테이프로 서는 자리를 표시</b>해 두면 거리와 각도가 자동으로 맞습니다. 이 한 가지가 제일 효과적입니다.</p>
+
+      <h4>셋 · 시점을 반드시 적습니다</h4>
+      <p>“시술 직후” “2주 후” “3회차 후”. 안 적으면 보는 사람이 최종 결과로 오해합니다. <strong>오해를 유발하면 표시·광고법 위반입니다.</strong></p>
+
+      <h4>넷 · 개인차 문구를 함께 둡니다</h4>
+      <p>“상태에 따라 결과가 다릅니다” 한 줄. 방어용이 아니라 사실입니다. 같은 잔흔은 없습니다.</p>
+
+      <h4>다섯 · 사진 위 자막에도 같은 규칙</h4>
+      <p>“완벽 복원” “100% 만족”은 캡션에서 금지면 사진 위에서도 금지입니다. <strong>가장 많이 놓치는 부분입니다.</strong></p>
+
+      <h3>동의는 셋으로 나눠 받습니다</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>촬영 동의</dt><dd>사진을 찍어도 되는가</dd></div>
+          <div class="row"><dt>게시 동의</dt><dd><b>어느 계정에</b> 올려도 되는가</dd></div>
+          <div class="row"><dt>광고 사용</dt><dd>유료 광고 소재로 써도 되는가</dd></div>
+        </dl>
+      </div>
+      <p class="note"><b>셋을 한 칸으로 받으면 안 됩니다.</b> “사진 찍어도 되죠?”에 동의한 손님이 광고에 얼굴이 나오는 걸 동의한 건 아닙니다.</p>
+      <p class="note">함께 적을 것 — 기간(예: 2년) · 범위(인스타그램 / 블로그 / 인쇄물) · <b>철회 시 7일 이내 삭제</b> · 얼굴 노출 정도.</p>
+      <p><strong>기본은 부위 크롭입니다.</strong> 눈썹이면 눈썹 부위만. 얼굴 전체는 손님이 명시적으로 동의했을 때만. 개인정보 위험이 대부분 사라지고, 보는 사람의 시선도 눈썹에 모입니다.</p>
+
+      <h3>찍으면 안 되는 각도</h3>
+      <ul class="rules">
+        <li class="no"><b>재료·도구 라벨이 읽히는 각도</b> — 색소통, 앰플, 니들 포장</li>
+        <li class="no"><b>시술 순서가 드러나는 연속 컷</b></li>
+        <li class="no">기기 설정 화면</li>
+        <li class="no">강의 슬라이드가 뒤에 찍힌 사진</li>
+      </ul>
+      <p class="note"><b>실습 영상의 손동작 클로즈업은 대표 판단입니다.</b> 기술이 드러나지만 빼면 영상의 설득력도 줄어듭니다. 클로즈업을 결과 위주로 두거나, 속도를 올려 동작을 흐리거나, 그대로 두거나 — 셋 중 하나를 정합니다.</p>
+
+      <h3>촬영 기본값</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>조명</dt><dd>링라이트 또는 자연광 <b>하나만</b>. 색온도 5000K 고정</dd></div>
+          <div class="row"><dt>배경</dt><dd>무지 아이보리 또는 흰색. 패턴·소품 없음</dd></div>
+          <div class="row"><dt>각도</dt><dd>정면 1컷 + 좌우 15도 2컷 — <b>세 컷 고정</b></dd></div>
+          <div class="row"><dt>설정</dt><dd>자동 보정·뷰티 모드 <b>끔</b></dd></div>
+          <div class="row"><dt>보관</dt><dd>원본 별도 폴더. <b>분쟁이 생기면 원본이 근거</b>입니다</dd></div>
+          <div class="row"><dt>파일명</dt><dd>날짜_부위_회차_전후 · 260810_brow_1_before</dd></div>
+        </dl>
+      </div>
+
+      <h3>영상</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>자막</dt><dd>Noto Sans KR 500 · 한 줄 20자 이내, 최대 두 줄</dd></div>
+          <div class="row"><dt>자막 위치</dt><dd>화면 하단 12–18% 구간</dd></div>
+          <div class="row"><dt>자막 이모지</dt><dd>0개</dd></div>
+          <div class="row"><dt>컷 전환</dt><dd>자막 한 줄당 최소 2초</dd></div>
+          <div class="row"><dt>인트로</dt><dd>로고 애니메이션 없이 <b>바로 내용부터</b></dd></div>
+        </dl>
+      </div>
+
+      <div class="block">올리기 전 3초 검사
+
+<b>보정했나</b>          →  했으면 원본으로
+<b>시점을 적었나</b>      →  안 적었으면 추가
+<b>도구·순서가 보이나</b>  →  보이면 다시 자르기</div>
+    </section>
+
+    <!-- 13 -->
+    <section class="sec" id="s13">
+      <div class="sec-head">
+        <span class="num">13</span>
+        <h2>레이아웃</h2>
+        <p class="sub">피드는 한 장씩이 아니라 아홉 장 묶음으로 설계합니다.</p>
+      </div>
+
+      <p>프로필을 처음 본 사람이 <strong>3초 안에</strong> 무엇을 하는 계정인지 알 수 있어야 합니다.</p>
+
+      <h3>칸의 종류</h3>
+      <p>한 장을 잘 만드는 것과 피드가 좋아 보이는 것은 다른 일입니다. 칸을 <b>다섯 종류</b>로 정해두고, 정해진 비율로 섞습니다. 매번 새로 고민하지 않기 위해서입니다.</p>
+
+      <div class="fg">
+        <div class="c fo"><span class="l">다시,<br>제대로.</span></div>
+        <div class="c fp"><span class="k">RESULT</span><span class="s">흑백 · 결과</span></div>
+        <div class="c fw"><span class="k">GUIDE 01</span><span class="s">수정과 제거는<br>다른 일입니다</span></div>
+
+        <div class="c fb"><span class="k">RE:CORRECTION</span><span class="l">시선이 거기서<br>멈추지 않도록.</span><span class="dotm"></span></div>
+        <div class="c fw"><span class="k">NOTICE</span><span class="s">일산 본점<br>상담 안내</span></div>
+        <div class="c fgrad"><span class="k">VOICE</span><span class="l">당신의<br>문제가<br>아닙니다.</span></div>
+
+        <div class="c fp2"><span class="k">RESULT</span><span class="s">따뜻한 빛 · 톤</span></div>
+        <div class="c fb"><span class="k">CORE</span><span class="l">먼저 볼 것은<br><em>남은 색</em>.</span></div>
+        <div class="c fp2"><span class="k">RESULT</span><span class="s">따뜻한 빛 · 결과</span></div>
+
+        <div class="c fw"><span class="k">GUIDE 02</span><span class="s">색이 향할 방향을<br>먼저 정합니다</span></div>
+        <div class="c fo"><span class="l">기준을<br>다시.</span></div>
+        <div class="c fline"><span class="k">Q &amp; A</span><span class="s">“덮으면 되지 않나요?”<br>— 아닙니다</span></div>
+
+        <div class="c fb"><span class="k">RE:CORRECTION</span><span class="s">가게 이름이 아니라<br>방식의 이름입니다</span><span class="dotm"></span></div>
+        <div class="c fw"><span class="k">GUIDE 03</span><span class="s">남은 상태를<br>기준으로</span></div>
+        <div class="c fp fspot"><span class="k">RESULT</span><span class="s">흑백 + 한 점</span></div>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>밝은 칸</dt><dd>설명 · 안내 · 가이드</dd><dd class="q">웜 화이트 바탕 · 글자 블랙 · 15칸 중 4</dd></div>
+          <div class="row row-3"><dt>검은 칸</dt><dd>브랜드 문장 · Q&amp;A</dd><dd class="q">글자 화이트 · 라벨 오렌지 · 15칸 중 5 (그중 하나는 그라데이션)</dd></div>
+          <div class="row row-3"><dt>오렌지 칸</dt><dd><b>한 마디만</b></dd><dd class="q">글자 블랙 · 4~8자 · 라벨 없음 · <b>최대 3</b>, 예시는 2</dd></div>
+          <div class="row row-3"><dt>흑백 사진</dt><dd>결과 클로즈업</dd><dd class="q">15칸 중 2</dd></div>
+          <div class="row row-3"><dt>따뜻한 빛 사진</dt><dd>피부 · 눈썹 톤</dd><dd class="q">코코아 브라운이 사는 자리 · 15칸 중 2</dd></div>
+        </dl>
+      </div>
+
+      <h3>배치</h3>
+      <ul class="rules">
+        <li class="yes">같은 종류를 <b>가로로도 세로로도</b> 붙이지 않습니다</li>
+        <li class="yes">다 짜고 나면 <b>세로줄을 한 번 더 봅니다</b> — 흰 칸이나 검은 칸이 줄줄이 서 있으면 다시 섞습니다</li>
+        <li class="yes">오렌지 칸은 <b>대각선으로도</b> 붙이지 않습니다</li>
+        <li class="yes">한 줄(세 칸)에 오렌지는 <b>최대 하나</b></li>
+        <li class="yes">세 줄 안에 다섯 종류가 <b>모두 한 번씩</b> 나옵니다</li>
+        <li class="no">오렌지 칸에 본문 · 해시태그 · 사진 · 라벨을 얹지 않습니다 — <b>글자만</b></li>
+        <li class="no">사진 칸에 손동작이 자세히 보이는 장면 — 결과만 찍습니다</li>
+      </ul>
+
+      <div class="note">
+        <p><b>다음 칸을 무슨 색으로 할지 고민되면, 위 세 칸을 보고 없는 색을 고릅니다.</b> 그것만 지켜도 격자가 무너지지 않습니다.</p>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>오피셜</dt><dd>질문 카드 → 사례 기록 → 원리 카드</dd><dd class="q">흰 배경, 굵은 헤드라인, 여백</dd></div>
+          <div class="row row-3"><dt>CEO</dt><dd>인물 → 현장 → 문장 카드</dd><dd class="q">인물 비중 높음. 과한 보정 없이</dd></div>
+          <div class="row row-3"><dt>아카데미</dt><dd>커리큘럼 → 현장 → 수강 안내</dd><dd class="q">정보 밀도 높되 정돈. 도표 활용</dd></div>
+        </dl>
+      </div>
+
+      <ul class="rules">
+        <li class="yes">같은 유형 카드가 <b>나란히 붙지 않게</b></li>
+        <li class="yes">텍스트가 이미지 위에 오면 대비를 확보</li>
+        <li class="yes">하이라이트는 <b>고객의 질문 단위</b>로 묶습니다</li>
+      </ul>
+
+      <h3>카드뉴스</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>크기</dt><dd>1080 × 1350 · 4:5</dd></div>
+          <div class="row"><dt>여백</dt><dd>사방 <b>80px 이상.</b> 여백이 브랜드입니다</dd></div>
+          <div class="row"><dt>제목</dt><dd>최대 두 줄. 세 줄이 되면 문장을 줄입니다</dd></div>
+          <div class="row"><dt>한 장</dt><dd><b>메시지 하나.</b> 둘이면 장을 나눕니다</dd></div>
+          <div class="row"><dt>장수</dt><dd>5–7장. 열 장이 넘으면 끝까지 안 봅니다</dd></div>
+          <div class="row"><dt>마지막 장</dt><dd>안내 한 줄. <b>여백을 남깁니다</b></dd></div>
+        </dl>
+      </div>
+
+      <ul class="rules">
+        <li class="no">한 장에 글자를 꽉 채우기</li>
+        <li class="no">줄머리 장식 — 이모지 규칙은 이미지 안에도 적용됩니다</li>
+        <li class="no">그림자 · 테두리 · 그라데이션</li>
+        <li class="no">첫 장부터 브랜드 소개</li>
+      </ul>
+    </section>
+
+    <!-- 14 -->
+    <section class="sec" id="s14">
+      <div class="sec-head">
+        <span class="num">14</span>
+        <h2>계정</h2>
+        <p class="sub">세 계정은 다른 콘텐츠를 만드는 게 아니라, 다른 사람의 못 꺼낸 질문을 대신합니다.</p>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3">
+            <dt>오피셜</dt>
+            <dd><b>리커렉션 본점</b><br><span class="q">“이거 다시 살릴 수 있어요?”</span></dd>
+            <dd class="q">불안한 고객 · 일반인용<br>금지 — 사적 서사, 교육 모집</dd>
+          </div>
+          <div class="row row-3">
+            <dt>CEO</dt>
+            <dd><b>김현숙 대표</b><br><span class="q">“이 사람한테 맡겨도 될까?”</span></dd>
+            <dd class="q">사람 보고 믿는 고객<br>금지 — 기술 강의, 커리큘럼</dd>
+          </div>
+          <div class="row row-3">
+            <dt>아카데미</dt>
+            <dd><b>누보레브아카데미</b><br><span class="q">“나도 할 수 있을까?”</span></dd>
+            <dd class="q">수강 고민 원장 · 전문어 가능<br>금지 — 고객 대상 시술 홍보</dd>
+          </div>
+        </dl>
+      </div>
+
+      <p class="note"><b>금지 항목이 핵심입니다.</b> 이게 없으면 세 계정이 닮아가다 결국 똑같아집니다. CEO 계정은 협회 축도 겸합니다 — 협회는 별도 계정을 파지 않습니다.</p>
+
+      <h3>서로 언급하는 방향</h3>
+      <div class="block">고객    검색·탐색 → 오피셜 → 관점에 설득 → CEO → 상담
+종사자  시장 변화 → CEO 또는 오피셜 → 기준 인식 → 아카데미 → 수강</div>
+      <p class="note">화살표 방향으로만 언급합니다. 오피셜에서 교육 모집을 앞세우면 고객 신뢰가 흔들리고, 아카데미에서 시술을 홍보하면 수강생 관심이 분산됩니다.</p>
+
+      <h3>캡션 다섯 줄</h3>
+      <div class="block">1줄   손님이 물어본 말 그대로
+2줄   그건 그다음 문제입니다
+3줄   먼저 볼 것은 <b>○○○○</b>입니다        ← 네 축 중 하나
+4줄   왜 그런지 한 줄
+5줄   담담한 마무리 한 줄</div>
+      <p class="note">계정이 달라도 <b>골격은 같습니다.</b> 쓰는 단어의 층위만 달라집니다.</p>
+
+      <h3>캡션과 댓글은 층을 나눕니다</h3>
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>캡션</dt><dd>짧고 단정하게. <b>키워드 나열 금지</b></dd><dd class="q">사람이 읽음</dd></div>
+          <div class="row row-3"><dt>고정 댓글</dt><dd>엔티티 정의문</dd><dd class="q">검색 · AI가 읽음</dd></div>
+          <div class="row row-3"><dt>Q&amp;A 댓글</dt><dd>실제 질문-답변 쌍</dd><dd class="q">검색 · AI가 읽음</dd></div>
+          <div class="row row-3"><dt>키워드 댓글</dt><dd>지역 · 시술 키워드 3개</dd><dd class="q">검색이 읽음</dd></div>
+        </dl>
+      </div>
+      <p class="note"><b>캡션은 손님에게 보여주는 얼굴이고, 댓글은 검색엔진에게 건네는 명함입니다.</b> 얼굴에 명함 내용을 적을 필요는 없습니다.</p>
+    </section>
+
+    <!-- 15 -->
+    <section class="sec" id="s15">
+      <div class="sec-head">
+        <span class="num">15</span>
+        <h2>실무 문서</h2>
+        <p class="sub">아래 셋은 이 문서에 넣지 않고 따로 관리합니다. 각각 자주 갱신되기 때문입니다.</p>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row"><dt>표현 보안 가이드</dt><dd>쓰면 안 되는 표현. A등급 필수 / B등급 선택<br><span class="q">올리기 전 검수에 씁니다</span></dd></div>
+          <div class="row"><dt>캡션 쓰는 법</dt><dd>빈 화면에서 완성까지의 절차와 예문<br><span class="q">글을 쓸 때 씁니다</span></dd></div>
+          <div class="row"><dt>엔티티 정의문</dt><dd>계정별 고정 댓글·프로필 문안<br><span class="q">복사해서 그대로 씁니다</span></dd></div>
+        </dl>
+      </div>
+
+      <p class="note">이 가이드는 <b>기준</b>이라 잘 안 바뀝니다. 실무 문서는 사례가 쌓일수록 계속 늘어납니다. 같이 묶어두면 문장 하나 고칠 때마다 전체를 다시 찍어야 합니다.</p>
+      <p class="note">고칠 때의 순서 — <b>브랜드 코어 → 이 가이드 → 실무 문서.</b> 거꾸로 하면 문서마다 다른 내용이 남습니다.</p>
+    </section>
+
+    <!-- 16 -->
+    <section class="sec" id="s16">
+      <div class="sec-head">
+        <span class="num">16</span>
+        <h2>남은 판단</h2>
+        <p class="sub">이 가이드는 지금 이대로 쓸 수 있습니다. 아래는 정해지면 채워 넣을 것들입니다.</p>
+      </div>
+
+      <div class="tw">
+        <dl class="rows">
+          <div class="row row-3"><dt>로고 규정</dt><dd>벡터 원본 파일</dd><dd class="q">08장이 완성됩니다</dd></div>
+          <div class="row row-3"><dt>협회 법적 형태</dt><dd>사단법인 / 임의단체</dd><dd class="q">쓸 수 있는 표현이 달라집니다</dd></div>
+          <div class="row row-3"><dt>파주운정 주소</dt><dd>주소</dd><dd class="q">지도 등록에 필요합니다</dd></div>
+          <div class="row row-3"><dt>특허 문단 공개</dt><dd>대표 판단</dd><dd class="q">확장형 정의문에 넣을지</dd></div>
+          <div class="row row-3"><dt>실습 영상 클로즈업</dt><dd>대표 판단</dd><dd class="q">09장 촬영 범위</dd></div>
+          <div class="row row-3"><dt>연락 채널 분리</dt><dd>카톡 채널 구성</dd><dd class="q">고객 문의와 수강 문의가 섞이는 문제</dd></div>
+          <div class="row row-3"><dt>캔바 템플릿</dt><dd>진행 중</dd><dd class="q">이 가이드 기준으로 제작</dd></div>
+        </dl>
+      </div>
+
+      <h3>판단이 안 설 때</h3>
+      <p><b>01장 코어로 돌아옵니다.</b> 거의 모든 질문이 거기서 답이 나옵니다. 그래도 애매하면 <b>물어보는 것이 규칙</b>입니다. 혼자 판단해서 올린 것이 나중에 문제가 되는 쪽이, 한 번 묻는 것보다 항상 비쌉니다.</p>
+    </section>
+
+    </div><!-- /inner -->
+
+    <!-- 닫는 화면 -->
+    <section class="field" aria-label="맺음">
+      <div class="mark">마지막으로</div>
+      <div class="big">막는 문서가<br>아닙니다.</div>
+      <div class="under">어긋난 것을 걸러내는 문서입니다.</div>
+      <div class="meta">
+        <span>리커렉션 브랜드 가이드 Rev 5.0</span>
+        <span>2026.08.10</span>
+        <span>내부 전용</span>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<button class="ctl-open" id="ctlOpen" aria-expanded="false" aria-controls="ctl">표시 설정</button>
+
+<aside class="ctl" id="ctl" aria-label="표시 설정">
+  <h5>표시 설정 <button id="ctlClose" aria-label="닫기">✕</button></h5>
+
+  <div class="grp">
+    <span class="gt">컬러</span>
+    <label>웜 화이트 <input type="color" data-var="--ivory" value="#FDFCF4"></label>
+    <label>메테오라이트 블랙 <input type="color" data-var="--black" value="#2A2C2F"></label>
+    <label>웜 그레이 <input type="color" data-var="--wgray" value="#747376"></label>
+    <label>코코아 브라운 <input type="color" data-var="--cocoa" value="#A5654A"></label>
+    <label>딥 카카오 <input type="color" data-var="--cacao" value="#4B2E27"></label>
+    <label>솔라 오렌지 <input type="color" data-var="--solar" value="#FF5623"></label>
+  </div>
+
+  <div class="grp">
+    <span class="gt">서체</span>
+    <label>한글 서체
+      <select id="ctlFont">
+        <option value="noto">Noto Sans KR</option>
+        <option value="pretendard">Pretendard</option>
+        <option value="apple">Apple SD Gothic Neo</option>
+        <option value="nanum">나눔바른고딕</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grp">
+    <span class="gt">크기와 굵기</span>
+    <label>본문 크기 <span><input type="range" data-var="--fs-body" min="13" max="19" step="0.5" value="15" data-unit="px"><span class="val" data-for="--fs-body">15px</span></span></label>
+    <label>줄간격 <span><input type="range" data-var="--lh-body" min="1.5" max="2.2" step="0.05" value="1.85"><span class="val" data-for="--lh-body">1.85</span></span></label>
+    <label>큰 문장 굵기 <span><input type="range" data-var="--w-big" min="200" max="700" step="100" value="300"><span class="val" data-for="--w-big">300</span></span></label>
+    <label>제목 굵기 <span><input type="range" data-var="--w-h2" min="200" max="700" step="100" value="300"><span class="val" data-for="--w-h2">300</span></span></label>
+    <label>소제목 굵기 <span><input type="range" data-var="--w-h3" min="300" max="700" step="100" value="500"><span class="val" data-for="--w-h3">500</span></span></label>
+    <label>제목 자간 <span><input type="range" data-var="--ls-big" min="-60" max="0" step="2" value="-38" data-unit="em" data-scale="0.001"><span class="val" data-for="--ls-big">-0.038em</span></span></label>
+  </div>
+
+  <div class="btns">
+    <button id="ctlReset">되돌리기</button>
+    <button id="ctlCopy" class="pri">값 복사</button>
+  </div>
+  <div class="out" id="ctlOut"></div>
+</aside>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail nav a'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[a.getAttribute('href').slice(1)] = a;
+  });
+  var targets = Object.keys(map).map(function(id){ return document.getElementById(id); });
+  if (!targets.length || !('IntersectionObserver' in window)) return;
+
+  var seen = {};
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+    var best = null, val = 0;
+    Object.keys(seen).forEach(function(id){ if (seen[id] > val) { val = seen[id]; best = id; } });
+    links.forEach(function(a){ a.removeAttribute('aria-current'); });
+    if (best && map[best]) map[best].setAttribute('aria-current','true');
+  }, { rootMargin:'-8% 0px -72% 0px', threshold:[0,.2,.5,1] });
+
+  targets.forEach(function(t){ io.observe(t); });
+})();
+</script>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var ctl = document.getElementById('ctl');
+  var open = document.getElementById('ctlOpen');
+  var KEY = 'rc-guide-look';
+
+  var FONTS = {
+    noto:"'Roboto','Noto Sans KR','Source Han Sans KR','Noto Sans CJK KR',sans-serif",
+    pretendard:"'Roboto','Pretendard','Noto Sans KR',sans-serif",
+    apple:"'Roboto','Apple SD Gothic Neo','Noto Sans KR',sans-serif",
+    nanum:"'Roboto','NanumBarunGothic','나눔바른고딕','Noto Sans KR',sans-serif"
+  };
+
+  function fmt(input){
+    var v = input.value;
+    var unit = input.dataset.unit || '';
+    var scale = parseFloat(input.dataset.scale || '0');
+    if (scale) return (v * scale).toFixed(3) + unit;
+    return v + unit;
+  }
+  function apply(input){
+    var name = input.dataset.var;
+    var out = fmt(input);
+    root.style.setProperty(name, out);
+    var badge = ctl.querySelector('.val[data-for="' + name + '"]');
+    if (badge) badge.textContent = out;
+  }
+  function state(){
+    var o = {};
+    ctl.querySelectorAll('[data-var]').forEach(function(i){ o[i.dataset.var] = i.value; });
+    o._font = document.getElementById('ctlFont').value;
+    return o;
+  }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state())); }catch(e){} }
+  function load(){
+    var raw; try{ raw = localStorage.getItem(KEY); }catch(e){ return; }
+    if (!raw) return;
+    var o; try{ o = JSON.parse(raw); }catch(e){ return; }
+    ctl.querySelectorAll('[data-var]').forEach(function(i){
+      if (o[i.dataset.var] != null){ i.value = o[i.dataset.var]; apply(i); }
+    });
+    if (o._font){
+      document.getElementById('ctlFont').value = o._font;
+      root.style.setProperty('--sans', FONTS[o._font] || FONTS.noto);
+    }
+  }
+
+  ctl.querySelectorAll('[data-var]').forEach(function(i){
+    i.addEventListener('input', function(){ apply(i); save(); });
+  });
+  document.getElementById('ctlFont').addEventListener('change', function(){
+    root.style.setProperty('--sans', FONTS[this.value] || FONTS.noto); save();
+  });
+
+  function setOpen(v){
+    ctl.dataset.open = v ? '1' : '0';
+    open.setAttribute('aria-expanded', v ? 'true' : 'false');
+    open.style.display = v ? 'none' : '';
+  }
+  open.addEventListener('click', function(){ setOpen(true); });
+  document.getElementById('ctlClose').addEventListener('click', function(){ setOpen(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
+
+  document.getElementById('ctlReset').addEventListener('click', function(){
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    ctl.querySelectorAll('[data-var]').forEach(function(i){
+      i.value = i.defaultValue; root.style.removeProperty(i.dataset.var);
+      var b = ctl.querySelector('.val[data-for="' + i.dataset.var + '"]');
+      if (b) b.textContent = fmt(i);
+    });
+    document.getElementById('ctlFont').value = 'noto';
+    root.style.removeProperty('--sans');
+    document.getElementById('ctlOut').dataset.show = '0';
+  });
+
+  document.getElementById('ctlCopy').addEventListener('click', function(){
+    var lines = [];
+    ctl.querySelectorAll('[data-var]').forEach(function(i){ lines.push('  ' + i.dataset.var + ': ' + fmt(i) + ';'); });
+    lines.push('  한글서체: ' + document.getElementById('ctlFont').selectedOptions[0].text);
+    var text = lines.join('\n');
+    var out = document.getElementById('ctlOut');
+    out.textContent = text; out.dataset.show = '1';
+    if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function(){});
+    this.textContent = '복사됨';
+    var btn = this;
+    setTimeout(function(){ btn.textContent = '값 복사'; }, 1600);
+  });
+
+  load();
+})();
+</script>
