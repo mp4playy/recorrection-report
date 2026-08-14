@@ -248,6 +248,16 @@
     font-size:15px; font-weight:300; color:var(--ink-2); line-height:1.85;
     max-width:var(--measure);
   }
+  /* 제목 옆에 붙는 캡션 — 색은 #B8B7BB 고정 */
+  .sec-head h2 .hcap{
+    font-size:15px; font-weight:300; color:#B8B7BB;
+    letter-spacing:.14em; margin-left:var(--s4);
+    white-space:nowrap;
+  }
+  h3 .hcap{
+    font-weight:300; color:#B8B7BB; letter-spacing:.02em; margin-left:.32em;
+  }
+  p.lead.up{font-size:19px; font-weight:600; letter-spacing:-.022em;}
 
   h3{
     font-size:20px; font-weight:var(--w-h3,500); letter-spacing:-.028em;
@@ -287,6 +297,7 @@
   .row dd b{color:var(--black); font-weight:600;}
   .row-3{grid-template-columns:minmax(124px,.28fr) minmax(0,.34fr) 1fr;}
   .row-4{grid-template-columns:minmax(88px,.2fr) minmax(0,.24fr) minmax(0,.3fr) 1fr;}
+  .row-acct{grid-template-columns:minmax(232px,.44fr) 1fr;}
   .row .q{color:var(--wgray);}
 
   /* ═══════ 대조 ═══════ */
@@ -526,11 +537,10 @@
     <section class="sec" id="s01">
       <div class="sec-head">
         <span class="num">01</span>
-        <h2>정의</h2>
-        <p class="sub">WHY, WHAT, HOW</p>
+        <h2>정의 <span class="hcap">| WHY, WHAT, HOW</span></h2>
       </div>
 
-      <p class="lead">더하고 지우는 기술적 경계 그 너머로,<br>잘못된 시술의 흔적으로부터 당신을 자유로워지게 합니다.</p>
+      <p class="lead up">더하고 지우는 기술적 경계 그 너머로,<br>잘못된 시술의 흔적으로부터 당신을 자유로워지게 합니다.</p>
 
       <p>우리는 단순히 남은 결과를 덮거나 물리적으로 비워내는 것이 아니라, 피부 아래 남아 있는 흔적의 구조 이를테면,</p>
 
@@ -548,11 +558,10 @@
     <section class="sec" id="s02">
       <div class="sec-head">
         <span class="num">02</span>
-        <h2>포지셔닝</h2>
-        <p class="sub">어떻게 기억될 것인가</p>
+        <h2>포지셔닝 <span class="hcap">| 어떻게 기억될 것인가</span></h2>
       </div>
 
-      <p class="lead">‘덮는 방식’ 과 ‘지우는 방식’<br>기존 두 선택지는 사실 하나입니다.</p>
+      <p class="lead up">‘덮는 방식’ 과 ‘지우는 방식’<br>기존 두 선택지는 사실 하나입니다.</p>
       <p>덮기와 제거는 정반대로 보이지만, <b>둘 다 색소를 대상으로 삼는다</b>는 점에서 같습니다. 하나는 색소 위에 색소를 더하고, 하나는 색소를 빼냅니다.</p>
 
       <div class="tw">
@@ -582,8 +591,7 @@
     <!-- 코어 -->
     <section class="sec" id="score">
       <div class="sec-head">
-        <h2>코어</h2>
-        <p class="sub">무엇을 지키는가</p>
+        <h2>코어 <span class="hcap">| 무엇을 지키는가</span></h2>
       </div>
 
       <p class="lead">리커렉션이 지키려는 것은,</p>
@@ -593,9 +601,9 @@
         <p><b>“더는 시선이 거기서 멈추지 않도록.”</b></p>
       </div>
 
-      <h3>우리가 서있는 빈틈 <span class="q">| 리커렉션이 필요한 이유</span></h3>
+      <h3>우리가 서있는 빈틈 <span class="hcap">| 리커렉션이 필요한 이유</span></h3>
 
-      <p class="lead">‘입구는 고객의 말, 출구는 브랜드의 말’</p>
+      <p class="lead up">‘입구는 고객의 말, 출구는 브랜드의 말’</p>
 
       <p>시장에는 수정을 잘한다고 주장하는 시술샵이 많지만, 정작 고객이 납득할 수 있게 원리를 설명해주는 곳은 드뭅니다.</p>
 
@@ -607,7 +615,7 @@
 
       <p>고객의 말로 시작해, 리커렉션의 언어로 이해를 넓혀가는 것입니다.</p>
 
-      <h3>변하지 않는 원칙 <span class="q">| 모든 일의 기준 · 코어 밸류</span></h3>
+      <h3>변하지 않는 원칙 <span class="hcap">| 모든 일의 기준 · 코어 밸류</span></h3>
 
       <p>리커렉션은 사람을 먼저 생각하고, 구조를 기준으로 판단하며,<br>가능한 방향을 정직하게 제시합니다.</p>
 
@@ -628,8 +636,7 @@
     <section class="sec" id="s03">
       <div class="sec-head">
         <span class="num">03</span>
-        <h2>위계</h2>
-        <p class="sub">무엇부터 판단하는가</p>
+        <h2>위계 <span class="hcap">| 무엇부터 판단하는가</span></h2>
       </div>
 
       <h3>하나의 기준이 현장과 교육, 인증으로 이어지는 구조</h3>
@@ -648,9 +655,9 @@
         </dl>
       </div>
 
-      <h3>다른 이야기, 같은 시선 <span class="q">| 각자 고객의 차마 못한 질문을 대신한다.</span></h3>
+      <h3>다른 이야기, 같은 시선 <span class="hcap">| 각자 고객의 차마 못한 질문을 대신한다.</span></h3>
 
-      <p class="lead">고객이 하고 싶은 질문을 대신합니다.</p>
+      <p class="lead up">고객이 하고 싶은 질문을 대신합니다.</p>
 
       <p>현재 반영구 콘텐츠는 주로 기술과 시술 사례, 전후 사진을 먼저 보여줍니다.<br>어떤 기술을 사용하는지, 얼마나 수정을 잘하는지를 알리는 데 집중되어 있습니다.<br>하지만 고객이 처음부터 알고 싶은 것은 기술의 이름이 아닙니다.</p>
 
@@ -672,11 +679,11 @@
       <h3>무엇을 먼저 말하고, 무엇을 나중에 말할 것인가</h3>
       <p>리커렉션은 사람과 경험을 먼저 생각하고, 남아 있는 구조를 살핀 뒤, 수정·복원의 방향을 설계하고, 마지막에 그 방향에 맞는 기술을 선택합니다.</p>
 
-      <h3>1-1. 사람과 경험 <span class="q">| WHY</span></h3>
+      <h3>1-1. 사람과 경험 <span class="hcap">| WHY</span></h3>
       <p class="lead">기술’이 아니라, 그 기술을 경험하는 사람을 이야기합니다.</p>
       <p>불필요한 고민을 하지 않고, 원래 당연했던 일상을 다시 살게 하는 것 사람은 기술 자체보다, 그 과정을 통해 내 얼굴이 다시 편안해질 모습을 떠올릴 때 움직입니다.</p>
 
-      <h3>1-2. 구조를 본다 <span class="q">| HOW TO SEE</span></h3>
+      <h3>1-2. 구조를 본다 <span class="hcap">| HOW TO SEE</span></h3>
       <p class="lead">보이는 것에만 머물지 않고, 보이게 만든 구조를 다룹니다.</p>
       <p>같은 색처럼 보여도 색상과 톤, 밀도와 형태, 남아 있는 범위는 사람마다 다릅니다.</p>
 
@@ -691,7 +698,7 @@
 
       <p>구조를 본다는 것은 문제를 복잡하게 만드는 일이 아닙니다.<br>복잡하게 남은 것을 명확하게 구분하는 일입니다.</p>
 
-      <h3>1-3. 방향을 설계한다 <span class="q">| HOW TO DECIDE</span></h3>
+      <h3>1-3. 방향을 설계한다 <span class="hcap">| HOW TO DECIDE</span></h3>
       <p class="lead">기술을 고르기 전에, 도착점을 먼저 정합니다.</p>
       <p>계획을 세우고, 기술을 고르기 전에 우리가 도착해야 할 결과를 먼저 정합니다. 무엇을 할지뿐 아니라 무엇을 하지 않을지도 함께 정할 때, 과정은 더 명확해지고 불안은 줄어들며 결과는 예측 가능해집니다.</p>
 
@@ -704,7 +711,7 @@
         </dl>
       </div>
 
-      <h3>1-4. 기술 <span class="q">| HOW TO DELIVER</span></h3>
+      <h3>1-4. 기술 <span class="hcap">| HOW TO DELIVER</span></h3>
       <p>사람을 보고, 구조를 이해하고, 방향을 정합니다. 기술은 그다음입니다.<br>기술은 목적이 아니라, 설계한 방향을 구현하는 수단입니다.</p>
 
       <div class="tw">
@@ -718,56 +725,6 @@
 
       <p><b>기술은 앞에 서지 않습니다. 방향을 구현합니다.</b></p>
 
-      <h3>누보레브는 아래에 두되 버리지 않습니다</h3>
-      <p>위계상 아래지만 <b>이름은 유지합니다.</b> 누보레브아카데미는 2017년 이전부터 운영된 이름이고, 리커렉션은 작년에 나온 이름입니다. <b>업력은 누보레브에, 방식의 이름은 리커렉션에</b> 있습니다.</p>
-      <p>그래서 <b>오래된 이름이 새 이름을 보증하는 구도</b>가 됩니다 — “누보레브 그분이 리커렉션을 만들었대.” 반대로 하면 이력 없는 새 이름 하나만 남습니다.</p>
-
-      <div class="note">
-        <p><b>업력을 섞어 쓰지 않습니다.</b> 누보레브아카데미는 2017년~, 리커렉션은 작년~입니다. “리커렉션 9년”은 사실이 아닙니다. 사람으로 이으면 사실이 됩니다 — <b>“오래 가르쳐온 사람이 만든 기준.”</b></p>
-      </div>
-
-      <h3>이름을 붙이는 규칙</h3>
-      <div class="tw">
-        <dl class="rows">
-          <div class="row row-3"><dt>단독으로 쓸 때</dt><dd>리커렉션</dd><dd class="q">방식·브랜드를 말할 때</dd></div>
-          <div class="row row-3"><dt>장소를 말할 때</dt><dd>리커렉션 본점</dd><dd class="q">시술 받는 곳</dd></div>
-          <div class="row row-3"><dt>교육을 말할 때</dt><dd>누보레브아카데미</dd><dd class="q">필요하면 “리커렉션 과정을 운영하는”을 앞에</dd></div>
-          <div class="row row-3"><dt>기준을 말할 때</dt><dd>K-파라메디컬커렉션교육협회</dd><dd class="q">직함으로만 (아래 참조)</dd></div>
-          <div class="row row-3"><dt>셋을 함께</dt><dd>리커렉션 본점 | 누보레브아카데미 | K-파라메디컬커렉션교육협회</dd><dd class="q">이 순서를 지킵니다</dd></div>
-        </dl>
-      </div>
-
-      <p><b>직함 순서에도 이유가 있습니다.</b> 본점 → 아카데미 → 협회. 손님이 궁금해하는 순서입니다 — 시술하는 사람인가, 가르치는 사람인가, 기준을 만드는 사람인가.</p>
-
-      <h3>계정 아이디는 바꾸지 않습니다</h3>
-      <p>계정 아이디와 상호가 어긋나 있습니다. 아카데미는 <code>@recorrection_academy</code>인데 상호는 누보레브아카데미이고, 대표 계정은 <code>@nouveaureve_ceo</code>입니다.</p>
-      <p><b>그래도 바꾸지 않습니다.</b> 인스타그램이 경고합니다 — <b>“팔로워가 회원님을 찾지 못할 수도 있습니다.”</b> 팔로우가 끊기는 것은 아니지만 <b>이름으로 찾아오는 길</b>이 끊깁니다. 검색으로 오던 사람, 예전 대화창에서 눌러 오던 사람, 남이 태그해둔 게시물 — 오래된 계정일수록 이 경로가 많습니다.</p>
-      <p>대신 <b>이름칸으로 붙입니다.</b> 이름칸도 검색에 잡히므로, 아이디는 누보레브 · 이름칸은 리커렉션으로 두면 <b>두 이름을 모두 가져갑니다.</b></p>
-
-      <h3>협회를 말할 때</h3>
-      <p><b>피드 본문에서는 굳이 꺼내지 않습니다.</b> 손님에게는 필요 없는 정보이고, 먼저 꺼내면 “그게 뭐냐”는 질문만 생깁니다. 법적 형태를 확인하기 전까지는 더욱 그렇습니다.</p>
-      <p>대신 <b>해시태그에는 넣습니다.</b> 사람 눈에는 안 띄고 검색에는 남습니다.</p>
-
-      <div class="tw">
-        <dl class="rows">
-          <div class="row row-3"><dt>캡션 본문</dt><dd>언급하지 않습니다</dd><dd class="q">묻는 사람에게만 답합니다</dd></div>
-          <div class="row row-3"><dt>해시태그</dt><dd>이름 그대로 하나</dd><dd class="q">#K파라메디컬커렉션교육협회</dd></div>
-          <div class="row row-3"><dt>프로필 · 소개</dt><dd>직함으로만</dd><dd class="q">“K-파라메디컬커렉션교육협회 이사장”</dd></div>
-        </dl>
-      </div>
-
-      <ul class="rules">
-        <li class="no">국가공인 · 공식 인증 · 정부 지정 — <b>확인 전까지 쓰지 않습니다</b></li>
-        <li class="no">“협회 인증이니 안전합니다” — 효과 보증으로 읽힙니다</li>
-        <li class="no"><b>“파라메디컬”을 의료 효과와 붙여 쓰지 않습니다</b></li>
-        <li class="no">해시태그에도 <b>#공인 #인증</b> 류는 붙이지 않습니다 — 태그도 광고 문구로 봅니다</li>
-        <li class="yes">“K-파라메디컬커렉션교육협회 이사장” — 직함만</li>
-      </ul>
-
-      <div class="todo">
-        <span class="lab">위치는 따로 뗍니다</span>
-        <p>본점은 경기 고양시 일산동구 정발산로 43-20 센트럴프라자 703호입니다. <b>내년 중 용산 이전 예정</b>이므로 주소는 문장 안이 아니라 따로 뗄 수 있는 자리에 둡니다. 옮길 때 그 자리만 갈면 됩니다.</p>
-      </div>
     </section>
 
     <!-- 04 -->
@@ -789,10 +746,10 @@
 
       <div class="tw">
         <dl class="rows">
-          <div class="row row-3"><dt class="q">계정</dt><dd class="q">대신하는 질문</dd><dd class="q"></dd></div>
-          <div class="row row-3"><dt><code>@recorrection_official</code></dt><dd>고객의 질문을 대신한다</dd><dd class="q"></dd></div>
-          <div class="row row-3"><dt><code>@nouveaureve_ceo</code></dt><dd>고객이 ‘이 사람’에게 궁금한 것을 대신한다</dd><dd class="q"></dd></div>
-          <div class="row row-3"><dt><code>@recorrection_academy</code></dt><dd>배우려는 원장의 질문을 대신한다</dd><dd class="q"></dd></div>
+          <div class="row row-acct"><dt class="q">계정</dt><dd class="q">대신하는 질문</dd></div>
+          <div class="row row-acct"><dt><code>@recorrection_official</code></dt><dd>고객의 질문을 대신한다</dd></div>
+          <div class="row row-acct"><dt><code>@nouveaureve_ceo</code></dt><dd>고객이 ‘이 사람’에게 궁금한 것을 대신한다</dd></div>
+          <div class="row row-acct"><dt><code>@recorrection_academy</code></dt><dd>배우려는 원장의 질문을 대신한다</dd></div>
         </dl>
       </div>
 
