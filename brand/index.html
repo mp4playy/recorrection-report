@@ -195,7 +195,8 @@
   @media print{ .fg{break-inside:avoid;} }
 
   /* ═══════ 오렌지 쓰는 다섯 가지 ═══════ */
-  .ways{display:grid; grid-template-columns:repeat(5,1fr); gap:var(--s2);
+  /* minmax(0,1fr) — 글자 길이에 따라 칸 폭이 달라지지 않게 */
+  .ways{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:var(--s2);
         margin:var(--s6) 0 var(--s5);}
   .ways .w{}
   .ways .box{aspect-ratio:1; position:relative; overflow:hidden;
@@ -489,6 +490,8 @@
 
   /* 폰 — 여러 칸짜리 표는 세로로 편다 */
   @media (max-width:640px){
+    /* 다섯 칸을 그대로 두면 칸이 60px대로 줄어 글자가 잘린다 — 세 칸으로 */
+    .ways{grid-template-columns:repeat(3,minmax(0,1fr));}
     .band{padding:var(--s4);}
     .band .top{gap:var(--s2);}
     .band .nm{font-size:var(--t-body);}
