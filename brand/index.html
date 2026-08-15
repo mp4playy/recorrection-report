@@ -52,7 +52,7 @@
     font-family:var(--sans);
     font-size:var(--fs-body,15px);
     font-weight:400;
-    line-height:var(--lh-body,1.8);
+    line-height:var(--lh-body,1.7);
     letter-spacing:-.003em;
     -webkit-font-smoothing:antialiased;
   }
@@ -129,8 +129,8 @@
     margin-bottom:var(--s8);
   }
   .field .big{
-    font-size:clamp(32px,5.8vw,64px);
-    font-weight:var(--w-big,700);
+    font-size:clamp(38px,6.6vw,74px);
+    font-weight:var(--w-big,400);
     letter-spacing:var(--ls-big,-.03em);
     line-height:1.24;
     color:#fff;
@@ -237,10 +237,9 @@
 
   /* ═══════ 위계 트리 ═══════ */
   .tree{border-top:1px solid var(--black); margin:var(--s6) 0 var(--s6); max-width:var(--measure);}
-  .tree .t0{font-family:var(--mono); font-size:13px; letter-spacing:.18em;
+  .tree .t0{font-family:var(--mono); font-size:11px; letter-spacing:.18em;
             color:var(--black); padding:var(--s4) 0 var(--s1);}
-  .tree .t0s{font-size:13px; color:var(--wgray); padding-bottom:var(--s4);
-             border-bottom:1px solid var(--hair);}
+  .tree .t0s{font-size:13px; color:var(--wgray); padding-bottom:var(--s4);}
   .tree .t1{display:grid; grid-template-columns:minmax(190px,.46fr) 1fr; gap:var(--s5);
             padding:var(--s4) 0 var(--s4) var(--s5);
             border-bottom:1px solid var(--hair-soft); align-items:baseline;}
@@ -257,8 +256,8 @@
     display:block; margin-bottom:var(--s3);
   }
   .sec-head h2{
-    font-size:clamp(26px,3.4vw,36px);
-    font-weight:var(--w-h2,700); letter-spacing:var(--ls-big,-.03em); line-height:1.22;
+    font-size:clamp(30px,3.8vw,40px);
+    font-weight:var(--w-h2,700); letter-spacing:var(--ls-big,-.03em); line-height:1.2;
     color:var(--black); text-wrap:balance;
   }
   .sec-head .sub{
@@ -268,15 +267,18 @@
   }
   /* 제목 옆에 붙는 캡션 — 색은 #B8B7BB 고정 */
   .sec-head h2 .hcap, h3 .hcap{
+    display:block; margin:var(--s2) 0 0;
     font-family:var(--mono); font-size:var(--t-cap); font-weight:500;
-    color:#B8B7BB; letter-spacing:.12em; white-space:nowrap;
-    margin-left:var(--s3); vertical-align:middle;
+    color:#B8B7BB; letter-spacing:.12em;
   }
+  /* 1-1. 같은 앞 번호 — 굵기 빼고 작게 */
+  .nsub{font-family:var(--mono); font-size:9px; font-weight:400;
+        color:var(--wgray); letter-spacing:.06em; margin-right:var(--s2);}
   p.lead.up{font-size:var(--t-lead-up); font-weight:700; line-height:1.6; letter-spacing:-.02em;}
 
   h3{
     font-size:var(--t-h3); font-weight:var(--w-h3,700); letter-spacing:-.022em;
-    color:var(--black); line-height:1.35;
+    color:var(--black); line-height:1.35; text-wrap:balance;
     margin:var(--s8) 0 var(--s5);
     padding-top:var(--s5);
     border-top:1px solid var(--hair-soft);
@@ -288,12 +290,14 @@
   }
 
   p{max-width:var(--measure); margin-bottom:var(--s4); color:var(--ink-2);}
-  p.lead{color:var(--black); font-size:var(--t-lead); font-weight:500; letter-spacing:-.014em; line-height:1.75;}
+  p.lead{color:var(--black); font-size:var(--t-lead); font-weight:500; letter-spacing:-.014em; line-height:1.6;}
   p strong{font-weight:700; color:var(--black);}
   p b{font-weight:700; color:var(--black);}
-  .note{font-size:var(--t-note); color:var(--wgray); line-height:1.8; max-width:var(--measure); margin-bottom:var(--s5);}
+  .note{font-size:var(--t-body); color:var(--wgray); line-height:1.7; max-width:var(--measure); margin-bottom:var(--s5);}
+  .note-up{font-size:var(--t-lead); line-height:1.55;}
   .note b{color:var(--black); font-weight:700;}
 
+  code{font-family:var(--sans); font-size:inherit; letter-spacing:normal;}
   .lab{
     font-family:var(--mono); font-size:var(--t-label);
     letter-spacing:.2em; text-transform:uppercase;
@@ -309,22 +313,23 @@
     border-bottom:1px solid var(--hair-soft);
     align-items:baseline;
   }
-  .row dt{font-weight:700; color:var(--black); font-size:var(--t-body); line-height:1.7; letter-spacing:-.01em;}
-  .row dd{color:var(--ink-2); font-size:var(--t-body); font-weight:400; line-height:1.7;}
+  .row dt{font-weight:700; color:var(--black); font-size:var(--t-body); line-height:1.6; letter-spacing:-.01em;}
+  .row dt.q{font-weight:400;}
+  .row dd{color:var(--ink-2); font-size:var(--t-body); font-weight:400; line-height:1.6;}
   .row dd b{color:var(--black); font-weight:700;}
   .row-3{grid-template-columns:minmax(124px,.28fr) minmax(0,.34fr) 1fr;}
   .row-4{grid-template-columns:minmax(88px,.2fr) minmax(0,.24fr) minmax(0,.3fr) 1fr;}
   .row-acct{grid-template-columns:minmax(232px,.44fr) 1fr;}
   .row .q{color:var(--wgray);}
+  .row > dt, .row > dd{min-width:0; word-break:keep-all; overflow-wrap:anywhere;}
 
   /* ═══════ 대조 ═══════ */
   .pair{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--hair); margin-bottom:var(--s6);}
   .pair > div{padding:var(--s4) var(--s5) var(--s4) 0; border-bottom:1px solid var(--hair-soft); font-size:var(--t-body); line-height:1.7;}
   .pair > div:nth-child(even){padding-left:var(--s5); padding-right:0; border-left:1px solid var(--hair-soft);}
   .pair .h{
-    font-family:var(--mono); font-size:var(--t-label); font-weight:500; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--wgray);
-    padding-bottom:var(--s3);
+    font-size:var(--t-body); font-weight:400; letter-spacing:normal;
+    color:var(--wgray); padding-bottom:var(--s3);
   }
   .pair .a{color:var(--wgray);}
   .pair .b{color:var(--black); font-weight:700;}
@@ -371,7 +376,7 @@
   .w300{font-weight:300;} .w400{font-weight:400;} .w500{font-weight:500;} .w700{font-weight:700;}
 
   /* ═══════ 블록 ═══════ */
-  .block{
+  .block{overflow-x:auto; 
     font-family:var(--mono); font-size:12.5px; line-height:2.05;
     white-space:pre-wrap; color:var(--ink-2);
     border-left:1px solid var(--hair); padding:var(--s3) 0 var(--s3) var(--s5);
@@ -382,7 +387,7 @@
   .todo{border-top:1px solid var(--black); padding-top:var(--s4); margin-bottom:var(--s6); max-width:var(--measure);}
   .todo p{margin-bottom:0; font-size:14px;}
 
-  .tw{overflow-x:auto; margin-bottom:var(--s6);}
+  .tw{overflow-x:auto; max-width:100%; margin-bottom:var(--s6);}
   .tw .rows, .tw .pair, .tw .axes{min-width:420px;}
 
   .foot{
@@ -466,9 +471,11 @@
 
   /* 폰 — 여러 칸짜리 표는 세로로 편다 */
   @media (max-width:640px){
-    .row, .row-3, .row-4, .row-acct{grid-template-columns:1fr; gap:var(--s2);}
+    .tw{overflow-x:visible;}
+    .tw .rows, .tw .pair, .tw .axes{min-width:0;}
+    .row, .row-3, .row-4, .row-acct{grid-template-columns:minmax(0,1fr); gap:var(--s1);}
     .row dt{font-size:15px;}
-    .row dd{padding-left:var(--s4); font-size:15px;}
+    .row dd{padding-left:0; font-size:15px;}
     .ctl, .ctl-open{display:none;}
   }
 
@@ -550,8 +557,8 @@
         <span>Rev 5.0</span>
         <span>2026.08.10</span>
         <span>리커렉션 본점</span>
-        <span>누보레브아카데미</span>
-        <span>K-파라메디컬커렉션교육협회</span>
+        <span>리커렉션 CEO</span>
+        <span>리커렉션 아카데미</span>
       </div>
     </section>
 
@@ -642,7 +649,7 @@
 
       <h3>변하지 않는 원칙 <span class="hcap">| 모든 일의 기준 · 코어 밸류</span></h3>
 
-      <p>리커렉션은 사람을 먼저 생각하고, 구조를 기준으로 판단하며,<br>가능한 방향을 정직하게 제시합니다.</p>
+      <p>리커렉션은 사람을 먼저 생각하고, 구조를 기준으로 판단하며, 가능한 방향을 정직하게 제시합니다.</p>
 
       <p>기술 자체를 앞세우기보다 그 기술을 경험할 사람과 그 사람이 되찾아야 할 일상을 먼저 봅니다. 눈에 보이는 색만으로 판단하지 않고, 잔흔의 형태와 색, 밀도와 범위를 세심하게 살펴 현재 상태에 맞는 수정·복원의 방향을 설계합니다.</p>
 
@@ -650,7 +657,7 @@
 
       <p>할 수 있는 것과 어려운 것, 해야 할 것과 하지 말아야 할 것을 분명히 설명하며,<br>잘못 남은 흔적을 고객의 탓으로 돌리지 않습니다.</p>
 
-      <div class="note">
+      <div class="note note-up">
         <p><b>사람을 향한 태도,<br>구조를 읽는 기준,<br>한계를 숨기지 않는 정직함.</b></p>
       </div>
 
@@ -674,9 +681,9 @@
 
       <div class="tw">
         <dl class="rows">
-          <div class="row row-3"><dt>리커렉션 본점</dt><dd>최상위 브랜드 계정</dd><dd class="q">철학·정의·포지셔닝·기준·시스템을 공식적으로 말하는 브랜드의 중심 계정</dd></div>
-          <div class="row row-3"><dt>누보레브 대표 김현숙</dt><dd>창시자·대표자 계정</dd><dd class="q">관점과 기준을 만든 사람의 철학·전문성·경험을 보여주는 신뢰 형성 계정</dd></div>
-          <div class="row row-3"><dt>리커렉션 아카데미</dt><dd>교육 전문 계정</dd><dd class="q">오피셜이 정립한 기준과 CEO의 전문성을 교육으로 전달하는 교육 실행 계정</dd></div>
+          <div class="row row-3"><dt>리커렉션 본점</dt><dd>| 최상위 브랜드 계정</dd><dd class="q">철학·정의·포지셔닝·기준·시스템을 공식적으로 말하는 브랜드의 중심 계정</dd></div>
+          <div class="row row-3"><dt>누보레브 대표 김현숙</dt><dd>| 창시자·대표자 계정</dd><dd class="q">관점과 기준을 만든 사람의 철학·전문성·경험을 보여주는 신뢰 형성 계정</dd></div>
+          <div class="row row-3"><dt>리커렉션 아카데미</dt><dd>| 교육 전문 계정</dd><dd class="q">오피셜이 정립한 기준과 CEO의 전문성을 교육으로 전달하는 교육 실행 계정</dd></div>
         </dl>
       </div>
 
@@ -704,11 +711,11 @@
       <h3>무엇을 먼저 말하고, 무엇을 나중에 말할 것인가</h3>
       <p>리커렉션은 사람과 경험을 먼저 생각하고, 남아 있는 구조를 살핀 뒤, 수정·복원의 방향을 설계하고, 마지막에 그 방향에 맞는 기술을 선택합니다.</p>
 
-      <h3>1-1. 사람과 경험 <span class="hcap">| WHY</span></h3>
+      <h3><span class="nsub">1-1.</span>사람과 경험 <span class="hcap">| WHY</span></h3>
       <p class="lead">기술’이 아니라, 그 기술을 경험하는 사람을 이야기합니다.</p>
       <p>불필요한 고민을 하지 않고, 원래 당연했던 일상을 다시 살게 하는 것 사람은 기술 자체보다, 그 과정을 통해 내 얼굴이 다시 편안해질 모습을 떠올릴 때 움직입니다.</p>
 
-      <h3>1-2. 구조를 본다 <span class="hcap">| HOW TO SEE</span></h3>
+      <h3><span class="nsub">1-2.</span>구조를 본다 <span class="hcap">| HOW TO SEE</span></h3>
       <p class="lead">보이는 것에만 머물지 않고, 보이게 만든 구조를 다룹니다.</p>
       <p>같은 색처럼 보여도 색상과 톤, 밀도와 형태, 남아 있는 범위는 사람마다 다릅니다.</p>
 
@@ -723,7 +730,7 @@
 
       <p>구조를 본다는 것은 문제를 복잡하게 만드는 일이 아닙니다.<br>복잡하게 남은 것을 명확하게 구분하는 일입니다.</p>
 
-      <h3>1-3. 방향을 설계한다 <span class="hcap">| HOW TO DECIDE</span></h3>
+      <h3><span class="nsub">1-3.</span>방향을 설계한다 <span class="hcap">| HOW TO DECIDE</span></h3>
       <p class="lead">기술을 고르기 전에, 도착점을 먼저 정합니다.</p>
       <p>계획을 세우고, 기술을 고르기 전에 우리가 도착해야 할 결과를 먼저 정합니다. 무엇을 할지뿐 아니라 무엇을 하지 않을지도 함께 정할 때, 과정은 더 명확해지고 불안은 줄어들며 결과는 예측 가능해집니다.</p>
 
@@ -736,7 +743,7 @@
         </dl>
       </div>
 
-      <h3>1-4. 기술 <span class="hcap">| HOW TO DELIVER</span></h3>
+      <h3><span class="nsub">1-4.</span>기술 <span class="hcap">| HOW TO DELIVER</span></h3>
       <p>사람을 보고, 구조를 이해하고, 방향을 정합니다. 기술은 그다음입니다.<br>기술은 목적이 아니라, 설계한 방향을 구현하는 수단입니다.</p>
 
       <div class="tw">
@@ -1713,7 +1720,7 @@
     <span class="gt">크기와 굵기</span>
     <label>본문 크기 <span><input type="range" data-var="--fs-body" min="13" max="19" step="0.5" value="15" data-unit="px"><span class="val" data-for="--fs-body">15px</span></span></label>
     <label>줄간격 <span><input type="range" data-var="--lh-body" min="1.5" max="2.2" step="0.05" value="1.8"><span class="val" data-for="--lh-body">1.8</span></span></label>
-    <label>큰 문장 굵기 <span><input type="range" data-var="--w-big" min="400" max="700" step="100" value="700"><span class="val" data-for="--w-big">700</span></span></label>
+    <label>큰 문장 굵기 <span><input type="range" data-var="--w-big" min="400" max="700" step="100" value="400"><span class="val" data-for="--w-big">400</span></span></label>
     <label>제목 굵기 <span><input type="range" data-var="--w-h2" min="400" max="700" step="100" value="700"><span class="val" data-for="--w-h2">700</span></span></label>
     <label>소제목 굵기 <span><input type="range" data-var="--w-h3" min="400" max="700" step="100" value="700"><span class="val" data-for="--w-h3">700</span></span></label>
     <label>제목 자간 <span><input type="range" data-var="--ls-big" min="-60" max="0" step="2" value="-30" data-unit="em" data-scale="0.001"><span class="val" data-for="--ls-big">-0.030em</span></span></label>
