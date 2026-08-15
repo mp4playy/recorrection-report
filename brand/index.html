@@ -369,10 +369,10 @@
   .bands{margin:var(--s5) 0 var(--s6);}
   .band{padding:var(--s5) var(--s5); border-bottom:1px solid rgba(0,0,0,.06);}
   .band .top{display:flex; flex-wrap:wrap; gap:var(--s4); align-items:baseline;}
-  .band .nm{font-size:16px; font-weight:500; letter-spacing:-.01em;}
-  .band .hx{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; opacity:.7;}
-  .band .rl{margin-left:auto; font-family:var(--mono); font-size:10px; letter-spacing:.14em; opacity:.7; text-transform:uppercase;}
-  .band .use{font-size:13px; margin-top:var(--s2); opacity:.8; max-width:52ch;}
+  .band .nm{font-size:var(--t-sub); font-weight:500; letter-spacing:-.01em;}
+  .band .hx{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.08em; opacity:.7;}
+  .band .rl{margin-left:auto; font-family:var(--mono); font-size:var(--t-label); letter-spacing:.12em; opacity:.7; text-transform:uppercase;}
+  .band .use{font-size:var(--t-note); line-height:1.7; margin-top:var(--s2); opacity:.85; max-width:52ch;}
 
   /* ═══════ 서체 견본 ═══════ */
   .spec{border-top:1px solid var(--hair); margin-bottom:var(--s6);}
@@ -477,6 +477,7 @@
 
   /* 폰 — 여러 칸짜리 표는 세로로 편다 */
   @media (max-width:640px){
+    .band .rl{margin-left:0; width:100%;}
     .tw{overflow-x:visible;}
     .tw .rows, .tw .pair, .tw .axes{min-width:0;}
     .row, .row-3, .row-4, .row-acct{grid-template-columns:minmax(0,1fr); gap:var(--s1);}
