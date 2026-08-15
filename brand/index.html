@@ -335,14 +335,22 @@
 
   /* ═══════ 대조 ═══════ */
   .pair{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--hair); margin-bottom:var(--s6);}
-  .pair > div{padding:var(--s4) var(--s5) var(--s4) 0; border-bottom:1px solid var(--hair-soft); font-size:var(--t-body); line-height:1.7;}
-  .pair > div:nth-child(even){padding-left:var(--s5); padding-right:0; border-left:1px solid var(--hair-soft);}
+  .pair > div{--pl:0px; padding:var(--s4) var(--s5) var(--s4) var(--pl); border-bottom:1px solid var(--hair-soft); font-size:var(--t-body); line-height:1.7;}
+  .pair > div:nth-child(even){--pl:var(--s5); padding-right:0; border-left:1px solid var(--hair-soft);}
   .pair .h{
     font-size:var(--t-body); font-weight:400; letter-spacing:normal;
     color:var(--wgray); padding-bottom:var(--s3);
   }
   .pair .a{color:var(--wgray);}
   .pair .b{color:var(--black); font-weight:700;}
+  /* 쓰는 것은 O, 쓰지 않는 것은 X — 폰에서 한 줄로 펴져도 구분되게 */
+  .pair > div{position:relative; padding-left:calc(var(--pl) + 22px);}
+  .pair > div::before{
+    position:absolute; left:var(--pl); top:var(--s4);
+    font-family:var(--sans); font-size:var(--t-cap); font-weight:700; line-height:2.1;
+  }
+  .pair .a::before, .pair > .h:first-child::before{content:'X'; color:var(--wgray);}
+  .pair .b::before, .pair > .h:nth-child(2)::before{content:'O'; color:var(--black);}
 
   /* ═══════ 규칙 ═══════ */
   .rules{list-style:none; border-top:1px solid var(--hair); margin-bottom:var(--s6);}
@@ -475,7 +483,7 @@
     .field{padding:var(--s8) var(--s5); min-height:88vh;}
     .field .big{max-width:none;}
     .pair{grid-template-columns:1fr;}
-    .pair > div:nth-child(even){padding-left:0; border-left:none;}
+    .pair > div:nth-child(even){--pl:0px; border-left:none;}
     .sec{padding-top:var(--s9);}
   }
 
