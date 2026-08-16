@@ -68,7 +68,8 @@
 
   /* ═══════ 좌측 목차 ═══════ */
   .rail > *{max-width:780px; width:100%; margin-inline:auto;}
-  .field > *{max-width:780px; width:100%; margin-inline:auto;}
+  /* 가운데 정렬은 .field 여백이 맡는다. 여기서 또 가운데로 몰면 폭이 다른 요소끼리 왼쪽이 어긋난다 */
+  .field > *{width:100%; margin-inline:0;}
   .rail{
     padding:var(--s6) var(--s7) var(--s5);
     display:flex; flex-direction:column; gap:var(--s5);
@@ -123,7 +124,9 @@
     color:#fff;
     min-height:100vh;
     display:flex; flex-direction:column; justify-content:center;
-    padding:var(--s9) var(--s7);
+    /* 780px 칸을 여백으로 만든다 — 안의 요소는 폭이 달라도 왼쪽 끝이 같아진다 */
+    padding-block:var(--s9);
+    padding-inline:max(var(--s7), (100% - 780px) / 2);
   }
   .field .mark{
     font-family:var(--mono); font-size:var(--t-label); font-weight:500;
@@ -514,7 +517,7 @@
     .shell{display:block;}
     .inner{max-width:100%; padding:0;}
     .field{
-      min-height:228mm; padding:var(--s9) var(--s7);
+      min-height:228mm; padding-block:var(--s9); padding-inline:var(--s7);
       break-inside:avoid; break-after:page;
       display:flex; flex-direction:column; justify-content:center;
     }
@@ -578,7 +581,7 @@
     <!-- 표지 -->
     <section class="field" aria-label="표지">
       <div class="mark">Re:Correction · Brand Guidelines</div>
-      <div class="big" style="font-size:clamp(30px,4.6vw,52px); max-width:none;">리커렉션 브랜드 가이드</div>
+      <div class="big" style="font-size:clamp(30px,4.6vw,52px); max-width:780px;">리커렉션 브랜드 가이드</div>
 
       <div class="meta">
         <span>Rev 5.0</span>
