@@ -176,13 +176,14 @@
   .fg .fo{background:var(--solar); color:#1A1013;}
   .fg .fo .k{color:#1A1013; opacity:.62;}
   .fg .fp{background:linear-gradient(150deg,#C9C7C3,#8E8C89 55%,#4E4C4A); color:#fff;}
-  .fg .fp2{background:linear-gradient(150deg,#C0967E,#8A6350 60%,#5A3D31); color:#fff;}
-  .fg .fp .k, .fg .fp2 .k{color:rgba(255,255,255,.72);}
+  /* 그레이 면 — 소프트 그레이지에서 웜 그레이로 */
+  .fg .fp2{background:linear-gradient(150deg,var(--greige),var(--stone) 55%,var(--wgray)); color:#fff;}
+  .fg .fgy{background:var(--wgray); color:var(--ivory);}
+  .fg .fp .k, .fg .fp2 .k, .fg .fgy .k{color:rgba(255,255,255,.78);}
   .fg .fgrad{
     background:
       radial-gradient(105% 70% at 74% 112%, rgba(255,86,35,1) 0%, rgba(255,86,35,0) 58%),
-      radial-gradient(115% 85% at 55% 104%, rgba(180,110,80,.9) 0%, rgba(180,110,80,0) 66%),
-      radial-gradient(130% 100% at 35% 96%, rgba(190,165,146,.45) 0%, rgba(190,165,146,0) 70%),
+      radial-gradient(120% 88% at 50% 104%, rgba(180,176,171,.5) 0%, rgba(180,176,171,0) 68%),
       linear-gradient(180deg, #1C1D21 0%, #34353A 46%, #55545A 100%);
     color:#fff;}
   .fg .fgrad::after{content:''; position:absolute; inset:0; z-index:1; opacity:.15;
@@ -195,7 +196,6 @@
   .fg .fspot::after{content:''; position:absolute; left:56%; top:24%; width:22%; aspect-ratio:1; border-radius:50%; background:var(--solar);}
   .fg .c{position:relative;}
   .fg em{color:var(--solar); font-style:normal;}
-  .fg .dotm{position:absolute; left:10px; bottom:10px; width:6px; height:6px; background:var(--solar);}
   @media print{ .fg{break-inside:avoid;} }
 
   /* ═══════ 오렌지 쓰는 다섯 가지 ═══════ */
@@ -1535,35 +1535,37 @@
 
       <div class="fg">
         <div class="c fo"><span class="l">다시,<br>제대로.</span></div>
-        <div class="c fp"><span class="k">RESULT</span><span class="s">흑백 · 결과</span></div>
-        <div class="c fw"><span class="k">GUIDE 01</span><span class="s">수정과 제거는<br>다른 일입니다</span></div>
+        <div class="c fgy"><span class="k">RESULT</span><span class="s">복원이 가능한<br>방향을 봅니다.</span></div>
+        <div class="c fw"><span class="k">GUIDE 01</span><span class="s">수정과 복원은<br>다른 일입니다.</span></div>
 
-        <div class="c fb"><span class="k">RE:CORRECTION</span><span class="l">시선이 거기서<br>멈추지 않도록.</span><span class="dotm"></span></div>
-        <div class="c fw"><span class="k">NOTICE</span><span class="s">일산 본사<br>상담 안내</span></div>
-        <div class="c fgrad"><span class="k">VOICE</span><span class="l">당신의<br>문제가<br>아닙니다.</span></div>
+        <div class="c fb"><span class="k">RE:CORRECTION</span><span class="l">시선이 거기서<br>멈추지 않도록<em>.</em></span></div>
+        <div class="c fw"><span class="k">NOTICE</span></div>
+        <div class="c fgrad"><span class="k">VOICE</span><span class="l">가장 어려운 건<br>방향을 정하는<br>일입니다.</span></div>
 
-        <div class="c fp2"><span class="k">RESULT</span><span class="s">따뜻한 빛 · 톤</span></div>
-        <div class="c fb"><span class="k">CORE</span><span class="l">먼저 볼 것은<br><em>남은 색</em>.</span></div>
-        <div class="c fp2"><span class="k">RESULT</span><span class="s">따뜻한 빛 · 결과</span></div>
+        <div class="c fp"></div>
+        <div class="c fb"><span class="k">CORE</span><span class="l">먼저 본 것은<br><em>남은 색</em>.</span></div>
+        <div class="c fp2"><span class="k">RESULT</span></div>
 
-        <div class="c fw"><span class="k">GUIDE 02</span><span class="s">색이 향할 방향을<br>먼저 정합니다</span></div>
-        <div class="c fo"><span class="l">기준을<br>다시.</span></div>
-        <div class="c fline"><span class="k">Q &amp; A</span><span class="s">“덮으면 되지 않나요?”<br>— 아닙니다</span></div>
+        <div class="c fw"><span class="k">GUIDE 02</span></div>
+        <div class="c fo"><span class="l">기준은<br>다릅니다.</span></div>
+        <div class="c fline"><span class="k">Q &amp; A</span></div>
 
-        <div class="c fb"><span class="k">RE:CORRECTION</span><span class="s">가게 이름이 아니라<br>방식의 이름입니다</span><span class="dotm"></span></div>
-        <div class="c fw"><span class="k">GUIDE 03</span><span class="s">남은 상태를<br>기준으로</span></div>
-        <div class="c fp fspot"><span class="k">RESULT</span><span class="s">흑백 + 한 점</span></div>
+        <div class="c fb"><span class="k">RE:CORRECTION</span></div>
+        <div class="c fw"><span class="k">GUIDE 03</span></div>
+        <div class="c fp fspot"></div>
       </div>
 
       <div class="tw">
         <dl class="rows">
-          <div class="row row-3"><dt>밝은 칸</dt><dd>설명 · 안내 · 가이드</dd><dd class="q">웜 화이트 바탕 · 글자 블랙 · 15칸 중 4</dd></div>
-          <div class="row row-3"><dt>검은 칸</dt><dd>브랜드 문장 · Q&amp;A</dd><dd class="q">글자 화이트 · 라벨 오렌지 · 15칸 중 5 (그중 하나는 그라데이션)</dd></div>
-          <div class="row row-3"><dt>오렌지 칸</dt><dd><b>한 마디만</b></dd><dd class="q">글자 블랙 · 4~8자 · 라벨 없음 · <b>최대 2</b></dd></div>
-          <div class="row row-3"><dt>흑백 사진</dt><dd>결과 클로즈업</dd><dd class="q">15칸 중 2</dd></div>
-          <div class="row row-3"><dt>따뜻한 빛 사진</dt><dd>피부 · 눈썹 톤</dd><dd class="q">코코아 브라운이 사는 자리 · 15칸 중 2</dd></div>
+          <div class="row row-3"><dt>밝은 칸</dt><dd>설명 · 안내 · 기준</dd><dd class="q">웜 화이트 바탕 · 메테오라이트 블랙 글자 · 15칸 중 4</dd></div>
+          <div class="row row-3"><dt>검은 칸</dt><dd>브랜드 핵심 문장 · Q&amp;A</dd><dd class="q">메테오라이트 블랙 바탕 · 웜 화이트 글자 · 한 칸만 오렌지 그라데이션 · 15칸 중 5</dd></div>
+          <div class="row row-3"><dt>회색 칸</dt><dd>정보 구분 · 보조 메시지</dd><dd class="q">웜 그레이 · 소프트 그레이지 · 스톤 그레이 사용 · 15칸 중 2</dd></div>
+          <div class="row row-3"><dt>오렌지 칸</dt><dd>결론이 되는 핵심 한 문장</dd><dd class="q">솔라 오렌지 바탕 · 메테오라이트 블랙 글자 · 짧고 강하게 · <b>최대 2</b></dd></div>
+          <div class="row row-3"><dt>무채색 사진</dt><dd>결과 · 구조 · 질감 클로즈업</dd><dd class="q">저채도 흑백 또는 중립 톤 · 색 보정 최소화 · 15칸 중 2</dd></div>
         </dl>
       </div>
+
+      <p class="note">전체 피드는 <b>무채색으로 정돈합니다.</b> 솔라 오렌지는 장식이 아니라, <b>시선이 멈춰야 할 핵심 문장과 지점을 표시하는 데</b> 사용합니다.</p>
 
       <h3>배치</h3>
       <ul class="rules">
