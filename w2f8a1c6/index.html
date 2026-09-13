@@ -35,6 +35,43 @@
     text-align:center; margin-bottom:14px; font-weight:600;
   }
 
+  /* 쉬운 설명 — 숫자 보기 전에 먼저 읽는 자리 */
+  .brief{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:18px 18px 20px; margin-bottom:14px;
+  }
+  .brief-h{
+    font-size:11px; letter-spacing:.12em; color:var(--sub);
+    font-weight:700; margin-bottom:14px; text-transform:uppercase;
+  }
+  .brief-lead{
+    font-size:13.5px; color:var(--sub); line-height:1.7;
+    padding-bottom:14px; margin-bottom:4px; border-bottom:1px solid var(--line);
+  }
+  .brief-lead b{color:var(--ink);}
+  .bi{padding:14px 0; border-bottom:1px solid var(--line);}
+  .bi:last-of-type{border-bottom:0; padding-bottom:4px;}
+  .bi-t{font-size:14.5px; font-weight:700; margin-bottom:7px; letter-spacing:-.01em;}
+  .bi-b{font-size:13px; color:var(--sub); line-height:1.75;}
+  .bi-b b{color:var(--ink);}
+  .bi-b .big{font-size:14px;}
+  .steps{
+    font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;
+    font-size:13px; color:var(--ink); letter-spacing:.02em;
+    background:var(--soft); border-radius:7px; padding:7px 11px;
+    display:inline-block; margin:8px 0 2px;
+  }
+  .minitab{width:100%; border-collapse:collapse; font-size:12.5px; margin:10px 0 4px;}
+  .minitab th,.minitab td{padding:7px 9px; border-bottom:1px solid var(--line); text-align:right;}
+  .minitab th:first-child,.minitab td:first-child{text-align:left; color:var(--sub);}
+  .minitab thead th{font-size:11px; color:var(--sub); font-weight:600;}
+  .minitab tbody tr:last-child td{border-bottom:0;}
+  .minitab .now{font-weight:700;}
+  .brief-end{
+    margin-top:16px; padding-top:14px; border-top:2px solid var(--accent);
+    font-size:14px; font-weight:700; line-height:1.65;
+  }
+
   .head{text-align:center; margin-bottom:6px;}
   .head h1{font-size:19px; letter-spacing:-.02em;}
   .head .period{font-size:12.5px; color:var(--sub); margin-top:3px;}
@@ -97,6 +134,63 @@
   <div class="head">
     <h1>리커렉션 주간 KPI 리포트</h1>
     <div class="period"><b>9/6</b> ~ <b>9/12</b> · 3회차 <span style="opacity:.7">(캡처 9/13 · 2회차 대비)</span></div>
+  </div>
+
+  <div class="brief">
+    <div class="brief-h">이번 주를 한눈에</div>
+
+    <p class="brief-lead">
+      <b>조회수</b>를 「가게 앞을 지나간 사람 수」라고 생각하시면 됩니다.
+      그리고 <b>국내 비율</b>은 그중 실제로 우리 가게에 올 수 있는 동네 사람의 비율입니다.
+    </p>
+
+    <div class="bi">
+      <div class="bi-t">아카데미 — 사람은 여섯 배 지나갔는데 다 관광객입니다</div>
+      <div class="bi-b">
+        지난주에 가게 앞을 지나간 사람이 <b>여섯 배</b>로 늘었습니다. 엄청난 일처럼 보입니다.<br>
+        그런데 그중 <b>한국 사람은 열 명 중 한 명</b>입니다. 이 비율이 지난주랑 <b>똑같습니다.</b>
+        <table class="minitab">
+          <thead><tr><th></th><th>지난주</th><th>이번주</th></tr></thead>
+          <tbody>
+            <tr><td>지나간 사람</td><td>1,575</td><td class="now">9,566</td></tr>
+            <tr><td>그중 한국 사람 비율</td><td>10.4%</td><td class="now">10.4%</td></tr>
+            <tr><td>실제 올 수 있는 사람</td><td>약 1,810</td><td class="now">약 1,810</td></tr>
+          </tbody>
+        </table>
+        <b>늘어난 건 전부 인도와 방글라데시 사람입니다.</b> 릴스가 터졌는데 거기로 터진 겁니다.<br>
+        앞길에 사람이 여섯 배 많아졌는데 전부 외국인 단체관광객이라 아무도 안 들어옵니다.
+        <b>동네 사람 수는 그대로입니다.</b><br><br>
+        그래서 다음 주에 할 일은 <b>사람을 더 모으는 게 아니라 방향을 트는 것</b>입니다.
+        올릴 때 위치를 <b>「일산」</b>으로 찍고, <b>한국말 검색어</b>를 넣는 것. 그거 두 개입니다.
+      </div>
+    </div>
+
+    <div class="bi">
+      <div class="bi-t">오피셜 — 여기가 제대로 가고 있습니다</div>
+      <div class="bi-b">
+        팔로워가 계속 빠지고 있었는데 <b>이번에 멈췄습니다.</b>
+        <div class="steps">-22명 &nbsp;→&nbsp; -7명 &nbsp;→&nbsp; 0명</div><br>
+        그리고 여기는 보는 사람의 <b>열 명 중 여덟이 한국 사람</b>입니다.
+        그 상태로 지나간 사람이 세 배 늘었습니다.<br>
+        <span class="big"><b>맞는 사람한테 세 배 더 닿았다는 뜻입니다.</b></span>
+        세 계정 중에 숫자가 전부 좋은 쪽으로 간 건 여기뿐입니다.
+      </div>
+    </div>
+
+    <div class="bi">
+      <div class="bi-t">대표 계정 — 한국 사람이 61명입니다</div>
+      <div class="bi-b">
+        팔로워가 1,901명인데 그중 한국 사람은 <b>약 61명</b>입니다. 나머지는 대부분 인도입니다.<br>
+        거의 없는 거나 마찬가지입니다. 조회는 올라왔지만
+        <b>한국에서는 아직 시작도 안 한 상태</b>입니다.<br>
+        다만 팔로워가 <b>두 주 연속 늘었습니다.</b> 방향은 맞습니다.
+      </div>
+    </div>
+
+    <div class="brief-end">
+      아카데미는 많이 보이고, 오피셜은 맞는 사람한테 보입니다.<br>
+      지금 필요한 건 많이 보이는 게 아닙니다.
+    </div>
   </div>
 
   <div class="sec">
