@@ -35,6 +35,58 @@
     text-align:center; margin-bottom:14px; font-weight:600;
   }
 
+  /* ── 가로 막대 그래프 ── */
+  .bar-block{padding:16px 0 6px; border-bottom:1px solid var(--line);}
+  .bar-block:last-of-type{border-bottom:0;}
+  .bb-t{font-size:14px; font-weight:700; letter-spacing:-.01em;}
+  .bb-s{font-size:12px; color:var(--sub); margin:3px 0 14px; line-height:1.6;}
+  .bb-s b{color:var(--ink);}
+
+  .br{display:flex; align-items:center; gap:9px; margin-bottom:9px;}
+  .br-l{
+    flex:0 0 84px; font-size:11.5px; color:var(--sub);
+    font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;
+    text-align:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .br-t{flex:1 1 auto; height:22px; background:var(--soft); border-radius:5px; position:relative; overflow:hidden;}
+  .br-f{height:100%; border-radius:5px; transition:width .2s;}
+  .br-t.center{overflow:visible;}
+  .br-t.center .br-f{position:absolute; top:0; height:100%;}
+  .br-f.half{border-radius:4px;}
+  .zero{position:absolute; left:50%; top:-3px; bottom:-3px; width:2px; background:#b7bcc2; z-index:2;}
+  .br-v{
+    flex:0 0 132px; font-size:12.5px; font-weight:700;
+    font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  .br-n{display:block; font-size:11px; font-weight:600; margin-top:1px;}
+  .br-n.up{color:var(--up);} .br-n.down{color:var(--down);} .br-n.hold{color:var(--sub);}
+
+  .pairblk{margin-bottom:16px;}
+  .pairblk:last-child{margin-bottom:2px;}
+  .pb-h{display:flex; align-items:center; gap:7px; margin-bottom:7px;}
+  .pb-dot{width:9px; height:9px; border-radius:50%; display:inline-block; flex:none;}
+  .pb-name{font-size:12.5px; font-weight:700; font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;}
+  .pb-chip{font-size:11.5px; font-weight:700; padding:2px 8px; border-radius:20px;}
+  .pb-chip.up{background:#e7f4ea; color:var(--up);}
+  .pb-chip.down{background:#fbeae8; color:var(--down);}
+  .pb-chip.hold{background:var(--soft); color:var(--sub);}
+
+  .hist{padding-top:18px; border-top:1px solid var(--line); margin-top:6px;}
+  .tbox2{overflow-x:auto;}
+  .ht{width:100%; border-collapse:collapse; font-size:12px; min-width:340px;}
+  .ht th,.ht td{padding:6px 8px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap;}
+  .ht thead th{font-size:11px; color:var(--sub); font-weight:600;}
+  .ht td.acc{
+    text-align:left; font-weight:700; font-size:11.5px; color:var(--ink);
+    font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;
+    border-right:1px solid var(--line); vertical-align:middle;
+  }
+  .ht td.acc i{width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:5px;}
+  .ht td.k{text-align:left; color:var(--sub);}
+  .ht td.now{font-weight:700; font-variant-numeric:tabular-nums;}
+  .ht tr.grp td{border-top:1px solid var(--line);}
+  .ht tbody tr:first-child td{border-top:0;}
+
   /* 쉬운 설명 — 숫자 보기 전에 먼저 읽는 자리 */
   .brief{
     background:var(--card); border:1px solid var(--line); border-radius:12px;
@@ -212,39 +264,35 @@
   </div>
 
   <div class="sec">
-    <div class="sec-h"><span class="bar"></span>주차별 추이</div>
-    <div class="legend">
-      <span><i style="background:#2e9e5b"></i>__official</span>
-      <span><i style="background:#7c5cbf"></i>_academy</span>
-      <span><i style="background:#c0392b"></i>__ceo</span>
+    <div class="sec-h"><span class="bar"></span>이번 주에 뭐가 움직였나</div>
+
+    <div class="bar-block">
+      <div class="bb-t">실제로 닿는 한국 사람</div>
+      <div class="bb-s">팔로워 × 국내 비율. <b>이 숫자가 진짜 크기</b>입니다. 막대가 길수록 많이 닿습니다.</div>
+      <div id="b-kr"></div>
     </div>
 
-    <div class="chart">
-      <div class="chart-t">국내 팔로워 비율</div>
-      <div class="chart-s">이번 3개월의 핵심 지표입니다. 팔로워가 늘어도 국내 비율이 안 오르면 의미가 없습니다.</div>
-      <div class="chart-box" id="c-domestic"></div>
+    <div class="bar-block">
+      <div class="bb-t">본 사람 — 지난주와 이번주</div>
+      <div class="bb-s">위가 지난주, 아래가 이번주입니다. <b>아래 막대가 길면 늘어난 것</b>입니다.</div>
+      <div id="b-view"></div>
     </div>
 
-    <div class="chart">
-      <div class="chart-t">순 팔로워 증감</div>
-      <div class="chart-s">0선 위로 올라오는 것이 목표입니다. 지금의 감소는 비정상 유입이 정리되는 과정입니다.</div>
-      <div class="chart-box" id="c-net"></div>
+    <div class="bar-block">
+      <div class="bb-t">팔로워 — 늘었나 줄었나</div>
+      <div class="bb-s">가운데 선이 0입니다. <b>오른쪽은 늘어난 것, 왼쪽은 줄어든 것</b>입니다.</div>
+      <div id="b-net"></div>
     </div>
 
-    <div class="chart">
-      <div class="chart-t">팔로워 수</div>
-      <div class="chart-s">총 팔로워입니다. 정상화 기간에는 잠시 내려갈 수 있습니다.</div>
-      <div class="chart-box" id="c-follow"></div>
+    <div class="bar-block">
+      <div class="bb-t">계정까지 찾아온 사람</div>
+      <div class="bb-s">글을 보고 <b>프로필까지 눌러 들어온 사람</b> 수입니다. 조회수보다 이쪽이 실제 관심입니다.</div>
+      <div id="b-visit"></div>
     </div>
 
-    <div class="chart">
-      <div class="chart-t">프로필 방문</div>
-      <div class="chart-s">조회수보다 이쪽이 실제 관심입니다. 보고 나서 계정까지 찾아온 사람 수입니다.</div>
-      <div class="chart-box" id="c-visit"></div>
-    </div>
-
-    <div class="empty" id="c-note" style="margin-top:16px; display:none;">
-      리셋 후 1회차(기준선)뿐이라 점만 찍혀 있습니다. <b>다음 회차부터 선이 이어집니다.</b>
+    <div class="hist">
+      <div class="bb-t" style="margin-bottom:8px;">세 주 나란히</div>
+      <div class="tbox2"><table class="ht" id="b-hist"></table></div>
     </div>
   </div>
 
@@ -341,17 +389,17 @@
    기준일 = 측정 7일 구간의 마지막 날. 2회차부터 매주 일요일. */
 var WEEKS = [
   { 날짜:'8/29', 회차:1,
-    __official:{ 국내:76.8, 순:-22, 팔로워: 7884, 방문:38 },
-    _academy  :{ 국내:10.6, 순:-25, 팔로워:17446, 방문:46 },
-    __ceo     :{ 국내: 2.2, 순: -2, 팔로워: 1889, 방문: 0 } },
+    __official:{ 국내:76.8, 순:-22, 팔로워: 7884, 방문:38, 조회:  263 },
+    _academy  :{ 국내:10.6, 순:-25, 팔로워:17446, 방문:46, 조회: 2310 },
+    __ceo     :{ 국내: 2.2, 순: -2, 팔로워: 1889, 방문: 0, 조회:   44 } },
   { 날짜:'9/5', 회차:2,
-    __official:{ 국내:76.5, 순: -7, 팔로워: 7881, 방문:39 },
-    _academy  :{ 국내:10.4, 순:-30, 팔로워:17405, 방문:21 },
-    __ceo     :{ 국내:null, 순: +5, 팔로워: 1895, 방문:31 } },
+    __official:{ 국내:76.5, 순: -7, 팔로워: 7881, 방문:39, 조회:  567 },
+    _academy  :{ 국내:10.4, 순:-30, 팔로워:17405, 방문:21, 조회: 1575 },
+    __ceo     :{ 국내:null, 순: +5, 팔로워: 1895, 방문:31, 조회:  763 } },
   { 날짜:'9/12', 회차:3,
-    __official:{ 국내:76.4, 순:  0, 팔로워: 7878, 방문:54 },
-    _academy  :{ 국내:10.4, 순: -8, 팔로워:17400, 방문:43 },
-    __ceo     :{ 국내: 3.2, 순: +6, 팔로워: 1901, 방문:25 } }
+    __official:{ 국내:76.4, 순:  0, 팔로워: 7878, 방문:54, 조회: 1783 },
+    _academy  :{ 국내:10.4, 순: -8, 팔로워:17400, 방문:43, 조회: 9566 },
+    __ceo     :{ 국내: 3.2, 순: +6, 팔로워: 1901, 방문:25, 조회: 1413 } }
 ];
 
 var ACCTS = [
@@ -360,164 +408,159 @@ var ACCTS = [
   { name:'__ceo',      color:'#c0392b' }
 ];
 
-var NS = 'http://www.w3.org/2000/svg';
-function el(n, a){ var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
-/* 값 글자 — 선이나 눈금 위에 얹혀도 읽히도록 흰 테두리를 두른다 */
-function valText(a){
-  a.stroke = '#fff'; a['stroke-width'] = 3; a['paint-order'] = 'stroke';
-  a['font-weight'] = 700;
-  return el('text', a);
+function n(v){ return v === null || v === undefined ? null : v; }
+function fmt(v){ return v === null ? '—' : v.toLocaleString('ko-KR'); }
+function el(tag, cls, txt){
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (txt !== undefined) e.textContent = txt;
+  return e;
 }
-/* 못 읽은 칸은 null 로 둔다 — 0 으로 넣으면 실제 0 과 구분이 안 된다 */
-function has(v){ return v !== null && v !== undefined; }
-function fmt(v, kind){
-  if (kind === 'pct')  return v.toFixed(1) + '%';
-  if (kind === 'sign') return (v > 0 ? '+' : '') + v.toLocaleString('ko-KR');
-  return v.toLocaleString('ko-KR');
-}
-function niceTop(v){
-  if (v <= 0) return 1;
-  var p = Math.pow(10, Math.floor(Math.log10(v)));
-  return Math.ceil(v / p * 2) / 2 * p;   // 5·10 단위로 올림
+var LAST = WEEKS[WEEKS.length - 1];
+var PREV = WEEKS.length > 1 ? WEEKS[WEEKS.length - 2] : null;
+
+/* 실제 국내 = 팔로워 × 국내비율 */
+function kr(w, a){
+  var d = w[a.name];
+  return (d.국내 === null || d.국내 === undefined) ? null : Math.round(d.팔로워 * d.국내 / 100);
 }
 
-function draw(id, key, kind, opt){
-  var box = document.getElementById(id);
-  if (!box) return;
-  box.innerHTML = '';
-
-  if (!WEEKS.length){ box.innerHTML = '<div class="empty">아직 기록이 없습니다.</div>'; return; }
-
-  var W  = Math.max(260, box.clientWidth || 300);
-  var H  = 172, ML = 46, MR = 14, MT = 14, MB = 24;
-  var iw = W - ML - MR, ih = H - MT - MB;
-
-  /* y 범위 */
-  var vals = [];
-  WEEKS.forEach(function(w){ ACCTS.forEach(function(a){
-    var v = w[a.name][key]; if (has(v)) vals.push(v); }); });
-  if (!vals.length){ box.innerHTML = '<div class="empty">이 지표는 아직 읽은 값이 없습니다.</div>'; return; }
-  var lo = 0, hi;
-  if (kind === 'pct'){ hi = 100; }
-  else if (kind === 'sign'){
-    /* 위아래를 같게 잡아야 0선이 눈금에 정확히 걸린다 */
-    hi = niceTop(Math.max(1, Math.max(Math.abs(Math.max.apply(null, vals)),
-                                      Math.abs(Math.min.apply(null, vals)))));
-    lo = -hi;
-  } else { hi = niceTop(Math.max.apply(null, vals) * 1.1); }
-
-  var y = function(v){ return MT + ih - (v - lo) / (hi - lo) * ih; };
-  var n = WEEKS.length;
-  var band = (kind === 'sign');   /* 막대는 칸 가운데 — 안 그러면 양끝이 축 밖으로 나간다 */
-  var x = band
-    ? function(i){ return ML + (i + 0.5) * (iw / n); }
-    : function(i){ return n === 1 ? ML + iw / 2 : ML + i * (iw / (n - 1)); };
-  var step = Math.ceil(n / 6);    /* 주차가 쌓이면 x 라벨을 솎는다 */
-
-  var svg = el('svg', { viewBox:'0 0 ' + W + ' ' + H, width:W, height:H,
-                        role:'img', 'aria-label':opt.label });
-
-  /* 가로 눈금 4칸 */
-  for (var g = 0; g <= 4; g++){
-    var gv = lo + (hi - lo) * g / 4, gy = y(gv);
-    svg.appendChild(el('line', { x1:ML, x2:W - MR, y1:gy, y2:gy,
-      stroke: (kind === 'sign' && Math.abs(gv) < 1e-9) ? '#c2c8ce' : '#eef1f3',
-      'stroke-width': (kind === 'sign' && Math.abs(gv) < 1e-9) ? 1.4 : 1 }));
-    var t = el('text', { x:ML - 7, y:gy + 3.5, 'text-anchor':'end',
-                         'font-size':9.5, fill:'#9aa1a8' });
-    t.textContent = kind === 'pct' ? gv.toFixed(0) + '%' : Math.round(gv).toLocaleString('ko-KR');
-    svg.appendChild(t);
+/* ── 가로 막대 한 줄 ── */
+function row(box, label, color, val, pct, note, noteCls){
+  var r = el('div', 'br');
+  r.appendChild(el('div', 'br-l', label));
+  var track = el('div', 'br-t');
+  var fill = el('div', 'br-f');
+  fill.style.width = Math.max(0.6, pct) + '%';
+  fill.style.background = color;
+  track.appendChild(fill);
+  r.appendChild(track);
+  var v = el('div', 'br-v', val);
+  if (note){
+    var sp = el('span', 'br-n ' + (noteCls || ''), note);
+    v.appendChild(sp);
   }
+  r.appendChild(v);
+  box.appendChild(r);
+}
 
-  /* x 라벨 — 마지막 주차는 항상 보이게 */
-  WEEKS.forEach(function(w, i){
-    if (i % step !== 0 && i !== n - 1) return;
-    var t = el('text', { x:x(i), y:H - 7, 'text-anchor':'middle',
-                         'font-size':9.5, fill:'#9aa1a8' });
-    t.textContent = w.날짜;
-    svg.appendChild(t);
-  });
-
-  if (kind === 'sign'){
-    /* 막대 — 주차마다 3계정 나란히 */
-    var gap  = n > 8 ? 1 : 4;
-    var bw   = Math.max(2.5, Math.min(20, iw / n / 3 - gap));
-    var lab  = n <= 6;                       /* 촘촘해지면 값 글자는 뺀다 */
-    WEEKS.forEach(function(w, i){
-      ACCTS.forEach(function(a, j){
-        var v = w[a.name][key];
-        if (!has(v)) return;
-        var cx = x(i) + (j - 1) * (bw + gap);
-        var y0 = y(0), y1 = y(v);
-        svg.appendChild(el('rect', { x:cx - bw / 2, y:Math.min(y0, y1),
-          width:bw, height:Math.max(1.5, Math.abs(y1 - y0)), rx:Math.min(2, bw / 2), fill:a.color }));
-        if (!lab) return;
-        var ty = v >= 0 ? y1 - 5 : y1 + 11;
-        ty = Math.max(MT + 8, Math.min(MT + ih - 1, ty));   /* 그림 밖으로 안 나가게 */
-        var t = valText({ x:cx, y:ty, 'text-anchor':'middle', 'font-size':9.5, fill:a.color });
-        t.textContent = fmt(v, kind);
-        svg.appendChild(t);
-      });
-    });
-  } else {
-    /* 선 + 점 */
-    ACCTS.forEach(function(a){
-      if (n > 1){
-        var d = '', pen = false;
-        WEEKS.forEach(function(w, i){
-          var v = w[a.name][key];
-          if (!has(v)){ pen = false; return; }      /* 못 읽은 주차에서 선을 끊는다 */
-          d += (pen ? 'L' : 'M') + x(i) + ' ' + y(v) + ' ';
-          pen = true;
-        });
-        if (d) svg.appendChild(el('path', { d:d, fill:'none', stroke:a.color,
-          'stroke-width':2, 'stroke-linejoin':'round', 'stroke-linecap':'round' }));
-      }
-      WEEKS.forEach(function(w, i){
-        if (n > 12 && i % step !== 0 && i !== n - 1) return;
-        var v = w[a.name][key];
-        if (!has(v)) return;
-        svg.appendChild(el('circle', { cx:x(i), cy:y(v), r:3.4,
-          fill:'#fff', stroke:a.color, 'stroke-width':2 }));
-      });
-    });
-
-    /* 마지막 점에만 값 표시 — 값이 붙어 있으면 서로 밀어낸다 */
-    var labs = [];
-    ACCTS.forEach(function(a){
-      var v = WEEKS[n - 1][a.name][key];
-      if (!has(v)) return;
-      labs.push({ v:v, ly:y(v) - 8, color:a.color });
-    });
-    labs.sort(function(p, q){ return p.ly - q.ly; });
-    for (var k = 1; k < labs.length; k++){
-      if (labs[k].ly - labs[k - 1].ly < 12) labs[k].ly = labs[k - 1].ly + 12;
+/* 1 · 실제 국내 사람 수 */
+(function(){
+  var box = document.getElementById('b-kr'); if (!box) return;
+  var vals = ACCTS.map(function(a){ return kr(LAST, a); });
+  var max = Math.max.apply(null, vals.filter(function(v){ return v !== null; }).concat([1]));
+  ACCTS.forEach(function(a, i){
+    var v = vals[i], p = PREV ? kr(PREV, a) : null, note = '', cls = '';
+    if (v !== null && p !== null){
+      var d = v - p;
+      if (d === 0){ note = '지난주와 같음'; cls = 'hold'; }
+      else { note = (d > 0 ? '+' : '') + d.toLocaleString('ko-KR') + '명'; cls = d > 0 ? 'up' : 'down'; }
     }
-    labs.forEach(function(L){
-      var t = valText({ x:x(n - 1) + (n === 1 ? 10 : -8),
-                        y:Math.max(MT + 8, Math.min(MT + ih - 2, L.ly)),
-                        'text-anchor': n === 1 ? 'start' : 'end',
-                        'font-size':10, fill:L.color });
-      t.textContent = fmt(L.v, kind);
-      svg.appendChild(t);
+    row(box, a.name, a.color, v === null ? '—' : v.toLocaleString('ko-KR') + '명',
+        v === null ? 0 : v / max * 100, note, cls);
+  });
+})();
+
+/* 2 · 조회수 지난주 vs 이번주 */
+(function(){
+  var box = document.getElementById('b-view'); if (!box) return;
+  var all = [];
+  WEEKS.slice(-2).forEach(function(w){ ACCTS.forEach(function(a){ all.push(w[a.name].조회); }); });
+  var max = Math.max.apply(null, all.concat([1]));
+  ACCTS.forEach(function(a){
+    var now = LAST[a.name].조회, was = PREV ? PREV[a.name].조회 : null;
+    var g = el('div', 'pairblk');
+    var h = el('div', 'pb-h');
+    h.appendChild(el('span', 'pb-dot'));
+    h.lastChild.style.background = a.color;
+    h.appendChild(el('span', 'pb-name', a.name));
+    if (was){
+      var x = now / was;
+      var chip = el('span', 'pb-chip ' + (now > was ? 'up' : (now < was ? 'down' : 'hold')));
+      chip.textContent = now > was ? (x >= 1.15 ? x.toFixed(1) + '배 늘었습니다' : '조금 늘었습니다')
+                       : now < was ? Math.round((1 - now / was) * 100) + '% 줄었습니다'
+                       : '그대로입니다';
+      h.appendChild(chip);
+    }
+    g.appendChild(h);
+    row(g, '지난주', '#c9ccd1', fmt(was), was === null ? 0 : was / max * 100);
+    row(g, '이번주', a.color, fmt(now), now === null ? 0 : now / max * 100);
+    box.appendChild(g);
+  });
+})();
+
+/* 3 · 순 팔로워 — 0 기준 좌우 */
+(function(){
+  var box = document.getElementById('b-net'); if (!box) return;
+  var vs = ACCTS.map(function(a){ return LAST[a.name].순; });
+  var max = Math.max.apply(null, vs.map(Math.abs).concat([5]));
+  ACCTS.forEach(function(a, i){
+    var v = vs[i];
+    var r = el('div', 'br');
+    r.appendChild(el('div', 'br-l', a.name));
+    var track = el('div', 'br-t center');
+    var fill = el('div', 'br-f half');
+    var w = Math.abs(v) / max * 50;
+    if (v === 0){
+      /* 0 은 「멈췄다」는 신호 — 빈 칸으로 보이지 않게 가운데에 작은 덩이를 둔다 */
+      fill.style.left = '47%'; fill.style.background = '#9aa1a8'; fill.style.width = '6%';
+    } else if (v > 0){
+      fill.style.left = '50%'; fill.style.background = '#1e7e34'; fill.style.width = Math.max(2, w) + '%';
+    } else {
+      fill.style.right = '50%'; fill.style.background = '#c0392b'; fill.style.width = Math.max(2, w) + '%';
+    }
+    track.appendChild(el('div', 'zero'));
+    track.appendChild(fill);
+    r.appendChild(track);
+    var lab = v === 0 ? '멈춤' : (v > 0 ? '+' + v + '명 늘었습니다' : v + '명 줄었습니다');
+    var v2 = el('div', 'br-v');
+    v2.appendChild(el('span', 'br-n ' + (v > 0 ? 'up' : v < 0 ? 'down' : 'hold'), lab));
+    r.appendChild(v2);
+    box.appendChild(r);
+  });
+})();
+
+/* 4 · 프로필 방문 */
+(function(){
+  var box = document.getElementById('b-visit'); if (!box) return;
+  var max = Math.max.apply(null, ACCTS.map(function(a){ return LAST[a.name].방문; }).concat([1]));
+  ACCTS.forEach(function(a){
+    var v = LAST[a.name].방문, p = PREV ? PREV[a.name].방문 : null, note = '', cls = '';
+    if (p !== null){
+      var d = v - p;
+      note = d === 0 ? '지난주와 같음' : (d > 0 ? '+' + d + '명' : d + '명');
+      cls = d > 0 ? 'up' : d < 0 ? 'down' : 'hold';
+    }
+    row(box, a.name, a.color, v.toLocaleString('ko-KR') + '명', v / max * 100, note, cls);
+  });
+})();
+
+/* 5 · 세 주 나란히 */
+(function(){
+  var t = document.getElementById('b-hist'); if (!t) return;
+  var rows = [
+    { k:'실제 국내', get:function(w,a){ var v = kr(w,a); return v === null ? '—' : v.toLocaleString('ko-KR'); } },
+    { k:'본 사람',   get:function(w,a){ return fmt(w[a.name].조회); } },
+    { k:'팔로워 증감', get:function(w,a){ var v = w[a.name].순; return (v > 0 ? '+' : '') + v; } },
+    { k:'찾아온 사람', get:function(w,a){ return fmt(w[a.name].방문); } }
+  ];
+  var head = '<thead><tr><th></th><th></th>' +
+    WEEKS.map(function(w){ return '<th>' + w.날짜 + '</th>'; }).join('') + '</tr></thead>';
+  var body = '<tbody>';
+  ACCTS.forEach(function(a){
+    rows.forEach(function(r, i){
+      body += '<tr' + (i === 0 ? ' class="grp"' : '') + '>';
+      if (i === 0) body += '<td class="acc" rowspan="' + rows.length + '"><i style="background:' +
+        a.color + '"></i>' + a.name + '</td>';
+      body += '<td class="k">' + r.k + '</td>';
+      WEEKS.forEach(function(w, j){
+        body += '<td class="' + (j === WEEKS.length - 1 ? 'now' : '') + '">' + r.get(w, a) + '</td>';
+      });
+      body += '</tr>';
     });
-  }
-
-  box.appendChild(svg);
-}
-
-function drawAll(){
-  draw('c-domestic', '국내',   'pct',  { label:'국내 팔로워 비율 추이' });
-  draw('c-net',      '순',     'sign', { label:'순 팔로워 증감' });
-  draw('c-follow',   '팔로워', 'num',  { label:'팔로워 수 추이' });
-  draw('c-visit',    '방문',   'num',  { label:'프로필 방문 추이' });
-  var note = document.getElementById('c-note');
-  if (note) note.style.display = WEEKS.length === 1 ? 'block' : 'none';
-}
-
-drawAll();
-var rt;
-window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(drawAll, 150); });
+  });
+  t.innerHTML = head + body + '</tbody>';
+})();
 </script>
 </body>
 </html>
